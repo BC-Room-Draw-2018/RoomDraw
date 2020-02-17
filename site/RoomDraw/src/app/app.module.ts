@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { GroupComponent } from './group/group.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HousingComponent } from './housing/housing.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
 	declarations: [
@@ -15,7 +16,8 @@ import { HousingComponent } from './housing/housing.component';
 		HomeComponent,
 		GroupComponent,
 		NavBarComponent,
-		HousingComponent
+		HousingComponent,
+		ProfileComponent
 	],
 	imports: [
 		BrowserModule,
