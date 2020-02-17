@@ -1,0 +1,21 @@
+#profile-pic {
+	float: right;
+	height: 40px;
+	margin-top: 2px;
+	margin-right: 4px;
+	z-index: 1;
+}
+
+.circle {
+	position: absolute;
+	text-align: center;
+	font-size: 18px;
+	right: 0;
+	z-index: 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 25px;
+	background: rgb(255, 0, 0, 0.9);
+	cursor: pointer;
+}
+
