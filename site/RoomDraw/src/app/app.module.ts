@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { GroupComponent } from './group/group.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HousingComponent } from './housing/housing.component';
+import { ProfileComponent } from './profile/profile.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
 
@@ -18,6 +19,7 @@ import { FaqComponent } from './faq/faq.component';
 		GroupComponent,
 		NavBarComponent,
 		HousingComponent,
+		ProfileComponent,
 		DocumentComponent,
 		FaqComponent
 	],
