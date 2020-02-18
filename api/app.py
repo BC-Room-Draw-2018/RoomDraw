@@ -4,6 +4,7 @@ import falcon
 from falcon_cors import CORS
 import endpoints
 import session
+from private.sql import sqlalchemy_init
 from middleware.authentication import *
 from middleware.resource import *
 from middleware.exception_handlers import *
@@ -15,6 +16,7 @@ class API(object):
 		self._setup_middleware()
 		# self._setup_errors()
 		self._setup_endpoints()
+		self._setup_sqlalchemy()
 
 	def _setup_middleware(self):
 		self.cors_middleware = CORS(allow_all_origins=True, allow_all_headers=True, allow_all_methods=True)
@@ -36,6 +38,9 @@ class API(object):
 		self.api.add_route("/myinfo", endpoints.MyInfo())
 		self.api.add_route("/dorms", endpoints.Dorm())
 		self.api.add_route("/rooms", endpoints.Room())
+
+	def _setup_sqlalchemy(self):
+		sqlalchemy_init()
 
 api = API()
 

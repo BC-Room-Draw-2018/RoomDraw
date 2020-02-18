@@ -3,6 +3,9 @@
 import sqlalchemy
 import sqlalchemy.orm
 import private.constants
+from contextlib import contextmanager
+
+_engine = None
 
 def get_dialect():
 	return private.constants.sql_dialect
@@ -19,9 +22,24 @@ def get_password():
 def get_db():
 	return private.constants.sql_db
 
-def sql_create_session():
+def sqlalchemy_init(pool_size=5, max_overflow=10, timeout=10):
+	global _engine
 	url = sqlalchemy.engine.url.URL(get_driver(), get_user(),
 			get_password(), get_host(), get_port(), get_db())
-	engine = sqlalchemy.create_engine(url)
-	Session = sqlalchemy.orm.sessionmaker(bind=engine)
-	return Session()
+	_engine = sqlalchemy.create_engine(url, pool_size=pool_size, max_overflow=max_overflow, pool_timeout=timeout)
+
+@contextmanager
+def sql(session=None, commit=False):
+	global _engine
+	close = False
+	try:
+		if session is None:
+			Session = sqlalchemy.orm.sessionmaker(bind=_engine)
+			session = Session()
+			close = True
+		yield session
+	finally:
+		if close:
+			if commit:
+				session.commit()
+			session.close()

@@ -10,13 +10,13 @@ def get_session(request):
 	return request.headers.get("SESSION-ID")
 
 def get_student_by_id(student_id, session=None):
-	if student_id is None:
-		return None
-	# useful if we want to update data
-	if session is None:
-		session = sql_create_session()
+	if student_id is None: return None
 
-	return session.query(models.Student).filter_by(student_id=student_id).first()
+	student = None
+	with sql(session) as session:
+		student = session.query(models.Student).filter_by(student_id=student_id).first()
+
+	return student
 
 def INT(value, nullable=False):
 	"""
