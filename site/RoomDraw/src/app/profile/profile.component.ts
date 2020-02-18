@@ -19,5 +19,4 @@ export class ProfileComponent implements OnInit {
     this.groupService.getInvites().pipe(tap(t => console.log(t)))
       .subscribe(invitations => this.invitations = invitations);
   }
-
 }

@@ -1,21 +1,30 @@
-#profile-pic {
+.profile_pic {
 	float: right;
 	height: 40px;
-	margin-top: 2px;
-	margin-right: 4px;
-	z-index: 1;
+	background: rgb(0, 0, 0, 0);
+	cursor: pointer;
 }
 
-.circle {
-	position: absolute;
+#profile_button {
+	padding: 0px;
+	border: none;
+}
+
+#profile_img {
+	position: relative;
+	padding-top: 2px;
+	padding-right: 2px;
+	z-index: 0;
+}
+
+#notification_bubble {
+	position: relative;
 	text-align: center;
 	font-size: 18px;
-	right: 0;
-	z-index: 0;
+	margin-left: -13px;
+	z-index: 1;
 	width: 20px;
 	height: 20px;
 	border-radius: 25px;
 	background: rgb(255, 0, 0, 0.9);
-	cursor: pointer;
 }
-
