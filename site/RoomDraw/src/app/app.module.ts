@@ -9,6 +9,8 @@ import { GroupComponent } from './group/group.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HousingComponent } from './housing/housing.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DocumentComponent } from './document/document.component';
+import { FaqComponent } from './faq/faq.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +19,9 @@ import { ProfileComponent } from './profile/profile.component';
 		GroupComponent,
 		NavBarComponent,
 		HousingComponent,
-		ProfileComponent
+		ProfileComponent,
+		DocumentComponent,
+		FaqComponent
 	],
 	imports: [
 		BrowserModule,
