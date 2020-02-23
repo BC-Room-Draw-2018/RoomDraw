@@ -13,5 +13,5 @@ class Room(object):
 		floor =       INT(request.params.get("floor"))
 		dorm_id =     INT(request.params.get("dorm_id"))
 
-		sql = sql_create_session()
-		response.media = sql.query(models.Room).filter_by(dorm_id_id=dorm_id, room_number=room_number, available_spots=spots_left, floor=floor).first().dict()
+		with sql() as session:
+			response.media = session.query(models.Room).filter_by(dorm_id_id=dorm_id, room_number=room_number, available_spots=spots_left, floor=floor).first().dict()
