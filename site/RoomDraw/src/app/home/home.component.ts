@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 	myInfo: Student;
+
 	rank: number;
 
 	constructor(
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		this.myInfo = new Student();
 		this.getMyInfo();
 	}
 
