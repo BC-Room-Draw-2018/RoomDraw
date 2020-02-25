@@ -5,6 +5,62 @@
 	height: 44px;
 }
 
+#profile-pic {
+	float: right;
+	height: 40px;
+	margin-top: 2px;
+	margin-right: 4px;
+	z-index: 1;
+}
+
+.circle {
+	position: absolute;
+	text-align: center;
+	font-size: 18px;
+	right: 0;
+	z-index: 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 25px;
+	background: rgb(255, 0, 0, 0.9);
+}
+
+.dropdown {
+	position: relative;
+	float: right;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 200px;
+	padding: 12px 16px;
+	z-index: 1;
+	right: 0;
+	top: 44px;
+	text-align: center;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.notifications {
+	text-align: left;
+}
+
+.notifications p {
+	padding: 10px 15px;
+	margin: 0;
+}
+
+.notifications p:hover {
+	background-color: #ddd;
+}
+
 /* Style the topnav links */
 #topnav a {
 	float: left;
