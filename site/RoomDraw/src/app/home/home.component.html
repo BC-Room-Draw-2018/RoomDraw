@@ -1,13 +1,27 @@
 <div id="home">
 	<div id="header"> <!--Header-->
-		<h2>Benedictine College Room Draw 2019</h2>
+		<div class="headerRow">
+			<div class="headerColumn">
+				<img src="assets/bcLogo.jpg" class="bcLogo" alt="Benedictine College" style="width:260px">
+			</div>
+			<div class="headerColumn">
+				<img src="assets/resLifeBanner.jpg" class="resLifeBanner" alt="Room Draw 2020">
+			</div>
+		</div>
 	</div>
 
 	<app-nav-bar></app-nav-bar>
 
+	<!--Image Banner-->
+	<div id="bannerImage">
+		<img src="assets/banner.jpg" alt="banner">
+	</div>
 	<!--Main Content-->
 	<div class="row">
-		<div class="column" style="background-color:#aaa;">
+		<div id="columnInfo" class="column">
+			<div class="dividerImage">
+				<img src="assets/bcDividerLogo.png">
+			</div>
 			<h2>Your Information</h2>
 			<h3>Student: {{myInfo.first_name}} {{myInfo.last_name}}</h3>
 			<h3>Your Random Number: {{myInfo.random_number}}</h3>
@@ -15,11 +29,16 @@
 			<app-group></app-group>
 		</div>
 		<!--Room Draw Status Update includes Progress Bar NEEDS TO BE LINKED TO DB includes Checklist NEEDS TO BE LINKED TO DB-->
-		<div class="column"><h2>Room Draw Status</h2>
+		<div id="columnWishlists" class="column"><h2>Room Draw Status</h2>
 			<h3>Checklist:</h3>
 			<p>Create or Join a Housing Group</p>
 			<p>Complete a Housing Wish List</p>
 			<p>Complete and Turn in Documents</p>
 		</div>
+	</div>
+
+	<!--Footer-->
+	<div id="footer">
+		<p>Copyright © 2020 Benedictine College</p>
 	</div>
 </div>
