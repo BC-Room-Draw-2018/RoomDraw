@@ -1,6 +1,27 @@
-<div class="notifications">
+<div class="dropdown">
 	<button id="profile_button" class="profile_pic">
 		<span *ngIf="invitations && invitations.length" id="notification_bubble" class="profile_pic">!</span>
 		<img id="profile_img" class="profile_pic" src="/assets/default_profile_pic.png">
 	</button>
+	<div class="dropdown-content">
+		<p>Hey {{myInfo.first_name}}!</p>
+		<div class="notifications">
+			<fieldset>
+				<legend>Notifications:</legend>
+
+				<!-- This is to display all notifications
+	    <div *ngFor="let notification of notifications">
+	    <li>
+	    {{  notification.title }}
+	    </li>
+	    </div>
+				-->
+				<!--THESE ARE PLACE HOLDERS FOR DEMONSTRATIONs-->
+				<p>New Group Added</p>
+				<p>Item added to wish list</p>
+				<p>Removed From Goup</p>
+				<p>Update emergency contact info</p>
+			</fieldset>
+		</div>
+	</div>
 </div>

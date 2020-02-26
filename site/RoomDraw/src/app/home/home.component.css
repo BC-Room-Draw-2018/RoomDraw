@@ -1,7 +1,3 @@
-/*Structure for Room Draw Home by Eli Pruneda 3/20/2019
-style updated 02/21/2020 by Peter Weber
-Going for a header, columns, and a footer.. */
-
 * {
 	box-sizing: border-box;
 }
@@ -44,6 +40,14 @@ body {
 	padding-left: 25px;
 	height: 400px; /* Should be removed. Only for demonstration */
 	background-color: #fff;
+}
+
+#columnInfo {
+	background-color:#d04f6f;
+}
+
+#columnWishlists {
+	border-style: none none none solid;
 }
 
 .dividerImage {

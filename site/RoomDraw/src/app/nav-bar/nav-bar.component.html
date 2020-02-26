@@ -8,31 +8,5 @@
 	<a routerLink="/faqs">FAQs</a>
 	<!-- Should log out link be href, not routerlink? Gut feeling is no -->
 	<a routerLink="#">Log Out</a>
-	<div class="dropdown">
-		<span>
-			<img id="profile-pic" src="/assets/default_profile_pic.png">
-			<span *ngIf="invitations.length" class="circle">!</span>
-		</span>
-		<div class="dropdown-content">
-			<p>Hey {{myInfo.first_name}}!</p>
-			<div class="notifications">
-				<fieldset>
-					<legend>Notifications:</legend>
-
-					<!-- This is to display all notifications
-						<div *ngFor="let notification of notifications">
-						<li>
-							{{  notification.title }}
-						</li>
-					</div>
-					-->
-					<!--THESE ARE PLACE HOLDERS FOR DEMONSTRATIONs-->
-					<p>New Group Added</p>
-					<p>Item added to wish list</p>
-					<p>Removed From Goup</p>
-					<p>Update emergency contact info</p>
-				</fieldset>
-			</div>
-		</div>
-	</div>
+	<app-profile></app-profile>
 </div>

@@ -18,8 +18,7 @@
 	</div>
 	<!--Main Content-->
 	<div class="row">
-		<!--TODO !!! THIS DIV CLASS NEEDS *ngIf="myInfo" added back. Currently 'true' for formating-->
-		<div class="column" style="background-color:#d04f6f;" *ngIf=true>
+		<div id="columnInfo" class="column">
 			<div class="dividerImage">
 				<img src="assets/bcDividerLogo.png">
 			</div>
@@ -27,9 +26,10 @@
 			<h3>Student: {{myInfo.first_name}} {{myInfo.last_name}}</h3>
 			<h3>Your Random Number: {{myInfo.random_number}}</h3>
 			<!--<h3>Groups Ahead of You: {{rank}}</h3>-->
+			<app-group></app-group>
 		</div>
 		<!--Room Draw Status Update includes Progress Bar NEEDS TO BE LINKED TO DB includes Checklist NEEDS TO BE LINKED TO DB-->
-		<div class="column" style="border-style: none none none solid;"><h2>Room Draw Status</h2>
+		<div id="columnWishlists" class="column"><h2>Room Draw Status</h2>
 			<h3>Checklist:</h3>
 			<p>Create or Join a Housing Group</p>
 			<p>Complete a Housing Wish List</p>
