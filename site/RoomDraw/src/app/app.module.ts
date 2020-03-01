@@ -11,6 +11,7 @@ import { HousingComponent } from './housing/housing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +22,8 @@ import { FaqComponent } from './faq/faq.component';
 		HousingComponent,
 		ProfileComponent,
 		DocumentComponent,
-		FaqComponent
+		FaqComponent,
+		LoginComponent
 	],
 	imports: [
 		BrowserModule,
