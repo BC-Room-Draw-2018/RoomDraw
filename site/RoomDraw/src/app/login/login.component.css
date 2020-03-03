@@ -109,22 +109,28 @@ ul.login-menu-list li:nth-child(1) {
 	clear: both;
 }
 
-.bcLogo {
+#bcLogo {
 	position: absolute;
 	left: 50px;
 	top: 71px;
+	width: 260px;
 }
 
-.whiteSpace {
+#bcCampusBackground {
+	width: 100%;
+}
+
+#whiteSpace {
 	position: absolute;
 	left: 25px;
 	top: 36px;
 	height: 140px;
+	width: 97.25%;
 	border-radius:  15px;
 	border: 0.11px solid black;
 }
 
-.resLifeBanner {
+#resLifeBanner {
 	position: absolute;
 	right: 30px;
 	top: 68px;
