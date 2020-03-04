@@ -5,6 +5,7 @@ import { GroupComponent } from './group/group.component';
 import { HousingComponent } from './housing/housing.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
 	{ path: 'housing', component: HousingComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
 	{ path: 'documents', component: DocumentComponent },
 	{ path: 'faqs', component: FaqComponent },
+	{ path: 'login', component: LoginComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
