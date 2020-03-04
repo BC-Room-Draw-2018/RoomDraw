@@ -7,7 +7,7 @@ sql_dialect = "mysql"
 sql_driver = "mysql"
 
 sql_host = "localhost"
-sql_user = "root"
+sql_user = "michael"
 sql_port = None
 sql_password = "RoomDraw2018"
 sql_db = "RoomDrawTesting"
