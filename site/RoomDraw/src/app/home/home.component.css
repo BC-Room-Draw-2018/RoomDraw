@@ -15,10 +15,10 @@ body {
 }
 
 #bannerImage {
-	height: 100%;
 	width: 100%;
+	height: 100%;
 	text-align: center;
-	margin: 0px;
+	margin-bottom: -6px;
 }
 
 #bannerImage img {
@@ -30,6 +30,7 @@ body {
 	position: absolute;
 	left: 30px;
 	top: 20px;
+	width: 260px;
 }
 
 /* Create three equal columns that floats next to each other */
@@ -37,7 +38,7 @@ body {
 	float: left;
 	width: 50%;
 	padding: 10px;
-	padding-left: 25px;
+	padding-left: 28px;
 	height: 400px; /* Should be removed. Only for demonstration */
 	background-color: #fff;
 }
@@ -56,6 +57,7 @@ body {
 	top: 70%;
 	left: 49.9%;
 	transform: translate(-50%, -50%);
+	z-index: 0;
 }
 
 #footer {
@@ -68,8 +70,6 @@ body {
 	text-transform: uppercase;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	width: 100%;
-	margin-top: 5px;
-
 }
 
 .headerColumn {
