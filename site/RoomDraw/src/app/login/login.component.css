@@ -106,7 +106,8 @@ body {
   
 ul.login-menu-list {
 	position: absolute;
-  	left: 22%;
+	left: 22%;
+	top: 2%;
 	list-style: none;
 	text-align: center;
 	padding: 0px;
