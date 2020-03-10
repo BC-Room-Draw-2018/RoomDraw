@@ -4,24 +4,38 @@
 		<img id="profile_img" class="profile_pic" src="/assets/default_profile_pic.png">
 	</button>
 	<div class="dropdown-content">
-		<p>Hey {{myInfo.first_name}}!</p>
-		<div class="notifications">
-			<fieldset>
-				<legend>Notifications:</legend>
+		<!--Dropdown header-->
+		<div class="dropdown-heading">
+			<p>Notifications</p>
+		</div>
 
-				<!-- This is to display all notifications
-	    <div *ngFor="let notification of notifications">
-	    <li>
-	    {{  notification.title }}
-	    </li>
-	    </div>
-				-->
-				<!--THESE ARE PLACE HOLDERS FOR DEMONSTRATIONs-->
-				<p>New Group Added</p>
-				<p>Item added to wish list</p>
-				<p>Removed From Goup</p>
-				<p>Update emergency contact info</p>
-			</fieldset>
+		<!--Notifications in dropdown-->
+		<div class="notifications">
+			
+			<!-- This is to display all notifications-->
+			<ul *ngFor="let invitation of invitations">
+				<p><img src="../../assets/groupIcon.png"><div class="text">New group invite from {{ invitation.leader }}</div></p>
+			</ul>
+
+			<!--this is to test formating of invites DEMONSTRATION ONLY
+			<ul>
+				<p><img src="../../assets/groupIcon.png"><div class="text">New group invite</div></p>
+			</ul>-->
+
+		</div>
+
+		<!--Dropdown footer-->
+		<div class="dropdown-footer">
+			<div class="row">
+				<div class="column1">
+					<p>{{myInfo.first_name}} {{myInfo.last_name}}</p>
+				</div>
+				<div class="column2">
+					<a routerLink="#">
+						<img src="../../assets/logoutButton.png">
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

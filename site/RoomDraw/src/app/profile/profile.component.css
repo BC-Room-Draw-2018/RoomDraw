@@ -1,6 +1,24 @@
-.notifications {
-	position: relative;
-	float: right;
+* {
+	box-sizing: border-box;
+}
+
+.dropdown-heading {
+	background-color: #a1a1a1;
+	width: 250px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+	border-radius: 10px 10px 0px 0px;
+	text-align: left;
+}
+
+.dropdown-footer {
+	background-color: #333333;
+	width: 250px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	border-radius: 0px 0px 10px 10px;
 }
 
 .profile_pic {
@@ -49,13 +67,13 @@
 	display: none;
 	position: absolute;
 	background-color: #f9f9f9;
-	min-width: 200px;
-	padding: 12px 16px;
+	width: 250px;
+	/* padding: 12px 16px; */
 	z-index: 1;
 	right: 0;
 	top: 44px;
 	text-align: center;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	border-radius: 10px;
 
 }
 
@@ -65,6 +83,7 @@
 
 .notifications {
 	text-align: left;
+	position: relative;
 }
 
 .notifications p {
@@ -76,3 +95,48 @@
 	background-color: #ddd;
 }
 
+ul {
+	padding: 0px;
+}
+
+ul img {
+	height: auto;
+	width: 30px;
+	position: absolute;
+  	top: 50%;
+  	transform: translate(0%, -50%);
+}
+
+.text {
+	padding-left: 38px;
+}
+
+.column1 {
+	float: left;
+	width: 50%;
+	text-align: left;
+	padding-left: 10px;
+}
+
+.column2 {
+	float: left;
+	width: 50%;
+	text-align: right;
+	padding-right: 10px;
+	padding-top: 8px;
+}
+
+.column2 img {
+	height: auto;
+	width: 100px;
+}
+
+.column1 p {
+	color: #ffffff;
+}
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
