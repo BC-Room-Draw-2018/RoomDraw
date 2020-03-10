@@ -1,10 +1,13 @@
 * {
 	box-sizing: border-box;
 }
-
+ 
 body {
-	font-family: Arial, Helvetica, sans-serif;
-	top: 20px;
+	background-image: url("../../assets/bc-campus-blur-v2.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 /* Style the header */
@@ -14,7 +17,7 @@ body {
 	text-align: center;
 	font-size: 35px;
 }
-
+  
 /* Create three equal columns that floats next to each other */
 .column {
 	float: left;
@@ -24,11 +27,11 @@ body {
 	height: 400px; /* Should be removed. Only for demonstration */
 	background-color: #fff;
 }
-
+  
 #columnInfo {
 	background-color:#d04f6f;
 }
-
+  
 #footer {
 	background-color: #b30838;
 	display: inline-block;
@@ -40,9 +43,8 @@ body {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	width: 100%;
 	margin-top: 5px;
-
 }
-
+  
 /* I'm not sure how to make it so the login box is automatically in the middle */
 .form-container {
 	position: absolute;
@@ -55,17 +57,17 @@ body {
 	border-radius: 10px;
 	box-shadow: 0 0 10px 0 black;
 }
-
+  
 ul.login-menu-list {
 	margin-left: 10%;
 	list-style: none;
 	text-align: center;
 }
-
+  
 ul.login-menu-list li {
 	width: 235px;
 }
-
+  
 ul.login-menu-list li input {
 	text-align: center;
 	background-color: lightgrey;
@@ -74,52 +76,45 @@ ul.login-menu-list li input {
 	border: none;
 	border-radius: 6px;
 }
-
+  
 ul.login-menu-list li input[type = "button"] {
 	background-color: grey;
 }
-
+  
 ul.login-menu-list li:nth-child(1) {
 	font-size: 30px;
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
-
+  
 .headerColumn {
 	box-sizing: border-box;
 	float: left;
 	width: 50%;
 	padding: 10px;
 }
-
+  
 .headerRow {
 	margin: 10px;
 }
-
-/* .whiteSpace {
-	box-sizing: border-box;
-	float: left;
-	width: 50%;
-	padding: 10px;
-} */
-
+  
 .headerRow:after {
 	content: "";
 	display: table;
 	clear: both;
 }
-
+  
 #bcLogo {
 	position: absolute;
 	left: 50px;
 	top: 71px;
 	width: 260px;
 }
-
+  
 #bcCampusBackground {
 	width: 100%;
 }
-
+  
 #whiteSpace {
 	position: absolute;
 	left: 25px;
@@ -129,17 +124,17 @@ ul.login-menu-list li:nth-child(1) {
 	border-radius:  15px;
 	border: 0.11px solid black;
 }
-
+  
 #resLifeBanner {
 	position: absolute;
 	right: 30px;
 	top: 68px;
 }
-
+  
 .row {
 	margin-top: 0px;
 }
-
+  
 /* Clear floats after the columns */
 .row:after {
 	content: "";
