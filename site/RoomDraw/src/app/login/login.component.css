@@ -1,6 +1,13 @@
 * {
 	box-sizing: border-box;
 }
+
+.bcLogo {
+	position: absolute;
+	left: 30px;
+	top: 20px;
+	width: 260px;
+}
  
 body {
 	background-image: url("../../assets/bc-campus-blur-v2.jpg");
@@ -115,20 +122,10 @@ ul.login-menu-list li:nth-child(1) {
 	width: 100%;
 }
   
-#whiteSpace {
-	position: absolute;
-	left: 25px;
-	top: 36px;
-	height: 140px;
-	width: 97.25%;
-	border-radius:  15px;
-	border: 0.11px solid black;
-}
-  
-#resLifeBanner {
+.resLifeBanner {
 	position: absolute;
 	right: 30px;
-	top: 68px;
+	top: 20px;
 }
   
 .row {
