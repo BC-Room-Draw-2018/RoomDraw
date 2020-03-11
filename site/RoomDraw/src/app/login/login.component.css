@@ -1,13 +1,6 @@
 * {
 	box-sizing: border-box;
 }
-
-.bcLogo {
-	position: absolute;
-	left: 30px;
-	top: 20px;
-	width: 260px;
-}
   
 #bcCampusBackground {
 	width: 100%;
@@ -60,37 +53,6 @@ body {
 	background-color: #b30838;
 	border-radius: 10px;
 	box-shadow: 0 0 10px 0 black;
-}
-
-/* Style the header */
-#header {
-	background-color: #ffffff;
-	padding: 30px;
-	text-align: center;
-	font-size: 35px;
-}
-
-.headerColumn {
-	box-sizing: border-box;
-	float: left;
-	width: 50%;
-	padding: 10px;
-}
-  
-.headerRow {
-	margin: 10px;
-}
-  
-.headerRow:after {
-	content: "";
-	display: table;
-	clear: both;
-}
-
-.resLifeBanner {
-	position: absolute;
-	right: 30px;
-	top: 20px;
 }
   
 .row {
