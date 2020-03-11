@@ -2,13 +2,14 @@ import { Student } from '../Student';
 import { Invitations } from '../Invitations';
 import { StudentService } from '../student.service';
 import { GroupService } from '../group.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
 	selector: 'app-group',
 	templateUrl: './group.component.html',
-	styleUrls: ['./group.component.css']
+	styleUrls: ['./group.component.css'],
+	encapsulation: ViewEncapsulation.None
 })
 export class GroupComponent implements OnInit {
 

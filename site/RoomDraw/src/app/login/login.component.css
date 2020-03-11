@@ -27,18 +27,11 @@ body {
 #columnInfo {
 	background-color:#d04f6f;
 }
-  
+
 #footer {
-	background-color: #b30838;
-	display: inline-block;
-	color: #ffffff;
-	font-size: 14px;
-	line-height: 20px;
-	padding: 0 12px;
-	text-transform: uppercase;
-	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	position: absolute;
+	bottom: 0px;
 	width: 100%;
-	margin-top: 5px;
 }
   
 /* I'm not sure how to make it so the login box is automatically in the middle */

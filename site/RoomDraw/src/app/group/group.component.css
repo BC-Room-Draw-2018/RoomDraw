@@ -1,3 +1,8 @@
+#footer {
+	position: absolute;
+	bottom: 0px;
+}
+
 #LeaveGroupButton {
 	background-color: red; /*Red Background*/
 	border: 1px solid #8b0000; /*Dark Red border*/

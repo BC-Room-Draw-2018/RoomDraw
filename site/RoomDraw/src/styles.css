@@ -16,6 +16,20 @@ body {
 	width: 260px;
 }
 
+#footer {
+	background-color: #b30838;
+	display: inline-block;
+	color: #ffffff;
+	font-size: 11px;
+	line-height: 20px;
+	padding: 0px 0px 0px 12px;
+	text-transform: uppercase;
+	position: relative;
+   	left: 0;
+  	bottom: 0;
+   	width: 99.2%;
+}
+
 /* Style the header */
 #header {
 	background-color: #ffffff;
