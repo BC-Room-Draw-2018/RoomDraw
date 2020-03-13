@@ -1,59 +1,137 @@
 <!-- Room Draw Project
-	11/7/2018
-	Eli Pruneda
-	Housing Wish List Management
-	0.1 Notes
-	4/2/19 Converted from Live Draw Page.
-	User may create and edit housing wish lists-->
-	<!Doctype html>
-	<app-nav-bar></app-nav-bar>
-	<div class="content">
-		<h1>Housing Wish List Management</h1>
-		<div class="btn-group">
-			<button (click)="loadDorm(hall.id)" *ngFor="let hall of halls">{{hall.name}}</button>
-		</div>
-		<!-- Room Availability Menu -->
-		<h2>Room Availability</h2>
-		<div class="row">
-			<div class="column" style="background-color:#aaa;">
-				<div class="btn-group">
-					<button (click)="loadPlan(f)" *ngFor="let f of number_floors"> Floor {{f}}</button>
-				</div>
-				<h2>Rooms</h2>
-				<p>List of rooms...</p> <!--We want to make this column more narrow-->
+11/7/2018
+Eli Pruneda
+Housing Wish List Management
+0.1 Notes
+4/2/19 Converted from Live Draw Page.
+User may create and edit housing wish lists-->
+<!Doctype html>
+<app-nav-bar></app-nav-bar>
+<div class="content">
+	<h1>Housing Wish List Management</h1>
+	<div class="btn-group">
+		<button (click)="loadDorm(hall.id)" *ngFor="let hall of halls">{{hall.name}}</button>
+	</div>
+	<!-- Room Availability Menu -->
+	<h2>Room Availability</h2>
+	<div class="row">
+		<div class="column-left" style="background-color:#aaa;">
+			<div class="btn-group">
+				<button (click)="loadPlan(f)" *ngFor="let f of number_floors"> Floor {{f}}</button>
 			</div>
-			<div class="column" style="background-color:#bbb;">
-				<!--<h2>Floor Map Information</h2>-->
-				<img id="floor_plan" [src]="floorPlan" height='100%'/>
+			<h2>Rooms</h2>
+			<!--This will have to by synced with the database to get all available rooms
+			the purpose of this is to test and demonstrate image maps, displaying rooms, and show styles-->
+			<div class="room" *ngIf="current_id == 3 && floor_viewing == 1">
+				<!--Room #, Room Capacity, Spots left, Type-->
+				<table>
+					<tr>
+						<th>Room #</th>
+						<th>Capacity</th>
+						<th>Spots Open</th>
+						<th>Type</th>
+					</tr>
+					<tr>
+						<td>001</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>002</td>
+						<td>2</td>
+						<td>1</td>
+						<td>2-man Room</td>
+					</tr>
+					<tr>
+						<td>003</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>004</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>005</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>006</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>007</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>008</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>009</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>010</td>
+						<td>2</td>
+						<td>2</td>
+						<td>4-man Suite</td>
+					</tr>
+					<tr>
+						<td>011</td>
+						<td>2</td>
+						<td>1</td>
+						<td>4-man Suite</td>
+					</tr>
+				</table>
 			</div>
 		</div>
+		<div class="column-right" style="background-color:#bbb;">
+			<!--<h2>Floor Map Information</h2>-->
+			<img id="floor_plan" [src]="floor_plan"/>
+		</div>
+	</div>
 
-		<!-- Wish List Summary/Quick Reference -->
-		<h2>My Wish Lists</h2>
-		<div class="row">
-			<div class = "wishColumn">
-				<div class = "card">
-					<h3>Wish List 1</h3>
-					<p>Some text</p>
-				</div>
+	<!-- Wish List Summary/Quick Reference -->
+	<h2>My Wish Lists</h2>
+	<div class="row">
+		<div class = "wishColumn">
+			<div class = "card">
+				<h3>Wish List 1</h3>
+				<p>Some text</p>
 			</div>
-			<div class = "wishColumn">
-				<div class = "card">
-					<h3>Wish List 2</h3>
-					<p>Some text</p>
-				</div>
+		</div>
+		<div class = "wishColumn">
+			<div class = "card">
+				<h3>Wish List 2</h3>
+				<p>Some text</p>
 			</div>
-			<div class = "wishColumn">
-				<div class = "card">
-					<h3>Wish List 3</h3>
-					<p>Some text</p>
-				</div>
+		</div>
+		<div class = "wishColumn">
+			<div class = "card">
+				<h3>Wish List 3</h3>
+				<p>Some text</p>
 			</div>
-			<div class = "wishColumn">
-				<div class = "card">
-					<h3>Wish List 4</h3>
-					<p>Some text</p>
-				</div>
+		</div>
+		<div class = "wishColumn">
+			<div class = "card">
+				<h3>Wish List 4</h3>
+				<p>Some text</p>
 			</div>
 		</div>
 	</div>
+</div>

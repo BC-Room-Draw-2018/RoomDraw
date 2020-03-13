@@ -24,7 +24,7 @@ export class HousingComponent implements OnInit {
 
 	/* floorPlan is the image location and number_floors is a blank array to loop the appropriate amount
 	of times with in the html to display the number of tabs for each floor in the dorm */
-	floorPlan = null;
+	floor_plan = null;
 	number_floors = null;
 	
 	constructor() {
@@ -52,7 +52,7 @@ export class HousingComponent implements OnInit {
 	}
 
 	displayFloor(id: number, floors: number, code: string) {
-		this.floorPlan = `/assets/floorPlans/${code}-${this.floor_viewing}.png`;
+		this.floor_plan = `/assets/floorPlans/${code}-${this.floor_viewing}.png`;
 	}
 
 	loadPlan(new_number) {
