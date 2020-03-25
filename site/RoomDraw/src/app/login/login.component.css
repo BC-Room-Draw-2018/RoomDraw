@@ -2,19 +2,25 @@
 	box-sizing: border-box;
 }
 
-body {
-	font-family: Arial, Helvetica, sans-serif;
+.bcLogo {
+	position: absolute;
+	left: 30px;
 	top: 20px;
+	width: 260px;
 }
-
-/* Style the header */
-#header {
-	background-color: #ffffff;
-	padding: 30px;
-	text-align: center;
-	font-size: 35px;
+  
+#bcCampusBackground {
+	width: 100%;
 }
-
+ 
+body {
+	background-image: url("../../assets/bc-campus-blur-v2.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+  
 /* Create three equal columns that floats next to each other */
 .column {
 	float: left;
@@ -24,11 +30,11 @@ body {
 	height: 400px; /* Should be removed. Only for demonstration */
 	background-color: #fff;
 }
-
+  
 #columnInfo {
 	background-color:#d04f6f;
 }
-
+  
 #footer {
 	background-color: #b30838;
 	display: inline-block;
@@ -40,49 +46,28 @@ body {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	width: 100%;
 	margin-top: 5px;
-
 }
-
+  
 /* I'm not sure how to make it so the login box is automatically in the middle */
 .form-container {
 	position: absolute;
-	top: 275px;
-	left: 34%;
-	width: 30%;
-	height: 43.5%;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+	width: 400px;
+	height: 42%;
 	padding: 20px   30px;
 	background-color: #b30838;
 	border-radius: 10px;
 	box-shadow: 0 0 10px 0 black;
 }
 
-ul.login-menu-list {
-	margin-left: 10%;
-	list-style: none;
+/* Style the header */
+#header {
+	background-color: #ffffff;
+	padding: 30px;
 	text-align: center;
-}
-
-ul.login-menu-list li {
-	width: 235px;
-}
-
-ul.login-menu-list li input {
-	text-align: center;
-	background-color: lightgrey;
-	padding: 8px 38px;
-	margin: 10px 0px;
-	border: none;
-	border-radius: 6px;
-}
-
-ul.login-menu-list li input[type = "button"] {
-	background-color: grey;
-}
-
-ul.login-menu-list li:nth-child(1) {
-	font-size: 30px;
-	margin-top: 30px;
-	margin-bottom: 20px;
+	font-size: 35px;
 }
 
 .headerColumn {
@@ -91,58 +76,63 @@ ul.login-menu-list li:nth-child(1) {
 	width: 50%;
 	padding: 10px;
 }
-
+  
 .headerRow {
 	margin: 10px;
 }
-
-/* .whiteSpace {
-	box-sizing: border-box;
-	float: left;
-	width: 50%;
-	padding: 10px;
-} */
-
+  
 .headerRow:after {
 	content: "";
 	display: table;
 	clear: both;
 }
 
-#bcLogo {
-	position: absolute;
-	left: 50px;
-	top: 71px;
-	width: 260px;
-}
-
-#bcCampusBackground {
-	width: 100%;
-}
-
-#whiteSpace {
-	position: absolute;
-	left: 25px;
-	top: 36px;
-	height: 140px;
-	width: 97.25%;
-	border-radius:  15px;
-	border: 0.11px solid black;
-}
-
-#resLifeBanner {
+.resLifeBanner {
 	position: absolute;
 	right: 30px;
-	top: 68px;
+	top: 20px;
 }
-
+  
 .row {
 	margin-top: 0px;
 }
-
+  
 /* Clear floats after the columns */
 .row:after {
 	content: "";
 	display: table;
 	clear: both;
+}
+  
+ul.login-menu-list {
+	position: absolute;
+	left: 22%;
+	top: 2%;
+	list-style: none;
+	text-align: center;
+	padding: 0px;
+}
+  
+ul.login-menu-list li {
+	width: 235px;
+	text-align: center;
+}
+  
+ul.login-menu-list li input {
+	text-align: center;
+	background-color: lightgrey;
+	padding: 8px 38px;
+	margin: 10px 0px;
+	border: none;
+	border-radius: 6px;
+}
+  
+ul.login-menu-list li input[type = "button"] {
+	background-color: grey;
+}
+  
+ul.login-menu-list li:nth-child(1) {
+	font-size: 30px;
+	margin-top: 30px;
+	margin-bottom: 20px;
 }
