@@ -33,8 +33,7 @@ export class HousingComponent implements OnInit {
 	floor_plan = null;
 	number_floors = null;
 
-	floor_room_string = null;
-	arrayOfRooms = []
+	array_of_rooms = []
 	
 	constructor() {
 
@@ -57,22 +56,24 @@ export class HousingComponent implements OnInit {
 			this.number_floors[_i] = _i + 1;
 		}
 
-		this.displayFloor(this.current_id, this.floor_viewing, this.current_code);
+		this.array_of_rooms = []
+		this.array_of_rooms = this.halls[this.current_id].floorRooms[0]
+		this.displayFloor(this.current_code);
 	}
 
-	displayFloor(id: number, floors: number, code: string) {
+	displayFloor(code: string) {
 		this.floor_plan = `/assets/floorPlans/${code}-${this.floor_viewing}.png`;
 	}
 
 	loadPlan(new_number) {
 		this.floor_viewing = new_number;
-		this.floor_room_string = "floor" + this.floor_viewing + "rooms"
-		this.setRoomArray(this.floor_room_string)
-		this.displayFloor(this.current_id, new_number, this.current_code)
+		this.setRoomArray()
+		this.displayFloor(this.current_code)
 	}
 
-	setRoomArray(rooms: string) {
-		// this.arrayOfRooms = this.halls[this.current_id].rooms
+	setRoomArray() {
+		this.array_of_rooms = []
+		this.array_of_rooms = this.halls[this.current_id].floorRooms[this.floor_viewing - 1]
 	}
 
 }

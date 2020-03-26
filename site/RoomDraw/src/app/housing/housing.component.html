@@ -21,7 +21,7 @@ User may create and edit housing wish lists-->
 			</div>
 			<h2>Rooms</h2>
 			<!--This get all rooms-->
-			<div class="room" *ngIf="current_id == 3 && floor_viewing == 1">
+			<div class="room">
 				<!--Room #, Room Capacity, Spots left, Type-->
 				<table>
 					<tr>
@@ -30,7 +30,7 @@ User may create and edit housing wish lists-->
 						<th>Spots Open</th>
 						<th>Type</th>
 					</tr>
-					<tr>
+					<tr *ngFor="let rooms of array_of_rooms">
 						<td>1</td>
 						<td>2</td>
 						<td>2</td>
