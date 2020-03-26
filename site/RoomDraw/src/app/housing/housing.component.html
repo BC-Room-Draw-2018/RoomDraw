@@ -20,9 +20,7 @@ User may create and edit housing wish lists-->
 				<button (click)="loadPlan(f)" *ngFor="let f of number_floors"> Floor {{f}}</button>
 			</div>
 			<h2>Rooms</h2>
-
-			<!--This will have to by synced with the database to get all available rooms
-			the purpose of this is to test and demonstrate image maps, displaying rooms, and show styles-->
+			<!--This get all rooms-->
 			<div class="room" *ngIf="current_id == 3 && floor_viewing == 1">
 				<!--Room #, Room Capacity, Spots left, Type-->
 				<table>
@@ -33,69 +31,9 @@ User may create and edit housing wish lists-->
 						<th>Type</th>
 					</tr>
 					<tr>
-						<td>001</td>
-						<td>2</td>
-						<td>2</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>002</td>
-						<td>2</td>
 						<td>1</td>
-						<td>2-man Room</td>
-					</tr>
-					<tr>
-						<td>003</td>
 						<td>2</td>
 						<td>2</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>004</td>
-						<td>2</td>
-						<td>1</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>005</td>
-						<td>2</td>
-						<td>1</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>006</td>
-						<td>2</td>
-						<td>2</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>007</td>
-						<td>2</td>
-						<td>2</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>008</td>
-						<td>2</td>
-						<td>1</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>009</td>
-						<td>2</td>
-						<td>2</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>010</td>
-						<td>2</td>
-						<td>2</td>
-						<td>4-man Suite</td>
-					</tr>
-					<tr>
-						<td>011</td>
-						<td>2</td>
-						<td>1</td>
 						<td>4-man Suite</td>
 					</tr>
 				</table>
