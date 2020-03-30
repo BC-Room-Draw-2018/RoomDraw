@@ -6,6 +6,7 @@ import { HousingComponent } from './housing/housing.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
+import { PasswordResetComponent} from './password-reset/password-reset.component';
 
 const routes: Routes = [
 	{ path: 'housing', component: HousingComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
 	{ path: 'documents', component: DocumentComponent },
 	{ path: 'faqs', component: FaqComponent },
 	{ path: 'login', component: LoginComponent },
+	{ path: 'password-reset', component: PasswordResetComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
