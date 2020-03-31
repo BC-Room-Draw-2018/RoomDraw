@@ -12,7 +12,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { LogOutComponent } from './log-out/log-out.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 		DocumentComponent,
 		FaqComponent,
 		LoginComponent,
-		PasswordResetComponent
+		ForgotPasswordComponent,
+		LogOutComponent
 	],
 	imports: [
 		BrowserModule,

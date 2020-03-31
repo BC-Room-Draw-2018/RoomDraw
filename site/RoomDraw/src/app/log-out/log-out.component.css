@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    height: 612px; 
+}
+
+#logged-out-confirmation-text {
+    position: absolute;
+    top: 33vh;
+    left: 21vw;
+    font-size: 44px;
+    font-weight: normal;
+}
+
+#close-browser-window-text {
+    position: absolute;
+    top: 46vh;
+    left: 21vw;
+    font-size: 28px;
+}
