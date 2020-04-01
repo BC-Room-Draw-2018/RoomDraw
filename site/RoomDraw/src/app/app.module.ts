@@ -12,7 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LogOutComponent } from './log-out/log-out.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { LogOutComponent } from './log-out/log-out.component';
 		DocumentComponent,
 		FaqComponent,
 		LoginComponent,
-		ForgotPasswordComponent,
+		ResetPasswordComponent,
 		LogOutComponent
 	],
 	imports: [
