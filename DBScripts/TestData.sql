@@ -14,7 +14,7 @@ REPLACE INTO Groups (group_id, random_number, grade_level, sex) VALUES
 
 REPLACE INTO Dorms (dorm_id, dorm_code, dorm_name, sex, photo) VALUES
 (0,  "LEM",  "Lemke Hall",          'M',  NULL),
-(1,  "NEW",  "Newman Hall",      'M',  NULL),
+(1,  "NEW",  "Newman Hall",         'M',  NULL),
 (2,  "JOE",  "St. Joseph Hall",     'M',  NULL),
 (3,  "STM",  "St. Michael Hall",    'M',  NULL),
 (4,  "WOL",  "Wolf Hall",           'M',  NULL),
