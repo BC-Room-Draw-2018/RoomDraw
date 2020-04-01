@@ -22,8 +22,8 @@ REPLACE INTO Dorms (dorm_id, dorm_code, dorm_name, sex, photo) VALUES
 (6,  "LIZ",  "Elizabeth Hall",      'F',  NULL),
 (7,  "LEG",  "Legacy Hall",         'F',  NULL),
 (8,  "MCD",  "McDonald Hall",       'F',  NULL),
-(9,  "GUA", "Guadalupe Hall",       'F',  NULL),
-(10, "CRA", "Cray Seaberg Hall"     'F',  NULL);
+(9,  "GUA",  "Guadalupe Hall",      'F',  NULL),
+(10, "CRA",  "Cray Seaberg Hall",   'F',  NULL);
 
 REPLACE INTO Rooms (room_number, dorm_id, capacity, available_spots, description, floor) VALUES
 ("49", 0, 4, 4, "4-bedroom apartment", 1), 
