@@ -1,3 +1,5 @@
+import { Room } from '../Room';
+import { RoomService } from '../room.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./housing.component.scss']
 })
 export class HousingComponent implements OnInit {
+	rooms: Room[] = []
+	counter = 0
 
 	halls = [
 		{id: 0, name: "Lemke Hall", floors: 4, code: "LEM", floorRooms: [["49", "50", "51", "52"], ["53", "55", "56", "61", "62", "63", "64"], ["57", "58", "59", "60", "65", "66", "67"], ["69", "70", "71", "72"]]},
@@ -33,14 +37,24 @@ export class HousingComponent implements OnInit {
 	floor_plan = null;
 	number_floors = null;
 
-	array_of_rooms = []
+	// array_of_rooms = []
 	
-	constructor() {
-
-	}
+	constructor(
+		private roomService: RoomService,
+	) { }
 
 	ngOnInit() {
 		this.loadDorm(0);
+		this.rooms = new Array<Room>();
+		this.getRoomInfo();
+	}
+
+	getRoomInfo() {
+		this.rooms = []
+		this.counter = 0
+		this.roomService.getAllRooms(this.current_id, this.floor_viewing)
+			.subscribe(rooms => this.rooms[this.counter++] = rooms);
+		console.log("rooms = " + this.rooms)
 	}
 
 	loadDorm(id) {
@@ -56,24 +70,25 @@ export class HousingComponent implements OnInit {
 			this.number_floors[_i] = _i + 1;
 		}
 
-		this.array_of_rooms = []
-		this.array_of_rooms = this.halls[this.current_id].floorRooms[0]
+		// this.array_of_rooms = []
+		// this.array_of_rooms = this.halls[this.current_id].floorRooms[0]
 		this.displayFloor(this.current_code);
 	}
 
 	displayFloor(code: string) {
+		this.getRoomInfo()
 		this.floor_plan = `/assets/floorPlans/${code}-${this.floor_viewing}.png`;
 	}
 
 	loadPlan(new_number) {
 		this.floor_viewing = new_number;
-		this.setRoomArray()
+		// this.setRoomArray()
 		this.displayFloor(this.current_code)
 	}
 
-	setRoomArray() {
-		this.array_of_rooms = []
-		this.array_of_rooms = this.halls[this.current_id].floorRooms[this.floor_viewing - 1]
-	}
+	// setRoomArray() {
+	// 	this.array_of_rooms = []
+	// 	this.array_of_rooms = this.halls[this.current_id].floorRooms[this.floor_viewing - 1]
+	// }
 
 }

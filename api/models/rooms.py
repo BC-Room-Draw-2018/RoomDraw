@@ -7,7 +7,7 @@ from models.base import Model, OrmModel
 class Room(Model, OrmModel):
 	__tablename__ = 'Rooms'
 
-	room_number     = Column(Integer, primary_key=True)
+	room_number     = Column(String, primary_key=True)
 	dorm_id         = Column(Integer, primary_key=True)
 	capacity        = Column(Integer)
 	available_spots = Column(Integer)
