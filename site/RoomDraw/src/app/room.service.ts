@@ -28,7 +28,7 @@ export class RoomService {
   }
 
   getAllRooms(dorm_id, floor): Observable<Room> {
-    var url = 'http://localhost:8000/rooms?room_number=' + '-1' + "&spots_left=" + '-1' + "&floor=" + floor + "&dorm_id=" + dorm_id;
+    var url = `http://localhost:8000/rooms?floor=${floor}&dorm_id=${dorm_id}`;
     return this.http.get<Room>(url, this.httpOptions)
   }
 }
