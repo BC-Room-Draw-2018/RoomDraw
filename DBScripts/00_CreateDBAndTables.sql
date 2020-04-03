@@ -16,6 +16,15 @@ CREATE TABLE IF NOT EXISTS Students(
 	PRIMARY KEY(student_id)
 );
 
+CREATE TABLE IF NOT EXISTS Users(
+	student_id INT NOT NULL,
+	email VARCHAR(256) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	UserGuid UNIQUEIDENTIFIER NULL, /*Guid used to salt passwords*/
+
+	PRIMARY KEY(student_id)
+);	
+
 CREATE TABLE IF NOT EXISTS Groups(
 	group_id INT NOT NULL,
 	random_number INT NOT NULL,
