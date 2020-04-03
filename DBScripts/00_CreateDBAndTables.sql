@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS GroupInvites(
 
 CREATE TABLE IF NOT EXISTS Dorms(
 	dorm_id INT NOT NULL,
-	dorm_code VARCHAR(3) NOT NULL,
+	dorm_code VARCHAR(4) NOT NULL,
 	dorm_name VARCHAR(64) NOT NULL,
 	sex ENUM('M', 'F') NOT NULL,
 	photo BLOB,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Dorms(
 );
 
 CREATE TABLE IF NOT EXISTS Rooms(
-	room_number INT NOT NULL,
+	room_number VARCHAR(4) NOT NULL,
 	dorm_id INT NOT NULL,
 	capacity INT NOT NULL,
 	available_spots INT NOT NULL,

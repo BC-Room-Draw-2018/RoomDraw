@@ -1,12 +1,11 @@
-
 .content{
 	max-width: 1000px;
 	margin: auto;
 }
 .btn-group button {
-	background-color: #4CAF50; /* Green background */
-	border: 1px solid green; /* Green border */
-	color: white; /* White text */
+	background-color: #b30838; /* Red background */
+	border: 1px solid #000; /* Black border */
+	color: #fff; /* White text */
 	padding: 10px 24px; /* Some padding */
 	cursor: pointer; /* Pointer/hand icon */
 	float: left; /* Float the buttons side by side */
@@ -25,17 +24,28 @@
 
 /* Add a background color on hover */
 .btn-group button:hover {
-	background-color: #2196F3; /* Blue */
+	background-color: rgb(21, 113, 189); /* Blue */
 }
 * {
 	box-sizing: border-box;
 }
 /* Create two equal columns that floats next to each other */
-.column {
+.column-left {
 	float: left;
-	width: 50%;
+	width: 44%;
 	padding: 10px;
-	height: 300px;
+	height: auto;
+}
+
+.column-right {
+	float: left;
+	width: 56%;
+	padding: 10px;
+	height: auto;
+}
+
+.row {
+	display: flex;
 }
 
 /* Clear floats after the columns */
@@ -65,4 +75,40 @@
 	padding: 16px;
 	text-align: center;
 	background-color: #f1f1f1;
+}
+
+#floor_plan {
+	width: auto;
+	height: auto;
+	max-height: 100%;
+	max-width: 530px;
+	border: 1px solid #000;
+}
+
+.room {
+	max-height: 620px;
+	overflow: scroll;
+	background-color: rgb(71, 71, 71);
+	color: #fff;
+	border-radius: 7px;
+	padding: 8px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 2px solid #000;
+	text-align: center;
+	padding: 8px;
+}
+  
+tr:nth-child(even) {
+	background-color: rgb(114, 114, 114);
+}
+
+tr:not(:first-child):hover {
+	background-color: rgb(146, 146, 146);
 }
