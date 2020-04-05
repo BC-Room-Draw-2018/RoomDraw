@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Users(
 	student_id INT NOT NULL,
 	email VARCHAR(256) NOT NULL,
 	password VARCHAR(50) NOT NULL,
-	UserGuid UNIQUEIDENTIFIER NULL, /*Guid used to salt passwords*/
+	salt VARCHAR(64) NULL, /*Guid used to salt passwords*/
 
 	PRIMARY KEY(student_id)
 );	
