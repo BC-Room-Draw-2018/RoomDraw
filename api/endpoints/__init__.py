@@ -5,8 +5,11 @@ from endpoints.rooms import Room
 from endpoints.student import Student, MyInfo
 from endpoints.student_wishlist import StudentWishlist
 
+from endpoints.auth import Login, Logout
+
 
 __all__ = [
+	# RoomDraw
 	"Dorm",
 	"Group",
 	"GroupMembers",
@@ -15,5 +18,9 @@ __all__ = [
 	"Room",
 	"Student",
 	"MyInfo",
-	"StudentWishlist"
+	"StudentWishlist",
+
+	# Authentication
+	"Login",
+	"Logout"
 ]

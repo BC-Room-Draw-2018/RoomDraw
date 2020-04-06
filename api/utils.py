@@ -6,9 +6,6 @@ from private import stored_procs as procs
 import session
 import models
 
-def get_session(request):
-	return request.headers.get("SESSION-ID")
-
 def get_student_by_id(student_id, session=None):
 	if student_id is None: return None
 

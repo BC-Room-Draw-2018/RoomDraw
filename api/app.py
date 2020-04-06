@@ -38,6 +38,8 @@ class API(object):
 		self.api.add_route("/myinfo", endpoints.MyInfo())
 		self.api.add_route("/dorms", endpoints.Dorm())
 		self.api.add_route("/rooms", endpoints.Room())
+		self.api.add_route("/login", endpoints.Login())
+		self.api.add_route("/logout", endpoints.Logout())
 
 	def _setup_sqlalchemy(self):
 		sqlalchemy_init()
