@@ -17,7 +17,14 @@ class Dorm(object):
 			results = session.query(models.Dorm).filter_by(sex=student.sex)
 
 			if dorm_id is not None:
-				response.media = results.filter_by(dorm_id=dorm_id).first().dict()
+				if dorm_id == 1111:
+					#get all dorms
+					dorms = session.query(models.Dorm).filter_by(sex=student.sex).all()
+					response.media = []
+					for dorm in dorms:
+						response.media.append(dorm.dict())
+				else :
+					response.media = results.filter_by(dorm_id=dorm_id).first().dict()			
 			else:
 				response.media = []
 				for dorm in results:

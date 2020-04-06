@@ -12,3 +12,4 @@ class Dorm(Model, OrmModel):
 	dorm_name = Column(String)
 	sex       = Column(Enum('M', 'F'))
 	photo     = Column(LargeBinary)
+	floors    = Column(Integer)
