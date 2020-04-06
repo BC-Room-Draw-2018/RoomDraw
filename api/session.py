@@ -31,13 +31,18 @@ def create_session(student_id, token=None):
 	Create a student and put it into the sessions dictionary
 	Returns the session token
 	"""
-	_sessions[token] = Session(student_id, token)
+	ret = Session(student_id, token)
+	_sessions[ret.token] = ret
+	return ret
 
 def get_session(request):
 	try:
 		return _sessions[request.headers.get("SESSION-ID")]
 	except KeyError:
 		return None
+
+def get_sessions_by_id(student_id):
+	return list(filter(lambda x : x.student_id == student_id, _sessions.values()))
 
 def destroy_session(session):
 	if session and session.token in _sessions:
