@@ -3,6 +3,7 @@ import json
 import falcon
 import models
 from private.sql import *
+from config import EMAIL_DOMAIN
 
 import session
 
@@ -36,7 +37,8 @@ class Login(object):
 			raise falcon.HTTPBadRequest(description="Invalid password")
 
 		with sql() as db_session:
-			user = db_session.query(models.User).filter((models.User.email==username) | (models.User.email==username+"@ravens.benedictine.edu")).first()
+			user = db_session.query(models.User).filter((models.User.email==username) |
+					(models.User.email=="%s@%s" % (username, EMAIL_DOMAIN))).first()
 			if user is None:
 				response.status = falcon.HTTP_NO_CONTENT
 				return
@@ -49,3 +51,4 @@ class Login(object):
 class Logout(object):
 	def on_post(self, request, response):
 		session.destroy_session(self.session)
+		response.status = falcon.HTTP_NO_CONTENT

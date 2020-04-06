@@ -2,6 +2,7 @@
 
 from falcon import HTTPUnauthorized
 from session import *
+from config import ENDPOINT_LOGIN
 
 def authenticated(session):
 	return session.is_valid() if session is not None else False
@@ -10,7 +11,7 @@ class AuthenticationMiddleware(object):
 	def process_request(self, request, response):
 		if request.method == 'OPTIONS':
 			return
-		if request.path == '/login':
+		if request.path == ENDPOINT_LOGIN:
 			return
 
 		session = get_session(request)

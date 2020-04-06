@@ -8,6 +8,7 @@ from private.sql import sqlalchemy_init
 from middleware.authentication import *
 from middleware.resource import *
 from middleware.exception_handlers import *
+from config import ENDPOINT_LOGIN
 
 class API(object):
 	def __init__(self):
@@ -38,7 +39,7 @@ class API(object):
 		self.api.add_route("/myinfo", endpoints.MyInfo())
 		self.api.add_route("/dorms", endpoints.Dorm())
 		self.api.add_route("/rooms", endpoints.Room())
-		self.api.add_route("/login", endpoints.Login())
+		self.api.add_route(ENDPOINT_LOGIN, endpoints.Login())
 		self.api.add_route("/logout", endpoints.Logout())
 
 	def _setup_sqlalchemy(self):

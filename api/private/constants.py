@@ -1,11 +1,5 @@
 #!/usr/bin/python
 
-# the sql server to be used. Find out more at https://docs.sqlalchemy.org/en/13/core/engines.html
-sql_dialect = "mysql"
-
-# the sql driver to use.
-sql_driver = "mysql"
-
 sql_host = "localhost"
 sql_user = "root"
 sql_port = None

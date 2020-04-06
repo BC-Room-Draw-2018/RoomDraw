@@ -2,25 +2,25 @@
 
 import sqlalchemy
 import sqlalchemy.orm
-import private.constants
+import config
 from contextlib import contextmanager
 
 _engine = None
 
 def get_dialect():
-	return private.constants.sql_dialect
+	return config.sql_dialect
 def get_driver():
-	return private.constants.sql_driver
+	return config.sql_driver
 def get_host():
-	return private.constants.sql_host
+	return config.sql_host
 def get_port():
-	return private.constants.sql_port
+	return config.sql_port
 def get_user():
-	return private.constants.sql_user
+	return config.sql_user
 def get_password():
-	return private.constants.sql_password
+	return config.sql_password
 def get_db():
-	return private.constants.sql_db
+	return config.sql_db
 
 def sqlalchemy_init(pool_size=5, max_overflow=10, timeout=10):
 	global _engine
