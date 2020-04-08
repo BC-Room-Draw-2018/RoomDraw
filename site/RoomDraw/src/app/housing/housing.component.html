@@ -56,12 +56,34 @@ User may create and edit housing wish lists-->
 			</div>
 		</div>
 		<div class = "wishColumn">
-			<div class="card" (click)="buttonClicked()">
+			<div class="card" (click)="showPopUp()">
 				<div class = "createNewWishlist">
 					<h1>+</h1>
 					<p>Add new room to wishlist</p>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="popupWindow" *ngIf="popUpVisable">
+		<form>
+			<h2>Add to Wishlist</h2>
+			<label for="dorms">Dorm: </label>
+			<select id="dorms">
+				<option *ngFor="let dorm of dorms" (click)="showFloorDropdown(dorm.dorm_id)" value="dorm.dorm_id">{{ dorm.dorm_name }}</option>
+			</select>
+			<br/>
+			<label for="floor">Level: </label>
+			<select id="floor" *ngIf="displayFloorDropdown">
+				<option *ngFor="let floor of dropdownFloors" (click)="floorDropdown(floor)">{{ floor }}</option>
+			</select>
+			<br/>
+			<label for="rooms">Room #: </label>
+			<select id="rooms" *ngIf="displayRoomDropdown">
+				<option *ngFor="let room of dropdownRooms">{{ room.room_number }}</option>
+			</select>
+			<br/>
+			<button *ngIf="okayToSubmit" type="submit" class="btn">Add to list</button>
+   			<button type="submit" class="btn cancel" (click)="hidePopUp()">Cancel</button>
+		</form>
 	</div>
 </div>

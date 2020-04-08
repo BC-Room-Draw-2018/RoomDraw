@@ -14,14 +14,22 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./housing.component.scss']
 })
 export class HousingComponent implements OnInit {
-	rooms: Room[] = []
-	counter = 0
+	rooms: Room[] = [];
 
-	dorms: Dorm[] = []
+	dorms: Dorm[] = [];
 
-	wishlist: Wishlist[] =[]
+	wishlist: Wishlist[] =[];
 
-	myInfo: Student
+	myInfo: Student;
+
+	dropdownDorm = 0;
+	displayFloorDropdown: boolean = false;
+	dropdownFloors = null;
+	dropdownFloorRooms = 0;
+	displayRoomDropdown: boolean = false;
+	dropdownRooms: Room[] = []
+	okayToSubmit: boolean = false;
+	popUpVisable: boolean = false;
 
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
@@ -69,7 +77,6 @@ export class HousingComponent implements OnInit {
 
 	getRoomInfo() {
 		this.rooms = []
-		this.counter = 0
 		this.roomService.getAllRooms(this.current_id, this.floor_viewing)
 			.subscribe(rooms => this.rooms = rooms);
 	}
@@ -102,12 +109,42 @@ export class HousingComponent implements OnInit {
 		this.displayFloor(this.current_code)
 	}
 
-	buttonClicked() {
-		console.log("add new wishlist button was clicked")
+	showPopUp() {
+		this.popUpVisable = true;
+	}
+
+	hidePopUp() {
+		this.displayFloorDropdown = false;
+		this.displayRoomDropdown = false;
+		this.popUpVisable = false;
 	}
 
 	wishlistHall(dorm_id): string {
 		var name = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
 		return name;
+	}
+
+	showFloorDropdown(dorm_id) {
+		this.displayFloorDropdown = true;
+		this.dropdownDorm = dorm_id
+		const numFlrs = this.dorms.find(dorm => dorm.dorm_id == dorm_id).floors;
+
+		this.dropdownFloors = Array(numFlrs);
+		for(var _i = 0; _i < this.dropdownFloors.length; _i++) {
+			this.dropdownFloors[_i] = _i + 1;
+		}
+	}
+
+	floorDropdown(floorNum) {
+		this.dropdownFloorRooms = floorNum;
+		this.displayRoomDropdown = true;
+		this.getDropdownRooms();
+	}
+
+	getDropdownRooms() {
+		this.okayToSubmit = true;
+		this.dropdownRooms = [];
+		this.roomService.getAllRooms(this.dropdownDorm, this.dropdownFloorRooms)
+			.subscribe(rooms => this.dropdownRooms = rooms);
 	}
 }
