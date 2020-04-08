@@ -6,7 +6,6 @@ import { DormService } from '../dorm.service';
 import { StudentService } from '../student.service'
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
 	selector: 'app-housing',
 	templateUrl: './housing.component.html',
@@ -44,7 +43,7 @@ export class HousingComponent implements OnInit {
 		
 		this.getAllDormsInfo();
 
-		this.getRoomInfo();
+		//this.getRoomInfo();
 
 		this.myInfo = new Student();
 		this.getMyInfo();
@@ -57,24 +56,21 @@ export class HousingComponent implements OnInit {
 
 	getAllDormsInfo() {
 		this.dormService.getAllDorms()
-			.subscribe(dorms => this.dorms[this.dormCounter++] = dorms);
+			.subscribe(dorms => this.dorms = dorms);
 	}
 
 	getRoomInfo() {
 		this.rooms = []
 		this.counter = 0
 		this.roomService.getAllRooms(this.current_id, this.floor_viewing)
-			.subscribe(rooms => this.rooms[this.counter++] = rooms);
+			.subscribe(rooms => this.rooms = rooms);
 	}
 
 	loadDorm(id) {
-		if(this.myInfo.sex.localeCompare("F") == 0) {
-			id -= 5
-			console.log("id = " + id)
-		}
+		var selected_dorm = this.dorms.filter(dorm => dorm.dorm_id == id)[0]
 		this.current_id = id;
-		this.current_code = this.dorms[0][id].dorm_code;
-		this.current_floors = this.dorms[0][id].floors;
+		this.current_code = selected_dorm.dorm_code;
+		this.current_floors = selected_dorm.floors;
 		this.floor_viewing = 1;
 
 

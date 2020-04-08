@@ -26,7 +26,7 @@ export class DormService {
 		return this.http.get<Dorm>(url, this.httpOptions);
 	}
 
-	getAllDorms(): Observable<Dorm> {
+	getAllDorms(): Observable<Dorm[]> {
 		var url = 'http://localhost:8000/dorms';
 		return this.http.get<Dorm[]>(url, this.httpOptions);
 	}
