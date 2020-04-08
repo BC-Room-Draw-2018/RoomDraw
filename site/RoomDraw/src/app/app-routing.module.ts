@@ -6,8 +6,9 @@ import { HousingComponent } from './housing/housing.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RegisterComponent } from './register/register.component';
 import { LogOutComponent } from './log-out/log-out.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
 	{ path: 'housing', component: HousingComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'reset-password', component: ResetPasswordComponent },
 	{ path: 'log-out', component: LogOutComponent },
+	{ path: 'register', component: RegisterComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
