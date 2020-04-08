@@ -22,11 +22,11 @@ body {
   
 .form-container {
 	position: absolute;
-	top: 54%;
+	top: 50%;
   	left: 50%;
   	transform: translate(-50%, -50%);
 	width: 400px;
-	height: 74%;
+	height: 38%;
 	padding: 20px   30px;
 	background-color: #b30838;
 	border-radius: 10px;
@@ -47,7 +47,7 @@ body {
 ul.login-menu-list {
 	position: absolute;
 	left: 19%;
-	top: 0%;
+	top: 2%;
 	list-style: none;
 	text-align: center;
 	padding: 0px;
@@ -58,28 +58,13 @@ ul.login-menu-list li {
 	text-align: center;
 }
   
-ul.login-menu-list li input, ul.login-menu-list li select {
+ul.login-menu-list li input {
 	text-align: center;
 	background-color: lightgrey;
 	padding: 8px 38px;
 	margin: 10px 0px;
 	border: none;
 	border-radius: 6px;
-}
-
-ul.login-menu-list li select {
-    width: 240px;
-}
-
-.button-text {
-	text-align: center;
-	background-color: grey;
-	width: 250px;
-	padding: 9px 18px;
-	margin: 10px 0px;
-	border: none;
-	border-radius: 6px;
-	font-size: 14px;
 }
   
 ul.login-menu-list li input[type = "button"] {
@@ -88,10 +73,6 @@ ul.login-menu-list li input[type = "button"] {
   
 ul.login-menu-list li:nth-child(1) {
 	font-size: 24px;
-	margin-top: 15px;
-	margin-bottom: 15px;
-}
-
-#submit-button {
-    margin: 0px 0px;
+	margin-top: 30px;
+	margin-bottom: 20px;
 }
