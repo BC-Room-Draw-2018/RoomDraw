@@ -14,7 +14,6 @@ import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LogOutComponent } from './log-out/log-out.component';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
 	declarations: [
@@ -28,8 +27,7 @@ import { RegisterComponent } from './register/register.component';
 		FaqComponent,
 		LoginComponent,
 		ResetPasswordComponent,
-		LogOutComponent,
-		RegisterComponent
+		LogOutComponent
 	],
 	imports: [
 		BrowserModule,
