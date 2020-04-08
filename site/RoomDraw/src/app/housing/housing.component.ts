@@ -67,7 +67,7 @@ export class HousingComponent implements OnInit {
 	}
 
 	loadDorm(id) {
-		var selected_dorm = this.dorms.filter(dorm => dorm.dorm_id == id)[0]
+		var selected_dorm = this.dorms.find(dorm => dorm.dorm_id == id);
 		this.current_id = id;
 		this.current_code = selected_dorm.dorm_code;
 		this.current_floors = selected_dorm.floors;
