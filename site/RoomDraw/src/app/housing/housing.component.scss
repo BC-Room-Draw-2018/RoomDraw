@@ -120,6 +120,12 @@
 	margin-right: 2px;
 }
 
+.popupWindow button:active {
+	background-color: #9b042f;
+    box-shadow: inset 0px 0px 5px #000000;
+   	outline: none;
+}
+
 #floor_plan {
 	width: auto;
 	height: auto;

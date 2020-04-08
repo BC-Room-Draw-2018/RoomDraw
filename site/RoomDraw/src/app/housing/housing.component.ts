@@ -28,6 +28,7 @@ export class HousingComponent implements OnInit {
 	dropdownFloorRooms = 0;
 	displayRoomDropdown: boolean = false;
 	dropdownRooms: Room[] = []
+	dropwdownRoom = 0;
 	okayToSubmit: boolean = false;
 	popUpVisable: boolean = false;
 
@@ -116,6 +117,7 @@ export class HousingComponent implements OnInit {
 	hidePopUp() {
 		this.displayFloorDropdown = false;
 		this.displayRoomDropdown = false;
+		this.okayToSubmit = false;
 		this.popUpVisable = false;
 	}
 
@@ -146,5 +148,17 @@ export class HousingComponent implements OnInit {
 		this.dropdownRooms = [];
 		this.roomService.getAllRooms(this.dropdownDorm, this.dropdownFloorRooms)
 			.subscribe(rooms => this.dropdownRooms = rooms);
+	}
+
+	roomDropdown(roomNum) {
+		this.dropwdownRoom = roomNum
+	}
+
+	submitWishlist() {
+		this.hidePopUp();
+		console.log("Submitted the following be added to wishlist:");
+		console.log("Dorm_id = " + this.dropdownDorm);
+		console.log("Floor = " + this.dropdownFloorRooms);
+		console.log("Room = " + this.dropwdownRoom);
 	}
 }
