@@ -46,6 +46,7 @@
 
 .row {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 /* Clear floats after the columns */
@@ -75,6 +76,20 @@
 	padding: 16px;
 	text-align: center;
 	background-color: #f1f1f1;
+	margin-bottom: 17px;
+}
+
+.card:active {
+	background: #e5e5e5;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+   	outline: none;
+}
+
+.createNewWishlist h1 {
+	margin: 0;
+	font-size: 67px;
+	color: #666;
+    text-shadow: 0px -1px 0px rgba(0,0,0,.5);
 }
 
 #floor_plan {

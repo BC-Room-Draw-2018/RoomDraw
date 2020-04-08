@@ -48,44 +48,20 @@ User may create and edit housing wish lists-->
 	<!-- Wish List Summary/Quick Reference -->
 	<h2>My Wish Lists</h2>
 	<div class="row">
-		<div class = "wishColumn">
+		<div class = "wishColumn" *ngFor="let list of wishlist">
 			<div class = "card">
-				<h3>Wish List 1</h3>
-				<p>Some text</p>
+				<h3>Preference {{ list.rank }}</h3>
+				<p>{{ wishlistHall(list.dorm_id) }}</p>
+				<p>Room #{{ list.room_id }}</p>
 			</div>
 		</div>
 		<div class = "wishColumn">
-			<div class = "card">
-				<h3>Wish List 2</h3>
-				<p>Some text</p>
-			</div>
-		</div>
-		<div class = "wishColumn">
-			<div class = "card">
-				<h3>Wish List 3</h3>
-				<p>Some text</p>
-			</div>
-		</div>
-		<div class = "wishColumn">
-			<div class = "card">
-				<h3>Wish List 4</h3>
-				<p>Some text</p>
+			<div class="card" (click)="buttonClicked()">
+				<div class = "createNewWishlist">
+					<h1>+</h1>
+					<p>Add new room to wishlist</p>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<!--Maps-->
-<map name="simple">
-	<area shape="poly" coords="80,41,143,41,142,76,103,76,103,64,79,64" id="stm-gf-001" />
-	<area shape="poly" coords="64,107,64,94,39,95,39,75,0,77,0,108" id="stm-gf-002" />
-	<area shape="poly" coords="103,77,143,76,142,107,79,108,79,84,103,85" id="stm-gf-003" />
-	<area shape="poly" coords="1,108,1,142,41,141,40,129,63,130,64,107" id="stm-gf-004" />
-	<area shape="poly" coords="79,107,79,132,103,132,104,143,143,142,142,107" id="stm-gf-005" />
-	<area shape="poly" coords="64,151,63,176,1,176,1,142,40,142,40,151" id="stm-gf-006" />
-	<area shape="poly" coords="142,176,143,142,103,143,103,153,79,153,80,177" id="stm-gf-007" />
-	<area shape="poly" coords="40,211,1,210,1,176,62,176,64,199,38,198" id="stm-gf-008" />
-	<area shape="poly" coords="79,177,142,176,143,211,103,211,103,201,79,201" id="stm-gf-009" />
-	<area shape="poly" coords="63,244,63,220,39,220,38,211,0,211,0,246" id="stm-gf-010" />
-	<area shape="poly" coords="79,245,143,245,142,211,103,211,103,222,79,222" id="stm-gf-011" />
-</map>

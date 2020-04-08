@@ -1,9 +1,11 @@
 import { Room } from '../Room';
 import { Dorm } from '../Dorm';
 import { Student } from '../Student';
+import { Wishlist } from '../Wishlist';
 import { RoomService } from '../room.service';
 import { DormService } from '../dorm.service';
-import { StudentService } from '../student.service'
+import { StudentService } from '../student.service';
+import { WishlistService } from '../wishlist.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -16,7 +18,8 @@ export class HousingComponent implements OnInit {
 	counter = 0
 
 	dorms: Dorm[] = []
-	dormCounter = 0
+
+	wishlist: Wishlist[] =[]
 
 	myInfo: Student
 
@@ -36,27 +39,32 @@ export class HousingComponent implements OnInit {
 	constructor(
 		private roomService: RoomService,
 		private dormService: DormService,
-		private studentService: StudentService
+		private studentService: StudentService,
+		private wishlistService: WishlistService
 	) { }
 
 	ngOnInit() {
-		
 		this.getAllDormsInfo();
 
-		//this.getRoomInfo();
+		this.getWishlist();
 
 		this.myInfo = new Student();
 		this.getMyInfo();
 	}
 
-	getMyInfo(): void {
-		this.studentService.getInfo()
-			.subscribe(myInfo => this.myInfo = myInfo);
-	}
-
 	getAllDormsInfo() {
 		this.dormService.getAllDorms()
 			.subscribe(dorms => this.dorms = dorms);
+	}
+
+	getWishlist() {
+		this.wishlistService.getStudentWishlist()
+			.subscribe(wishlist => this.wishlist = wishlist);
+	}
+
+	getMyInfo(): void {
+		this.studentService.getInfo()
+			.subscribe(myInfo => this.myInfo = myInfo);
 	}
 
 	getRoomInfo() {
@@ -92,5 +100,14 @@ export class HousingComponent implements OnInit {
 		this.floor_viewing = new_number;
 		// this.setRoomArray()
 		this.displayFloor(this.current_code)
+	}
+
+	buttonClicked() {
+		console.log("add new wishlist button was clicked")
+	}
+
+	wishlistHall(dorm_id): string {
+		var name = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+		return name;
 	}
 }
