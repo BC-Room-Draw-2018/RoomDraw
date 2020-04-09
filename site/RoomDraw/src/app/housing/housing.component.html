@@ -67,9 +67,15 @@ User may create and edit housing wish lists-->
 	<div class="popupWindow" *ngIf="popUpVisable">
 		<form>
 			<h2>Add to Wishlist</h2>
+			<label for="preference">Preference #: </label>
+			<select id="preference">
+				<option *ngFor="let pref of wishlist" (click)="setPreference(pref.rank)">{{ pref.rank }}</option>
+				<option (click)="setPreference(wishlist.length+1)" value="wishlist.length+1">{{ wishlist.length+1 }}</option>
+			</select>
+			<br/>
 			<label for="dorms">Dorm: </label>
 			<select id="dorms">
-				<option *ngFor="let dorm of dorms" (click)="showFloorDropdown(dorm.dorm_id)" value="dorm.dorm_id">{{ dorm.dorm_name }}</option>
+				<option *ngFor="let dorm of dorms" (click)="showFloorDropdown(dorm.dorm_id)">{{ dorm.dorm_name }}</option>
 			</select>
 			<br/>
 			<label for="floor">Level: </label>

@@ -25,4 +25,17 @@ export class WishlistService {
 		var url = 'http://localhost:8000/wishlist';
 		return this.http.get<Wishlist[]>(url, this.httpOptions);
 	}
+
+	addWishlist(rank, dorm_id, room_id, floor): Observable<Object> {
+		var url = 'http://localhost:8000/wishlist';
+		const body = {
+			rank: rank,
+			dorm_id: dorm_id,
+			room_id: room_id,
+			floor: floor
+		};
+
+		var str = JSON.stringify(body);
+		return this.http.put<Object>(url, str, this.httpOptions)
+	}
 }

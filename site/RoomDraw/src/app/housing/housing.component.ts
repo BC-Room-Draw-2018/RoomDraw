@@ -31,6 +31,7 @@ export class HousingComponent implements OnInit {
 	dropwdownRoom = 0;
 	okayToSubmit: boolean = false;
 	popUpVisable: boolean = false;
+	preference = 0;
 
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
@@ -121,6 +122,10 @@ export class HousingComponent implements OnInit {
 		this.popUpVisable = false;
 	}
 
+	setPreference(rank) {
+		this.preference = rank;
+	}
+
 	wishlistHall(dorm_id): string {
 		var name = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
 		return name;
@@ -157,6 +162,7 @@ export class HousingComponent implements OnInit {
 	submitWishlist() {
 		this.hidePopUp();
 		console.log("Submitted the following be added to wishlist:");
+		console.log("Preference = " + this.preference);
 		console.log("Dorm_id = " + this.dropdownDorm);
 		console.log("Floor = " + this.dropdownFloorRooms);
 		console.log("Room = " + this.dropwdownRoom);
