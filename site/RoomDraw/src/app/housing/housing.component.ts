@@ -22,13 +22,14 @@ export class HousingComponent implements OnInit {
 
 	myInfo: Student;
 
+	displayDormDropdown: boolean = false;
 	dropdownDorm = 0;
 	displayFloorDropdown: boolean = false;
 	dropdownFloors = null;
 	dropdownFloorRooms = 0;
 	displayRoomDropdown: boolean = false;
 	dropdownRooms: Room[] = []
-	dropwdownRoom = 0;
+	dropdownRoom = 0;
 	okayToSubmit: boolean = false;
 	popUpVisable: boolean = false;
 	preference = 0;
@@ -116,6 +117,7 @@ export class HousingComponent implements OnInit {
 	}
 
 	hidePopUp() {
+		this.displayDormDropdown = false;
 		this.displayFloorDropdown = false;
 		this.displayRoomDropdown = false;
 		this.okayToSubmit = false;
@@ -124,6 +126,7 @@ export class HousingComponent implements OnInit {
 
 	setPreference(rank) {
 		this.preference = rank;
+		this.displayDormDropdown = true;
 	}
 
 	wishlistHall(dorm_id): string {
@@ -149,22 +152,25 @@ export class HousingComponent implements OnInit {
 	}
 
 	getDropdownRooms() {
-		this.okayToSubmit = true;
 		this.dropdownRooms = [];
 		this.roomService.getAllRooms(this.dropdownDorm, this.dropdownFloorRooms)
 			.subscribe(rooms => this.dropdownRooms = rooms);
 	}
 
 	roomDropdown(roomNum) {
-		this.dropwdownRoom = roomNum
+		this.okayToSubmit = true;
+		this.dropdownRoom = roomNum
 	}
 
 	submitWishlist() {
 		this.hidePopUp();
-		console.log("Submitted the following be added to wishlist:");
-		console.log("Preference = " + this.preference);
-		console.log("Dorm_id = " + this.dropdownDorm);
-		console.log("Floor = " + this.dropdownFloorRooms);
-		console.log("Room = " + this.dropwdownRoom);
+		var error;
+		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
+			.subscribe(error => error = error)
+		// console.log("Submitted the following be added to wishlist:");
+		// console.log("Preference = " + this.preference);
+		// console.log("Dorm_id = " + this.dropdownDorm);
+		// console.log("Floor = " + this.dropdownFloorRooms);
+		// console.log("Room = " + this.dropdownRoom);
 	}
 }

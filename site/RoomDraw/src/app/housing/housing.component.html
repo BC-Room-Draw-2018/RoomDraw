@@ -74,7 +74,7 @@ User may create and edit housing wish lists-->
 				</select>
 				<br/>
 				<label for="dorms">Dorm: </label>
-				<select id="dorms">
+				<select id="dorms" *ngIf="displayDormDropdown">
 					<option *ngFor="let dorm of dorms" (click)="showFloorDropdown(dorm.dorm_id)">{{ dorm.dorm_name }}</option>
 				</select>
 				<br/>
