@@ -49,7 +49,7 @@ User may create and edit housing wish lists-->
 		<h2>My Wish Lists</h2>
 		<div class="row">
 			<div class = "wishColumn" *ngFor="let list of wishlist">
-				<div class = "card">
+				<div class = "card" (click)="showDeleteCardPopup(list.rank, list.dorm_id, list.room_id)">
 					<h3>Preference {{ list.rank }}</h3>
 					<p>{{ wishlistHall(list.dorm_id) }}</p>
 					<p>Room #{{ list.room_id }}</p>
@@ -64,6 +64,19 @@ User may create and edit housing wish lists-->
 				</div>
 			</div>
 		</div>
+
+		<div class="deleteCardPopup" *ngIf="deleteCardPopup">
+			<h2>Delete from Wishlist</h2>
+			<label for="preference">Preference #: {{ deleteCardRank }}</label>
+			<br/>
+			<label for="dorms">Dorm: {{ deleteCardDorm }}</label>
+			<br/>
+			<label for="rooms">Room #: {{ deleteCardRoom }}</label>
+			<br/>
+			<button type="button" (click)="hideDeleteCardPopup()">Cancel</button>
+			<button type="button" (click)="deleteCard()">Add to list</button>
+		</div>
+
 		<div class="popupWindow" *ngIf="popUpVisable">
 			<form>
 				<h2>Add to Wishlist</h2>
@@ -88,8 +101,8 @@ User may create and edit housing wish lists-->
 					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number)">{{ room.room_number }}</option>
 				</select>
 				<br/>
-				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to list</button>
 				<button type="button" (click)="hidePopUp()">Cancel</button>
+				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to list</button>
 			</form>
 		</div>
 	</div>

@@ -111,6 +111,21 @@
 	text-align: center;
 }
 
+.wishListContainer .deleteCardPopup {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+	background-color: #f9f9f9;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-right: 20px;
+	padding-left: 20px;
+	box-shadow: 2px 4px 20px #000;
+	text-align: center;
+}
+
 .popupWindow button {
 	background-color: #b30838; /* Green */
 	border: none;
@@ -126,6 +141,26 @@
 }
 
 .popupWindow button:active {
+	background-color: #9b042f;
+    box-shadow: inset 0px 0px 5px #000000;
+   	outline: none;
+}
+
+.deleteCardPopup button {
+	background-color: #b30838; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.deleteCardPopup button:active {
 	background-color: #9b042f;
     box-shadow: inset 0px 0px 5px #000000;
    	outline: none;

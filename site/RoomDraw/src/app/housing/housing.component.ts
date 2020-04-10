@@ -34,6 +34,11 @@ export class HousingComponent implements OnInit {
 	popUpVisable: boolean = false;
 	preference = 0;
 
+	deleteCardPopup: boolean = false;
+	deleteCardRank = 0;
+	deleteCardDorm = null;
+	deleteCardRoom = 0;
+
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
 	current_floors = null;
@@ -167,10 +172,25 @@ export class HousingComponent implements OnInit {
 		var error;
 		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
 			.subscribe(error => error = error)
-		// console.log("Submitted the following be added to wishlist:");
-		// console.log("Preference = " + this.preference);
-		// console.log("Dorm_id = " + this.dropdownDorm);
-		// console.log("Floor = " + this.dropdownFloorRooms);
-		// console.log("Room = " + this.dropdownRoom);
+	}
+
+	showDeleteCardPopup(rank, dorm_id, room_id) {
+		this.deleteCardPopup = true;
+		this.deleteCardRank = rank;
+		var dormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+		this.deleteCardDorm = dormName;
+		this.deleteCardRoom = room_id;
+		// console.log("card to delete:");
+		// console.log("Rank: " + rank);
+		// console.log("dorm_id: " + dorm_id);
+		// console.log("room id: " + room_id);
+	}
+
+	hideDeleteCardPopup() {
+		this.deleteCardPopup = false;
+	}
+
+	deleteCard() {
+		this.wishlistService.removeWishlist(this.deleteCardRank);
 	}
 }

@@ -37,4 +37,9 @@ export class WishlistService {
 
 		return this.http.put<Object>(url, body, this.httpOptions);
 	}
+
+	removeWishlist(rank): Observable<Object> {
+		var url = 'http://localhost:8000/wishlist?rank=' + rank;
+		return this.http.delete<Object>(url, this.httpOptions);
+	}
 }
