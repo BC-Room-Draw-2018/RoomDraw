@@ -39,6 +39,12 @@ export class HousingComponent implements OnInit {
 	deleteCardDorm = null;
 	deleteCardRoom = 0;
 
+	roomListPopupVisable: boolean = false;
+	roomListPreference = 0;
+	roomListDormID = 0;
+	roomListDormName = null;
+	roomListRoom = 0;
+
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
 	current_floors = null;
@@ -169,7 +175,6 @@ export class HousingComponent implements OnInit {
 
 	submitWishlist() {
 		this.hidePopUp();
-		var error;
 		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
 			.subscribe(error => error = error)
 	}
@@ -192,5 +197,25 @@ export class HousingComponent implements OnInit {
 
 	deleteCard() {
 		this.wishlistService.removeWishlist(this.deleteCardRank);
+	}
+
+	showRoomListAddPopup(dorm_name, dorm_id, room) {
+		this.roomListDormName = dorm_name;
+		this.roomListDormID = dorm_id
+		this.roomListRoom = room;
+		this.roomListPopupVisable = true;
+	}
+
+	hideRoomListAddPopup() {
+		this.roomListPopupVisable = false;
+	}
+
+	setRoomListPreference(rank) {
+		this.roomListPreference = rank;
+	}
+
+	addRoomList() {
+		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, null)
+			.subscribe(error => error = error)
 	}
 }

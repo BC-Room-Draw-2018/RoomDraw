@@ -30,7 +30,7 @@ User may create and edit housing wish lists-->
 						<th>Spots Open</th>
 						<th>Type</th>
 					</tr>
-					<tr *ngFor="let room of rooms">
+					<tr *ngFor="let room of rooms" (click)="showRoomListPopup(room.dorm_name, room.dorm_id, room.room_number)">
 						<td>{{ room.room_number }}</td>
 						<td>{{ room.capacity }}</td>
 						<td>{{ room.available_spots }}</td>
@@ -38,6 +38,23 @@ User may create and edit housing wish lists-->
 					</tr>
 				</table>
 			</div>
+
+			<div class="roomListPopup" *ngIf="roomListPopupVisable">
+				<h2>Add to Wishlist</h2>
+				<label for="preference">Preference #: </label>
+				<select id="preference">
+					<option *ngFor="let pref of wishlist" (click)="setRoomListPreference(pref.rank)">{{ pref.rank }}</option>
+					<option (click)="setRoomListPreference(wishlist.length+1)" value="wishlist.length+1">{{ wishlist.length+1 }}</option>
+				</select>
+				<br/>
+				<label for="dorms">Dorm: {{ roomListDorm }}</label>
+				<br/>
+				<label for="rooms">Room #: {{ roomListRoom }}</label>
+				<br/>
+				<button type="button" (click)="hideRoomListAddPopup()">Cancel</button>
+				<button type="button" (click)="addRoomList()">Add to list</button>
+			</div>
+
 		</div>
 		<div class="column-right" style="background-color:#bbb;">
 			<!--<h2>Floor Map Information</h2>-->
