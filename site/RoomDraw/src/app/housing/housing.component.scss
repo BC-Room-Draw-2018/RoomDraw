@@ -45,7 +45,9 @@
 }
 
 .row {
+	position: relative;
 	display: flex;
+	flex-wrap: wrap;
 }
 
 /* Clear floats after the columns */
@@ -75,6 +77,129 @@
 	padding: 16px;
 	text-align: center;
 	background-color: #f1f1f1;
+	margin-bottom: 17px;
+}
+
+.card:active {
+	background: #e5e5e5;
+    box-shadow: inset 0px 0px 5px #c1c1c1;
+   	outline: none;
+}
+
+.createNewWishlist h1 {
+	margin: 0;
+	font-size: 67px;
+	color: #666;
+    text-shadow: 0px -1px 0px rgba(0,0,0,.5);
+}
+
+.wishListContainer {
+	position: relative;
+}
+
+.wishListContainer .popupWindow {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+	background-color: #f9f9f9;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-right: 20px;
+	padding-left: 20px;
+	box-shadow: 2px 4px 20px #000;
+	text-align: center;
+}
+
+.wishListContainer .deleteCardPopup {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+	background-color: #f9f9f9;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-right: 20px;
+	padding-left: 20px;
+	box-shadow: 2px 4px 20px #000;
+	text-align: center;
+}
+
+.popupWindow button {
+	background-color: #b30838; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.popupWindow button:active {
+	background-color: #9b042f;
+    box-shadow: inset 0px 0px 5px #000000;
+   	outline: none;
+}
+
+.deleteCardPopup button {
+	background-color: #b30838; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.deleteCardPopup button:active {
+	background-color: #9b042f;
+    box-shadow: inset 0px 0px 5px #000000;
+   	outline: none;
+}
+
+.row .roomListPopup {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: auto;
+	background-color: #f9f9f9;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	padding-right: 20px;
+	padding-left: 20px;
+	box-shadow: 2px 4px 20px #000;
+	text-align: center;
+}
+
+.roomListPopup button {
+	background-color: #b30838; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.roomListPopup button:active {
+	background-color: #9b042f;
+    box-shadow: inset 0px 0px 5px #000000;
+   	outline: none;
 }
 
 #floor_plan {
@@ -91,7 +216,7 @@ img {
 
 .room {
 	max-height: 620px;
-	overflow: scroll;
+	overflow: auto;
 	background-color: rgb(71, 71, 71);
 	color: #fff;
 	border-radius: 7px;

@@ -1,9 +1,11 @@
 import { Room } from '../Room';
 import { Dorm } from '../Dorm';
 import { Student } from '../Student';
+import { Wishlist } from '../Wishlist';
 import { RoomService } from '../room.service';
 import { DormService } from '../dorm.service';
-import { StudentService } from '../student.service'
+import { StudentService } from '../student.service';
+import { WishlistService } from '../wishlist.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,13 +14,37 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./housing.component.scss']
 })
 export class HousingComponent implements OnInit {
-	rooms: Room[] = []
-	counter = 0
+	rooms: Room[] = [];
 
-	dorms: Dorm[] = []
-	dormCounter = 0
+	dorms: Dorm[] = [];
 
-	myInfo: Student
+	wishlist: Wishlist[] =[];
+
+	myInfo: Student;
+
+	displayDormDropdown: boolean = false;
+	dropdownDorm = 0;
+	displayFloorDropdown: boolean = false;
+	dropdownFloors = null;
+	dropdownFloorRooms = 0;
+	displayRoomDropdown: boolean = false;
+	dropdownRooms: Room[] = []
+	dropdownRoom = 0;
+	okayToSubmit: boolean = false;
+	popUpVisable: boolean = false;
+	preference = 0;
+
+	deleteCardPopup: boolean = false;
+	deleteCardRank = 0;
+	deleteCardDorm = null;
+	deleteCardRoom = 0;
+
+	roomListPopupVisable: boolean = false;
+	roomListPreference = 0;
+	roomListDormID = 0;
+	roomListDormName = null;
+	roomListRoom = 0;
+	roomListRankSelected: boolean = false;
 
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
@@ -36,22 +62,17 @@ export class HousingComponent implements OnInit {
 	constructor(
 		private roomService: RoomService,
 		private dormService: DormService,
-		private studentService: StudentService
+		private studentService: StudentService,
+		private wishlistService: WishlistService
 	) { }
 
 	ngOnInit() {
-		
 		this.getAllDormsInfo();
 
-		//this.getRoomInfo();
+		this.getWishlist();
 
 		this.myInfo = new Student();
 		this.getMyInfo();
-	}
-
-	getMyInfo(): void {
-		this.studentService.getInfo()
-			.subscribe(myInfo => this.myInfo = myInfo);
 	}
 
 	getAllDormsInfo() {
@@ -59,9 +80,18 @@ export class HousingComponent implements OnInit {
 			.subscribe(dorms => this.dorms = dorms);
 	}
 
+	getWishlist() {
+		this.wishlistService.getStudentWishlist()
+			.subscribe(wishlist => this.wishlist = wishlist);
+	}
+
+	getMyInfo(): void {
+		this.studentService.getInfo()
+			.subscribe(myInfo => this.myInfo = myInfo);
+	}
+
 	getRoomInfo() {
 		this.rooms = []
-		this.counter = 0
 		this.roomService.getAllRooms(this.current_id, this.floor_viewing)
 			.subscribe(rooms => this.rooms = rooms);
 	}
@@ -92,5 +122,109 @@ export class HousingComponent implements OnInit {
 		this.floor_viewing = new_number;
 		// this.setRoomArray()
 		this.displayFloor(this.current_code)
+	}
+
+	showPopUp() {
+		this.popUpVisable = true;
+	}
+
+	hidePopUp() {
+		this.displayDormDropdown = false;
+		this.displayFloorDropdown = false;
+		this.displayRoomDropdown = false;
+		this.okayToSubmit = false;
+		this.popUpVisable = false;
+	}
+
+	setPreference(rank) {
+		this.preference = rank;
+		this.displayDormDropdown = true;
+	}
+
+	wishlistHall(dorm_id): string {
+		var name = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+		return name;
+	}
+
+	showFloorDropdown(dorm_id) {
+		this.displayFloorDropdown = true;
+		this.dropdownDorm = dorm_id
+		const numFlrs = this.dorms.find(dorm => dorm.dorm_id == dorm_id).floors;
+
+		this.dropdownFloors = Array(numFlrs);
+		for(var _i = 0; _i < this.dropdownFloors.length; _i++) {
+			this.dropdownFloors[_i] = _i + 1;
+		}
+	}
+
+	floorDropdown(floorNum) {
+		this.dropdownFloorRooms = floorNum;
+		this.displayRoomDropdown = true;
+		this.getDropdownRooms();
+	}
+
+	getDropdownRooms() {
+		this.dropdownRooms = [];
+		this.roomService.getAllRooms(this.dropdownDorm, this.dropdownFloorRooms)
+			.subscribe(rooms => this.dropdownRooms = rooms);
+	}
+
+	roomDropdown(roomNum) {
+		this.okayToSubmit = true;
+		this.dropdownRoom = roomNum
+	}
+
+	submitWishlist() {
+		this.hidePopUp();
+		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
+			.subscribe(error => error = error)
+		this.getWishlist();
+	}
+
+	showDeleteCardPopup(rank, dorm_id, room_id) {
+		this.deleteCardPopup = true;
+		this.deleteCardRank = rank;
+		var dormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+		this.deleteCardDorm = dormName;
+		this.deleteCardRoom = room_id;
+		// console.log("card to delete:");
+		// console.log("Rank: " + rank);
+		// console.log("dorm_id: " + dorm_id);
+		// console.log("room id: " + room_id);
+	}
+
+	hideDeleteCardPopup() {
+		this.deleteCardPopup = false;
+	}
+
+	deleteCard() {
+		this.deleteCardPopup = false;
+		this.wishlistService.removeWishlist(this.deleteCardRank)
+			.subscribe(error => error = error);
+		this.getWishlist();
+	}
+
+	showRoomListAddPopup(dorm_id, room) {
+		this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+		this.roomListDormID = dorm_id
+		this.roomListRoom = room;
+		this.roomListPopupVisable = true;
+	}
+
+	hideRoomListAddPopup() {
+		this.roomListPopupVisable = false;
+	}
+
+	setRoomListPreference(rank) {
+		this.roomListPreference = rank;
+		this.roomListRankSelected = true;
+	}
+
+	addRoomList() {
+		this.roomListPopupVisable = false;
+		this.roomListRankSelected = false;
+		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
+			.subscribe(error => error = error);
+		this.getWishlist();
 	}
 }
