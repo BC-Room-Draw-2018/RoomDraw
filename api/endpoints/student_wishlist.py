@@ -18,8 +18,8 @@ class StudentWishlist(object):
 		rank = INT(request.params.get("rank"))
 
 		with sql(commit=True) as session:
-			sql.query(models.StudentWishlist).filter_by(rank=rank, student_id=self.student_id).delete()
-			wishlist = sql.query(models.StudentWishlist).filter(models.StudentWishlist.rank > rank).filter_by(student_id=self.student_id).all()
+			session.query(models.StudentWishlist).filter_by(rank=rank, student_id=self.student_id).delete()
+			wishlist = session.query(models.StudentWishlist).filter(models.StudentWishlist.rank > rank).filter_by(student_id=self.student_id).all()
 
 			for option in wishlist:
 				option.rank -= 1
