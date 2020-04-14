@@ -196,11 +196,13 @@ export class HousingComponent implements OnInit {
 	}
 
 	deleteCard() {
-		this.wishlistService.removeWishlist(this.deleteCardRank);
+		this.deleteCardPopup = false;
+		this.wishlistService.removeWishlist(this.deleteCardRank)
+			.subscribe(error => error = error);
 	}
 
-	showRoomListAddPopup(dorm_name, dorm_id, room) {
-		this.roomListDormName = dorm_name;
+	showRoomListAddPopup(dorm_id, room) {
+		this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
 		this.roomListDormID = dorm_id
 		this.roomListRoom = room;
 		this.roomListPopupVisable = true;
@@ -215,7 +217,8 @@ export class HousingComponent implements OnInit {
 	}
 
 	addRoomList() {
-		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, null)
-			.subscribe(error => error = error)
+		this.roomListPopupVisable = false;
+		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
+			.subscribe(error => error = error);
 	}
 }
