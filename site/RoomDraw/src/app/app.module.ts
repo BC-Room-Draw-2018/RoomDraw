@@ -14,27 +14,31 @@ import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LogOutComponent } from './log-out/log-out.component';
+import { LiveDrawComponent } from './live-draw/live-draw.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		HomeComponent,
-		GroupComponent,
-		NavBarComponent,
-		HousingComponent,
-		ProfileComponent,
-		DocumentComponent,
-		FaqComponent,
-		LoginComponent,
-		ResetPasswordComponent,
-		LogOutComponent
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		HttpClientModule
-	],
-	providers: [],
-	bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      HomeComponent,
+      GroupComponent,
+      NavBarComponent,
+      HousingComponent,
+      ProfileComponent,
+      DocumentComponent,
+      FaqComponent,
+      LoginComponent,
+      ResetPasswordComponent,
+      LogOutComponent,
+      LiveDrawComponent
+   ],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      HttpClientModule
+   ],
+   providers: [],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
