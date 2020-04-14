@@ -1,6 +1,6 @@
 <!-- Room Draw Project
 11/7/2018
-Eli Pruneda
+Eli Pruneda & Peter Weber
 Housing Wish List Management
 0.1 Notes
 4/2/19 Converted from Live Draw Page.
@@ -53,7 +53,7 @@ User may create and edit housing wish lists-->
 				<label for="rooms">Room #: {{ roomListRoom }}</label>
 				<br/>
 				<button type="button" (click)="hideRoomListAddPopup()">Cancel</button>
-				<button type="button" (click)="addRoomList()">Add to list</button>
+				<button type="button" *ngIf="roomListRankSelected" (click)="addRoomList()">Add to list</button>
 			</div>
 
 		</div>

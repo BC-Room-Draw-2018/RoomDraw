@@ -44,6 +44,7 @@ export class HousingComponent implements OnInit {
 	roomListDormID = 0;
 	roomListDormName = null;
 	roomListRoom = 0;
+	roomListRankSelected: boolean = false;
 
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
@@ -177,6 +178,7 @@ export class HousingComponent implements OnInit {
 		this.hidePopUp();
 		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
 			.subscribe(error => error = error)
+		this.getWishlist();
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
@@ -199,6 +201,7 @@ export class HousingComponent implements OnInit {
 		this.deleteCardPopup = false;
 		this.wishlistService.removeWishlist(this.deleteCardRank)
 			.subscribe(error => error = error);
+		this.getWishlist();
 	}
 
 	showRoomListAddPopup(dorm_id, room) {
@@ -214,11 +217,14 @@ export class HousingComponent implements OnInit {
 
 	setRoomListPreference(rank) {
 		this.roomListPreference = rank;
+		this.roomListRankSelected = true;
 	}
 
 	addRoomList() {
 		this.roomListPopupVisable = false;
+		this.roomListRankSelected = false;
 		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
 			.subscribe(error => error = error);
+		this.getWishlist();
 	}
 }
