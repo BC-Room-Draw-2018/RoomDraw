@@ -8,6 +8,7 @@ import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
 	{ path: 'housing', component: HousingComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
 	{ path: 'reset-password', component: ResetPasswordComponent },
 	{ path: 'log-out', component: LogOutComponent },
+	{ path: 'change-password', component: ChangePasswordComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
