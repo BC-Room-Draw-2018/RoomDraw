@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LiveDrawComponent } from './live-draw/live-draw.component';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 		LoginComponent,
 		ResetPasswordComponent,
 		LogOutComponent,
-    LiveDrawComponent,
+		LiveDrawComponent,
 		ChangePasswordComponent
 	],
 	imports: [
