@@ -29,6 +29,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 		LoginComponent,
 		ResetPasswordComponent,
 		LogOutComponent,
+    LiveDrawComponent,
 		ChangePasswordComponent
 	],
 	imports: [
