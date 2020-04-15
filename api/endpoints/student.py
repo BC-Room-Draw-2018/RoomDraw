@@ -15,7 +15,7 @@ class Student(object):
 				ID = self.student_id
 
 		student = get_student_by_id(ID)
-		response.media = student.dict()
+		response.media = student.dict(exclude=["student_id"])
 
 class MyInfo(object):
 	def on_get(self, request, response):
