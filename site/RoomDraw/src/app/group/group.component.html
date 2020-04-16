@@ -1,20 +1,44 @@
 <div>
-	<div>Your Group</div>
+	<div class="groupTitle">Your Groups</div>
 	<table>
 		<tr>
-			<th>Name</th>
+			<th>Leader</th>
 			<th>Class Code</th>
 			<th>Random Number</th>
-			<th>Student ID</th>
+			<th>Actions</th>
 		</tr>
 		<tr *ngFor="let student of members">
 			<td>{{student.first_name + ' ' + student.last_name}}</td>
 			<td>{{student.grade_level}}</td>
 			<td>{{student.random_number}}</td>
-			<td>{{student.student_id}}</td>
+			<td><button id="LeaveGroupButton" (click)="leaveGroup()">Leave Group</button></td>
+		</tr>
+		<tr *ngIf="addGroupButtonVisable">
+			<td colspan="4"><button id="AddGroupButton" (click)="makeAddGroupVisable()">Add Group</button></td>
+		</tr>
+		<tr *ngIf="addGroupVisable">
+			<td colspan="4">
+				<div class="close" (click)="closeAddGroup()">X</div>
+				<label for="numberInGroup">Number in Group: </label>
+				<select id="numberInGroup">
+					<option disabled selected value> -- How many? -- </option>
+					<option (click)="setNumberInGroup(1)">1</option>
+					<option (click)="setNumberInGroup(2)">2</option>
+					<option (click)="setNumberInGroup(3)">3</option>
+					<option (click)="setNumberInGroup(4)">4</option>
+					<option (click)="setNumberInGroup(5)">5</option>
+					<option (click)="setNumberInGroup(6)">6</option>
+					<option (click)="setNumberInGroup(7)">7</option>
+					<option (click)="setNumberInGroup(8)">8</option>
+				</select>
+				<br/>
+				<label for="student">Group Members: </label>
+				<form action="/" *ngIf="searchVisable">
+					<div *ngFor="let students of studentsInGroup">
+						<input type="text" id="student" placeholder="Student">
+					</div>
+				</form>
+			</td>
 		</tr>
 	</table>
-	<div>
-		<button id="LeaveGroupButton" (click)="leaveGroup()">Leave Group</button>
-	</div>
 </div>

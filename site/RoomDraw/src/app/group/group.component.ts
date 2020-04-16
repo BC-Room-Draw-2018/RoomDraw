@@ -24,6 +24,12 @@ export class GroupComponent implements OnInit {
 
 	static idx = 0;
 
+	addGroupButtonVisable = true;
+	addGroupVisable: boolean = false;
+	numberInGroup = 0;
+	searchVisable: boolean = false;
+	studentsInGroup = [];
+
 	ngOnInit() {
 		this.getGroupMembers();
 		this.getGroupInvites();
@@ -75,5 +81,24 @@ export class GroupComponent implements OnInit {
 	declineGroupInvite(group_id): void {
 		this.groupService.declineInvite(group_id)
 			.subscribe(() => location.reload());
+	}
+
+	makeAddGroupVisable() {
+		this.addGroupButtonVisable = false;
+		this.addGroupVisable = true;
+	}
+
+	closeAddGroup() {
+		this.addGroupVisable = false;
+		this.addGroupButtonVisable = true;
+		this.studentsInGroup = []
+		this.searchVisable = false;
+	}
+
+	setNumberInGroup(num) {
+		for(var i = 0; i < num; i++) {
+			this.studentsInGroup[i] = i;
+		}
+		this.searchVisable = true;
 	}
 }
