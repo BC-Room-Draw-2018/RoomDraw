@@ -1,6 +1,13 @@
-#footer {
-	position: absolute;
-	bottom: 0px;
+.close {
+	font-weight: bold;
+	color: #555454;
+	text-align: right;
+	cursor: pointer;
+}
+
+.close:hover {
+	font-weight: bold;
+	color: #333333;
 }
 
 #LeaveGroupButton {
@@ -15,7 +22,22 @@
 
 /* Add a background color on hover */
 #LeaveGroupButton:hover {
-	background-color: #2196F3; /* Blue */
+	background-color: rgb(4, 88, 156); /* Blue */
+}
+
+#AddGroupButton {
+	background-color: green; /*Red Background*/
+	border: 1px solid rgb(0, 63, 0); /*Dark Red border*/
+	color: white; /* White text */
+	padding: 10px 24px; /* Some padding */
+	cursor: pointer; /* Pointer/hand icon */
+	float: right; /* Float on the right side of page*/
+	border-radius: 4px;
+}
+
+/* Add a background color on hover */
+#AddGroupButton:hover {
+	background-color: rgb(4, 88, 156); /* Blue */
 }
 
 table, th, td {
@@ -23,4 +45,12 @@ table, th, td {
 	border-collapse: collapse;
 	padding: 15px;
 	background-color: #eee;
+}
+
+th, td {
+	text-align: center;
+}
+
+.groupTitle {
+	font-weight: bold;
 }
