@@ -15,16 +15,38 @@
 			<td><button id="LeaveGroupButton" (click)="leaveGroup()">Leave Group</button></td>
 		</tr>
 			<tr *ngIf="addGroupButtonVisable">
-				<td colspan="4" *ngIf="membersUndefined"><button id="AddGroupButton" (click)="makeAddGroupVisable()">Add Group</button></td>
+				<td colspan="4"><button id="AddGroupButton" (click)="makeAddGroupVisable()">Add Group</button></td>
 			</tr>
 			<tr *ngIf="addGroupVisable">
-				<td colspan="4" *ngIf="membersUndefined">
+				<td colspan="4">
 					<div class="close" (click)="closeAddGroup()">X</div>
 					<label>
 						Group Members:
 						<input type="text" placeholder="Student" #myInput (input)=inputCollector(myInput.value)>
 						<button class="searchButton" (click)="searchForStudents()">🔍</button>
 					</label>
+					<div *ngIf="listAllStudents" class="searchTable">
+						<br/>
+						<table>
+							<tr>
+								<th>Student</th>
+								<th>Class Level</th>
+								<th>Actions</th>
+							</tr>
+							<ng-container *ngIf="searchedForStudents.length > 0; else notFound">
+								<tr *ngFor="let student of searchedForStudents">
+									<td>{{ student.first_name }} {{ student.last_name }}</td>
+									<td>{{ student.grade_level }}</td>
+									<td><button class="addStudentButton" (click)="addStudent(student.random_number)">+</button></td>
+								</tr>
+							</ng-container>
+							<ng-template #notFound>
+								<tr>
+									<td colspan="3">Student not found</td>
+								</tr>
+							</ng-template>
+						</table>
+					</div>
 				</td>
 			</tr>
 	</table>
