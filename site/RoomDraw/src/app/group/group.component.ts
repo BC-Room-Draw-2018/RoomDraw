@@ -30,9 +30,16 @@ export class GroupComponent implements OnInit {
 	searchVisable: boolean = false;
 	studentsInGroup = [];
 
+	membersUndefined: boolean = false;
+	searchTerm = null;
+
 	ngOnInit() {
 		this.getGroupMembers();
 		this.getGroupInvites();
+
+		if(this.members == undefined) {
+			this.membersUndefined = true;
+		}
 	}
 
 	getGroupMembers(): void {
@@ -100,5 +107,13 @@ export class GroupComponent implements OnInit {
 			this.studentsInGroup[i] = i;
 		}
 		this.searchVisable = true;
+	}
+
+	searchForStudents() {
+		console.log("student = " + this.searchTerm);
+	}
+
+	inputCollector(val) {
+		this.searchTerm = val;
 	}
 }
