@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 	encapsulation: ViewEncapsulation.None
 })
 export class GroupComponent implements OnInit {
+	myInfo: Student;
 
 	constructor(
 		private groupService: GroupService,
@@ -38,6 +39,13 @@ export class GroupComponent implements OnInit {
 	ngOnInit() {
 		this.getGroupMembers();
 		this.getGroupInvites();
+		this.myInfo = new Student();
+		this.getMyInfo();
+	}
+
+	getMyInfo(): void {
+		this.studentService.getInfo()
+			.subscribe(myInfo => this.myInfo = myInfo);
 	}
 
 	getGroupMembers(): void {
@@ -89,11 +97,13 @@ export class GroupComponent implements OnInit {
 	}
 
 	makeAddGroupVisable() {
+		this.studentsInGroup[0] = this.myInfo;
 		this.addGroupButtonVisable = false;
 		this.addGroupVisable = true;
 	}
 
 	closeAddGroup() {
+		this.studentsInGroup = [];
 		this.addGroupVisable = false;
 		this.addGroupButtonVisable = true;
 	}
@@ -114,11 +124,24 @@ export class GroupComponent implements OnInit {
 	}
 
 	addStudent(randNum) {
+		this.listAllStudents = false;
+
 		var student = this.searchedForStudents.find(student => student.random_number == randNum);
 		this.studentsInGroup.push(student);
 	}
 
-	// finishSubscribe() {
-	// 	console.log("length: " + this.searchForStudents.length)
-	// }
+	removeStudent(randNum) {
+		for(var i = 0; i < this.studentsInGroup.length; i++) {
+			if(this.studentsInGroup[i].random_number == randNum) {
+				var removed = this.studentsInGroup.splice(i, 1);
+				break;
+			}
+		}
+	}
+
+	createGroup() {
+		for(let student of this.studentsInGroup) {
+			this.groupService.inviteToGroup(student.student_id)
+		}
+	}
 }
