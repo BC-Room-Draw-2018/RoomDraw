@@ -36,4 +36,9 @@ export class StudentService {
 		var url = 'http://localhost:8000/student?id=' + student_id;
 		return this.http.get<Student>(url, this.httpOptions);
 	}
+
+	searchStudents(name): Observable<Student[]> {
+		var url = 'http://localhost:8000/student?search=' + name;
+		return this.http.get<Student[]>(url, this.httpOptions);
+	}
 }

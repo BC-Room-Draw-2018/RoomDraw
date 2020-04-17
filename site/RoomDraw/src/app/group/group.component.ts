@@ -26,20 +26,18 @@ export class GroupComponent implements OnInit {
 
 	addGroupButtonVisable = true;
 	addGroupVisable: boolean = false;
-	numberInGroup = 0;
-	searchVisable: boolean = false;
-	studentsInGroup = [];
 
-	membersUndefined: boolean = false;
 	searchTerm = null;
+	listAllStudents: boolean = false;
+
+	searchedForStudents: Student[] = [];
+	studentsFound: boolean = false;
+
+	studentsInGroup: Student[] = [];
 
 	ngOnInit() {
 		this.getGroupMembers();
 		this.getGroupInvites();
-
-		if(this.members == undefined) {
-			this.membersUndefined = true;
-		}
 	}
 
 	getGroupMembers(): void {
@@ -98,22 +96,29 @@ export class GroupComponent implements OnInit {
 	closeAddGroup() {
 		this.addGroupVisable = false;
 		this.addGroupButtonVisable = true;
-		this.studentsInGroup = []
-		this.searchVisable = false;
-	}
-
-	setNumberInGroup(num) {
-		for(var i = 0; i < num; i++) {
-			this.studentsInGroup[i] = i;
-		}
-		this.searchVisable = true;
 	}
 
 	searchForStudents() {
-		console.log("student = " + this.searchTerm);
+		this.studentService.searchStudents(this.searchTerm)
+			.subscribe(students => this.searchedForStudents = students);
+
+		if(this.searchForStudents.length > 0) {
+			this.studentsFound = true;
+		}
+
+		this.listAllStudents = true;
 	}
 
 	inputCollector(val) {
 		this.searchTerm = val;
 	}
+
+	addStudent(randNum) {
+		var student = this.searchedForStudents.find(student => student.random_number == randNum);
+		this.studentsInGroup.push(student);
+	}
+
+	// finishSubscribe() {
+	// 	console.log("length: " + this.searchForStudents.length)
+	// }
 }
