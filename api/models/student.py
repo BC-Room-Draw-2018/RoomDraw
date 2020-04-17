@@ -14,3 +14,6 @@ class Student(Model, OrmModel):
 	sex           = Column(Enum('M', 'F'))
 	group_id      = Column(Integer)
 	roommate_id   = Column(Integer)
+	room          = Column(String)
+	dorm_id       = Column(Integer)
+	floor         = Column(Integer)

@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS Students(
 	sex ENUM('M', 'F') NOT NULL,
 	group_id INT NOT NULL,
 	roommate_id INT,
+	room_id INT,
+	dorm_id INT,
 
 	PRIMARY KEY(student_id)
 );
@@ -19,11 +21,11 @@ CREATE TABLE IF NOT EXISTS Students(
 CREATE TABLE IF NOT EXISTS Users(
 	student_id INT NOT NULL,
 	email VARCHAR(256) NOT NULL,
-	password VARCHAR(50) NOT NULL,
+	password VARCHAR(64) NOT NULL,
 	salt VARCHAR(64) NULL, /*Guid used to salt passwords*/
 
 	PRIMARY KEY(student_id)
-);	
+);
 
 CREATE TABLE IF NOT EXISTS Groups(
 	group_id INT NOT NULL,
