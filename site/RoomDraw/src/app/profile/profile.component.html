@@ -11,7 +11,9 @@
 		<!--Notifications in dropdown-->
 		<ul class="dropdown-item">		
 			<li *ngFor="let invitation of invitations">
-				<p><img src="../../assets/groupIcon.png">New group invite from {{ invitation.leader }}</p>
+				Group invite from {{ invitation.leader }}
+				<button class="accept-button" (click)="acceptInvite(invitation.group_id)">✓</button>
+				<button class="decline-button" (click)="declineInvite(invitation.gropu_id)">✗</button>
 			</li>
 		</ul>
 
