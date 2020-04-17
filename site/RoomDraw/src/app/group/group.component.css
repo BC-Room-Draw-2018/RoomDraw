@@ -10,7 +10,7 @@
 	color: #333333;
 }
 
-#LeaveGroupButton {
+.leaveGroupButton {
 	background-color: red; /*Red Background*/
 	border: 1px solid #8b0000; /*Dark Red border*/
 	color: white; /* White text */
@@ -21,22 +21,21 @@
 }
 
 /* Add a background color on hover */
-#LeaveGroupButton:hover {
+.leaveGroupButton:hover {
 	background-color: rgb(4, 88, 156); /* Blue */
 }
 
-#AddGroupButton {
+.addGroupButton {
 	background-color: green; /*Red Background*/
 	border: 1px solid rgb(0, 63, 0); /*Dark Red border*/
 	color: white; /* White text */
 	padding: 10px 24px; /* Some padding */
 	cursor: pointer; /* Pointer/hand icon */
-	float: right; /* Float on the right side of page*/
 	border-radius: 4px;
 }
 
 /* Add a background color on hover */
-#AddGroupButton:hover {
+.addGroupButton:hover {
 	background-color: rgb(4, 88, 156); /* Blue */
 }
 
@@ -57,4 +56,26 @@ th, td {
 
 .searchButton {
 	border-radius: 4px;
+}
+
+.addStudentButton {
+	border-radius: 100%;
+	background-color: rgb(0, 90, 0);
+	color: #fff;
+	border: 1px solid rgb(0, 24, 0);
+}
+
+.addStudentButton:hover {
+	cursor: pointer;
+}
+
+.removeStudentButton {
+	border-radius: 100%;
+	background-color: rgb(175, 0, 0);
+	color: #fff;
+	border: 1px solid rgb(102, 0, 0);
+}
+
+.removeStudentButton:hover {
+	cursor: pointer;
 }
