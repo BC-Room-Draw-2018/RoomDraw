@@ -36,10 +36,14 @@ export class ProfileComponent implements OnInit {
   }
 
   acceptInvite(invite) {
-    this.groupService.acceptInvite(invite);
+    var temp;
+    this.groupService.acceptInvite(invite)
+      .subscribe(error => temp = error);
   }
 
   declineInvite(invite) {
-    this.groupService.declineInvite(invite);
+    var temp;
+    this.groupService.declineInvite(invite)
+      .subscribe(error => temp = error);
   }
 }

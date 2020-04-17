@@ -25,7 +25,7 @@ class Student(object):
 		students = self.search(search_string)
 		if students:
 			for student in students:
-				response.media.append(student.dict(exclude=["student_id"]))
+				response.media.append(student.dict())
 
 class MyInfo(object):
 	def on_get(self, request, response):
