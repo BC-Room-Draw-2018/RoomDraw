@@ -16,6 +16,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { LogOutComponent } from './log-out/log-out.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LiveDrawComponent } from './live-draw/live-draw.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ImageMapComponent } from './image-map/image-map.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
 	declarations: [
@@ -31,7 +35,11 @@ import { LiveDrawComponent } from './live-draw/live-draw.component';
 		ResetPasswordComponent,
 		LogOutComponent,
 		LiveDrawComponent,
-		ChangePasswordComponent
+		ChangePasswordComponent,
+		ForgotPasswordComponent,
+		ImageMapComponent,
+		PasswordResetComponent,
+		RegisterComponent
 	],
 	imports: [
 		BrowserModule,
