@@ -6,6 +6,18 @@ a {
 	text-decoration: none;
 }
 
+.accept-button {
+	border-radius: 100%;
+	color: #fff;
+	background-color: rgb(0, 102, 0);
+}
+
+.decline-button {
+	border-radius: 100%;
+	color: #fff;
+	background-color: rgb(175, 0, 0);
+}
+
 .button-text {
 	float: right;
 	text-align: center;
@@ -71,13 +83,13 @@ li {
 }
 
 .dropdown-item {
-	background-color: #777;
+	background-color: rgb(172, 172, 172);
 	text-align: left;
 	padding-left: 10px;
 }
 
 .dropdown-footer {
-	background-color: #555;
+	background-color: rgb(124, 124, 124);
 }
 
 .dropdown:hover .dropdown-content {
@@ -107,12 +119,12 @@ ul {
 
 .footer-button {
 	padding: 12px;
-	background-color: rgb(128, 128, 128);
+	background-color: rgb(194, 194, 194);
 	margin-left: 5px;
 	border: none;
 }
 
 .footer-button:hover {
-	background-color: rgb(92, 92, 92);
+	background-color: rgb(138, 138, 138);
 	cursor: pointer;
 }

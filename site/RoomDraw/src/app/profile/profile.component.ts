@@ -34,4 +34,12 @@ export class ProfileComponent implements OnInit {
 		this.studentService.getInfo()
       .subscribe(myInfo => this.myInfo = myInfo);
   }
+
+  acceptInvite(invite) {
+    this.groupService.acceptInvite(invite);
+  }
+
+  declineInvite(invite) {
+    this.groupService.declineInvite(invite);
+  }
 }
