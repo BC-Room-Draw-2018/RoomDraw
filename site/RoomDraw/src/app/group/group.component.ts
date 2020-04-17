@@ -97,7 +97,6 @@ export class GroupComponent implements OnInit {
 	}
 
 	makeAddGroupVisable() {
-		this.studentsInGroup[0] = this.myInfo;
 		this.addGroupButtonVisable = false;
 		this.addGroupVisable = true;
 	}
@@ -140,8 +139,11 @@ export class GroupComponent implements OnInit {
 	}
 
 	createGroup() {
+		var temp;
 		for(let student of this.studentsInGroup) {
 			this.groupService.inviteToGroup(student.student_id)
+				.subscribe(error => temp = error);
 		}
+		this.closeAddGroup();
 	}
 }

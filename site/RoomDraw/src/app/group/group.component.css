@@ -1,13 +1,18 @@
 .close {
 	font-weight: bold;
-	color: #555454;
-	text-align: right;
-	cursor: pointer;
+	font-size: 15px;
+	border: none;
+	background-color: #eee;
+	float: right;
+	color: #555;
 }
 
 .close:hover {
-	font-weight: bold;
-	color: #333333;
+	cursor: pointer;
+}
+
+.close:after {
+	float: none;
 }
 
 .leaveGroupButton {
@@ -51,11 +56,16 @@ th, td {
 }
 
 .groupTitle {
+	padding-bottom: 10px;
 	font-weight: bold;
 }
 
 .searchButton {
 	border-radius: 4px;
+}
+
+.searchButton:hover {
+	cursor: pointer;
 }
 
 .addStudentButton {

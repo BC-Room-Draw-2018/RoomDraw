@@ -67,6 +67,11 @@ li {
 	background: rgb(255, 0, 0, 0.9);
 }
 
+.no-notifications {
+	font-style: italic;
+	color: #555;
+}
+
 .dropdown {
 	position: relative;
 	float: right;
@@ -85,11 +90,16 @@ li {
 .dropdown-item {
 	background-color: rgb(172, 172, 172);
 	text-align: left;
-	padding-left: 10px;
+	padding: 10px;
+}
+
+.dropdown-header {
+	background-color: rgb(150, 150, 150);
 }
 
 .dropdown-footer {
-	background-color: rgb(124, 124, 124);
+	background-color: rgb(172, 172, 172);
+	border-top: 2px solid rgb(129, 129, 129);
 }
 
 .dropdown:hover .dropdown-content {
