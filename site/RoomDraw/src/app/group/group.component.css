@@ -89,3 +89,7 @@ th, td {
 .removeStudentButton:hover {
 	cursor: pointer;
 }
+
+.group-members-p {
+	font-weight: bold;
+}
