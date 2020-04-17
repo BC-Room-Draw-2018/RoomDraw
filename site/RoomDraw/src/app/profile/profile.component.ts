@@ -35,15 +35,13 @@ export class ProfileComponent implements OnInit {
       .subscribe(myInfo => this.myInfo = myInfo);
   }
 
-  acceptInvite(invite) {
-    var temp;
-    this.groupService.acceptInvite(invite)
-      .subscribe(error => temp = error);
+  acceptInvite(group_id) {
+    this.groupService.acceptInvite(group_id)
+			.subscribe(() => location.reload());
   }
 
-  declineInvite(invite) {
-    var temp;
-    this.groupService.declineInvite(invite)
-      .subscribe(error => temp = error);
+  declineInvite(group_id) {
+    this.groupService.declineInvite(group_id)
+			.subscribe(() => location.reload());
   }
 }

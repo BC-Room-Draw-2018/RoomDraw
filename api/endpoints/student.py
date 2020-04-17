@@ -7,6 +7,7 @@ import models
 
 class Student(object):
 	def search(self, search_string):
+		search_string = str(search_string)
 		with sql() as session:
 			model = models.Student
 			student = get_student_by_id(self.student_id, session)
@@ -18,7 +19,7 @@ class Student(object):
 	def on_get(self, request, response):
 		response.media = []
 
-		search_string = request.params.get("search")
+		search_string = str(request.params.get("search"))
 		if search_string and len(search_string) < 2:
 			return
 

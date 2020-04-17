@@ -1,3 +1,4 @@
+import { Group } from './Group';
 import { Student } from './Student';
 import { Invitations } from './Invitations';
 import { StudentService } from './student.service';
@@ -23,6 +24,12 @@ export class GroupService {
 		private http: HttpClient,
 		private studentService: StudentService
 	) { }
+
+	getGroup(): Observable<Group> {
+		var url = "http://localhost:8000/group";
+		var group = this.http.get<Group>(url, this.httpOptions);
+		return group;
+	}
 
 	getGroupsAhead(): Observable<number> {
 		var url = "http://localhost:8000/group/rank";

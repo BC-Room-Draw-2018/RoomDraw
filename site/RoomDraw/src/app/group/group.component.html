@@ -1,17 +1,17 @@
 <div>
 	<div class="groupTitle">Your Group</div>
 	<table>
-		<tr>
-			<th>Leader</th>
-			<th>Class Code</th>
-			<th>Random Number</th>
-			<th>Actions</th>
-		</tr>
-		<ng-container *ngFor="let student of members">
+		<ng-container *ngIf="group.grade_level != undefined; else gradeEmpty">
 			<tr>
-				<td>{{student.first_name + ' ' + student.last_name}}</td>
-				<td>{{student.grade_level}}</td>
-				<td>{{student.random_number}}</td>
+				<th>Leader</th>
+				<th>Class Code</th>
+				<th>Random Number</th>
+				<th>Actions</th>
+			</tr>
+			<tr>
+				<td>{{ groupLeader() }}</td>
+				<td>{{ group.grade_level }}</td>
+				<td>{{ group.random_number }}</td>
 				<td rowspan="2"><button class="leaveGroupButton" (click)="leaveGroup()">Leave Group</button></td>
 			</tr>
 			<tr>
@@ -23,6 +23,11 @@
 				</td>
 			</tr>
 		</ng-container>
+		<ng-template #gradeEmpty>
+			<tr>
+				<td>You have no members in your group. <br/> To get started invite your group or be your own group.</td>
+			</tr>
+		</ng-template>
 		<tr *ngIf="addGroupButtonVisable">
 			<td colspan="4"><button class="addGroupButton" (click)="makeAddGroupVisable()">Add Students to My Group</button></td>
 		</tr>

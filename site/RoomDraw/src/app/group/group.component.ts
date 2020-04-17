@@ -1,4 +1,5 @@
 import { Student } from '../Student';
+import { Group } from '../Group';
 import { Invitations } from '../Invitations';
 import { StudentService } from '../student.service';
 import { GroupService } from '../group.service';
@@ -9,7 +10,6 @@ import { Location } from '@angular/common';
 	selector: 'app-group',
 	templateUrl: './group.component.html',
 	styleUrls: ['./group.component.css'],
-	encapsulation: ViewEncapsulation.None
 })
 export class GroupComponent implements OnInit {
 	myInfo: Student;
@@ -20,6 +20,7 @@ export class GroupComponent implements OnInit {
 		private location: Location
 	) { }
 
+	group: Group;
 	members: Student[];
 	invites: Invitations[];
 
@@ -39,6 +40,7 @@ export class GroupComponent implements OnInit {
 	ngOnInit() {
 		this.getGroupMembers();
 		this.getGroupInvites();
+		this.getGroup();
 		this.myInfo = new Student();
 		this.getMyInfo();
 	}
@@ -49,8 +51,15 @@ export class GroupComponent implements OnInit {
 	}
 
 	getGroupMembers(): void {
+		this.groupService.getGroup()
+			.subscribe(group => this.group = group);
 		this.groupService.getGroupMembers()
 			.subscribe(members => this.members = members);
+	}
+
+	getGroup() {
+		this.groupService.getGroup()
+			.subscribe(group => this.group = group);
 	}
 
 	leaveGroup(): void {
@@ -145,5 +154,12 @@ export class GroupComponent implements OnInit {
 				.subscribe(error => temp = error);
 		}
 		this.closeAddGroup();
+	}
+
+	groupLeader(): string {
+		var leader = this.members.find(member => member.random_number == this.group.random_number);
+        var leaderName = leader.first_name + " " + leader.last_name;
+        return leaderName;
+
 	}
 }
