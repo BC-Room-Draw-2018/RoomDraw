@@ -3,42 +3,25 @@
 		<span *ngIf="invitations && invitations.length" id="notification_bubble" class="profile_pic">!</span>
 		<img id="profile_img" class="profile_pic" src="/assets/default_profile_pic.png">
 	</button>
-	<div class="dropdown-content">
-		<!--Dropdown header-->
-		<div class="dropdown-heading">
-			<p>Notifications</p>
-		</div>
+	<ul class="dropdown-content">
+		<li class="dropdown-item">
+			<p>User Notifications</p>
+		</li>
 
 		<!--Notifications in dropdown-->
-		<div class="notifications">
-			
-			<!-- This is to display all notifications-->
-			<ul *ngFor="let invitation of invitations">
-				<p><img src="../../assets/groupIcon.png"><div class="text">New group invite from {{ invitation.leader }}</div></p>
-			</ul>
-
-			<!--this is to test formating of invites DEMONSTRATION ONLY
-			<ul>
-				<p><img src="../../assets/groupIcon.png"><div class="text">New group invite</div></p>
-			</ul>-->
-
-		</div>
+		<ul class="dropdown-item">		
+			<li *ngFor="let invitation of invitations">
+				<p><img src="../../assets/groupIcon.png">New group invite from {{ invitation.leader }}</p>
+			</li>
+		</ul>
 
 		<!--Dropdown footer-->
-		<div class="dropdown-footer">
-			<div class="row">
-				<div class="column1">
-					<p>{{myInfo.first_name}} {{myInfo.last_name}}</p>
-				</div>
-				<div class="column2">
-					<a routerLink="/log-out">
-						<img src="../../assets/logoutButton.png">
-					</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="button-text"><a routerLink="/change-password">Change Password</a></div>
-			</div>
-		</div>
-	</div>
+		<li class="dropdown-footer">
+			<p>Hey {{myInfo.first_name}}</p>
+			<p>
+				<a routerLink="/log-out"><button class="footer-button">❌ Logout</button></a>
+				<a routerLink="/change-password"><button class="footer-button">✎ Change Password</button></a>
+			</p>
+		</li>
+	</ul>
 </div>
