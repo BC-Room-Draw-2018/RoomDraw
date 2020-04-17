@@ -73,17 +73,19 @@ class GroupInvite(object):
 	# Invite a student
 	def on_post(self, request, response):
 		params = json.loads(request.stream.read())
-		recepient = INT(params.get("student_id"))
+		recepient = INT(params.get("random_number"))
 
 		with sql(commit=True) as session:
-			stud = get_student_by_id(self.student_id, session)
+			student_of_random_number = session.query(models.Student).filter_by(random_number=recepient).first()
+			student_id = student_of_random_number.student_id
+			stud = get_student_by_id(student_id, session)
 
 			gid = stud.group_id
 
-			invitation = session.query(models.Invitation).filter_by(student_id=recepient, group_id=gid).first()
+			invitation = session.query(models.Invitation).filter_by(student_id=student_id, group_id=gid).first()
 			if invitation is not None:
 				return
-			invitation = models.Invitation(student_id=recepient, group_id=gid)
+			invitation = models.Invitation(student_id=student_id, group_id=gid)
 			session.add(invitation)
 
 	# Accept an invite

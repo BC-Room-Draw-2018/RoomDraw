@@ -57,10 +57,10 @@ export class GroupService {
 		return obs
 	}
 
-	inviteToGroup(student_id): Observable<Object> {
+	inviteToGroup(random_number): Observable<Object> {
 		var url = "http://localhost:8000/group/invite";
 		const body = {
-			student_id: student_id
+			random_number: random_number
 		}
 
 		var str = JSON.stringify(body)

@@ -141,7 +141,7 @@ export class GroupComponent implements OnInit {
 	createGroup() {
 		var temp;
 		for(let student of this.studentsInGroup) {
-			this.groupService.inviteToGroup(student.student_id)
+			this.groupService.inviteToGroup(student.random_number)
 				.subscribe(error => temp = error);
 		}
 		this.closeAddGroup();
