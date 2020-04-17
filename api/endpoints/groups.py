@@ -60,7 +60,7 @@ class GroupMembers(object):
 
 			response.media = []
 			for person in members:
-				response.media.append(person.dict())
+				response.media.append(person.dict(exclude="student_id"))
 
 class GroupInvite(object):
 	def on_get(self, request, response):
