@@ -54,3 +54,7 @@ th, td {
 .groupTitle {
 	font-weight: bold;
 }
+
+.searchButton {
+	border-radius: 4px;
+}
