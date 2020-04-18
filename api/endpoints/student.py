@@ -11,14 +11,14 @@ class Student(object):
 			model = models.Student
 			student = get_student_by_id(self.student_id, session)
 			ret = session.query(model).filter_by(sex=student.sex).filter \
-				(model.first_name.concat(" ").concat(model.last_name).contains(search_string, autoescape=True))
+				(model.first_name.concat(" ").concat(model.last_name).contains(str(search_string), autoescape=True))
 			return ret.limit(10)
 
 	# without an id, return info on current student
 	def on_get(self, request, response):
 		response.media = []
 
-		search_string = request.params.get("search")
+		search_string = str(request.params.get("search"))
 		if search_string and len(search_string) < 2:
 			return
 
