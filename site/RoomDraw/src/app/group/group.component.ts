@@ -38,12 +38,17 @@ export class GroupComponent implements OnInit {
 	studentsInGroup: Student[] = [];
 
 	ngOnInit() {
+		this.getGroup();
 		this.getGroupMembers();
 		this.getGroupInvites();
-		this.getGroup();
 		this.myInfo = new Student();
 		this.getMyInfo();
 	}
+
+	getGroup() {
+        this.groupService.getGroup()
+            .subscribe(group => this.group = group);
+    }
 
 	getMyInfo(): void {
 		this.studentService.getInfo()
@@ -51,15 +56,8 @@ export class GroupComponent implements OnInit {
 	}
 
 	getGroupMembers(): void {
-		this.groupService.getGroup()
-			.subscribe(group => this.group = group);
 		this.groupService.getGroupMembers()
 			.subscribe(members => this.members = members);
-	}
-
-	getGroup() {
-		this.groupService.getGroup()
-			.subscribe(group => this.group = group);
 	}
 
 	leaveGroup(): void {
@@ -157,9 +155,9 @@ export class GroupComponent implements OnInit {
 	}
 
 	groupLeader(): string {
-		var leader = this.members.find(member => member.random_number == this.group.random_number);
+        var leader = this.members.find(member => member.random_number == this.group.random_number);
         var leaderName = leader.first_name + " " + leader.last_name;
         return leaderName;
 
-	}
+    }
 }

@@ -18,16 +18,16 @@
 				<td class="group-members-p">Group Members:</td>
 				<td colspan="2">
 					<ng-container *ngFor="let member of members">
-						{{ member.first_name }} {{ member.last_name }}
+						{{ member.first_name }} {{ member.last_name }} <br/>
 					</ng-container>
 				</td>
 			</tr>
 		</ng-container>
 		<ng-template #gradeEmpty>
-			<tr>
-				<td>You have no members in your group. <br/> To get started invite your group or be your own group.</td>
-			</tr>
-		</ng-template>
+            <tr>
+                <td>You have no members in your group. <br/> To get started invite your group or be your own group.</td>
+            </tr>
+        </ng-template>
 		<tr *ngIf="addGroupButtonVisable">
 			<td colspan="4"><button class="addGroupButton" (click)="makeAddGroupVisable()">Add Students to My Group</button></td>
 		</tr>

@@ -27,8 +27,7 @@ export class GroupService {
 
 	getGroup(): Observable<Group> {
 		var url = "http://localhost:8000/group";
-		var group = this.http.get<Group>(url, this.httpOptions);
-		return group;
+		return this.http.get<Group>(url, this.httpOptions);
 	}
 
 	getGroupsAhead(): Observable<number> {
