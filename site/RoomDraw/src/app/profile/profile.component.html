@@ -13,7 +13,7 @@
 			<li *ngFor="let invitation of invitations">
 				Group invite from:
 				<br/>
-				<!--name here-->
+				{{ leader.first_name }} {{ leader.last_name }}
 				<br/>
 				<button class="decline-button" title="Decline" (click)="declineInvite(invitation.group_id)">✗</button>
 				<button class="accept-button" title="Accept" (click)="acceptInvite(invitation.group_id)">✓</button>

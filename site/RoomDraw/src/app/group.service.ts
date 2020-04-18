@@ -63,6 +63,11 @@ export class GroupService {
 		return obs
 	}
 
+	getGroupLeader(): Observable<Student> {
+		var url = "http://localhost:8000/group/leader";
+		return this.http.get<Student>(url, this.httpOptions);
+	}
+
 	inviteToGroup(random_number): Observable<Object> {
 		var url = "http://localhost:8000/group/invite";
 		const body = {
