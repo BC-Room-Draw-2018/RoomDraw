@@ -11,10 +11,12 @@
 		<!--Notifications in dropdown-->
 		<ul class="dropdown-item">		
 			<li *ngFor="let invitation of invitations">
-				Group invite from {{ invitation.leader }}
-				<p>
-				<button class="accept-button" (click)="acceptInvite(invitation.group_id)">✓</button>
-				<button class="decline-button" (click)="declineInvite(invitation.gropu_id)">✗</button>
+				Group invite from:
+				<br/>
+				<!--name here-->
+				<br/>
+				<button class="decline-button" title="Decline" (click)="declineInvite(invitation.group_id)">✗</button>
+				<button class="accept-button" title="Accept" (click)="acceptInvite(invitation.group_id)">✓</button>
 			</li>
 			<li *ngIf="invitations.length == 0" class="no-notifications">
 				No notifications
