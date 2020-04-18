@@ -32,6 +32,7 @@ class API(object):
 		self.api.add_route("/group", endpoints.Group())
 		self.api.add_route("/group/members", endpoints.GroupMembers())
 		self.api.add_route("/group/invite", endpoints.GroupInvite())
+		self.api.add_route("/group/leader", endpoints.GroupLeader())
 		self.api.add_route("/group_wishlist", endpoints.GroupWishlist())
 		self.api.add_route("/wishlist", endpoints.StudentWishlist())
 		self.api.add_route("/student", endpoints.Student())
@@ -48,7 +49,7 @@ api = API()
 
 session.create_session(2009578, "alex")
 session.create_session(1, "denton")
-session.create_session(2, "eli")
+session.create_session(2000000, "eli")
 session.create_session(3, "michael")
 
 def serve(host='localhost', port=8000):
