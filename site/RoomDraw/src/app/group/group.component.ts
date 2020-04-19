@@ -1,4 +1,5 @@
 import { Student } from '../Student';
+import { Group } from '../Group';
 import { Invitations } from '../Invitations';
 import { StudentService } from '../student.service';
 import { GroupService } from '../group.service';
@@ -9,9 +10,9 @@ import { Location } from '@angular/common';
 	selector: 'app-group',
 	templateUrl: './group.component.html',
 	styleUrls: ['./group.component.css'],
-	encapsulation: ViewEncapsulation.None
 })
 export class GroupComponent implements OnInit {
+	myInfo: Student;
 
 	constructor(
 		private groupService: GroupService,
@@ -19,14 +20,39 @@ export class GroupComponent implements OnInit {
 		private location: Location
 	) { }
 
+	group: Group;
 	members: Student[];
 	invites: Invitations[];
 
 	static idx = 0;
 
+	addGroupButtonVisable = true;
+	addGroupVisable: boolean = false;
+
+	searchTerm = null;
+	listAllStudents: boolean = false;
+
+	searchedForStudents: Student[] = [];
+	studentsFound: boolean = false;
+
+	studentsInGroup: Student[] = [];
+
 	ngOnInit() {
+		this.getGroup();
 		this.getGroupMembers();
 		this.getGroupInvites();
+		this.myInfo = new Student();
+		this.getMyInfo();
+	}
+
+	getGroup() {
+        this.groupService.getGroup()
+            .subscribe(group => this.group = group);
+    }
+
+	getMyInfo(): void {
+		this.studentService.getInfo()
+			.subscribe(myInfo => this.myInfo = myInfo);
 	}
 
 	getGroupMembers(): void {
@@ -76,4 +102,62 @@ export class GroupComponent implements OnInit {
 		this.groupService.declineInvite(group_id)
 			.subscribe(() => location.reload());
 	}
+
+	makeAddGroupVisable() {
+		this.addGroupButtonVisable = false;
+		this.addGroupVisable = true;
+	}
+
+	closeAddGroup() {
+		this.studentsInGroup = [];
+		this.addGroupVisable = false;
+		this.addGroupButtonVisable = true;
+	}
+
+	searchForStudents() {
+		this.studentService.searchStudents(this.searchTerm)
+			.subscribe(students => this.searchedForStudents = students);
+
+		if(this.searchForStudents.length > 0) {
+			this.studentsFound = true;
+		}
+
+		this.listAllStudents = true;
+	}
+
+	inputCollector(val) {
+		this.searchTerm = val;
+	}
+
+	addStudent(randNum) {
+		this.listAllStudents = false;
+
+		var student = this.searchedForStudents.find(student => student.random_number == randNum);
+		this.studentsInGroup.push(student);
+	}
+
+	removeStudent(randNum) {
+		for(var i = 0; i < this.studentsInGroup.length; i++) {
+			if(this.studentsInGroup[i].random_number == randNum) {
+				var removed = this.studentsInGroup.splice(i, 1);
+				break;
+			}
+		}
+	}
+
+	createGroup() {
+		var temp;
+		for(let student of this.studentsInGroup) {
+			this.groupService.inviteToGroup(student.random_number)
+				.subscribe(error => temp = error);
+		}
+		this.closeAddGroup();
+	}
+
+	groupLeader(): string {
+        var leader = this.members.find(member => member.random_number == this.group.random_number);
+        var leaderName = leader.first_name + " " + leader.last_name;
+        return leaderName;
+
+    }
 }

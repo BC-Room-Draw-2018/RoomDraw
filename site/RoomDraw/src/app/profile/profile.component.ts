@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
 
   invitations: Invitations[];
 
+  leader: Student;
+
   constructor(
     private studentService: StudentService,
 		private groupService: GroupService
@@ -28,10 +30,28 @@ export class ProfileComponent implements OnInit {
     this.myInfo = new Student();
 		this.getMyInfo();
 
+    this.getLeader();
   }
 
   getMyInfo(): void {
 		this.studentService.getInfo()
       .subscribe(myInfo => this.myInfo = myInfo);
+  }
+
+  getLeader() {
+    this.groupService.getGroupLeader()
+      .subscribe(leader => this.leader = leader);
+  }
+
+  acceptInvite(invite) {
+    var temp;
+    this.groupService.acceptInvite(invite)
+      .subscribe(error => temp = error);
+  }
+
+  declineInvite(invite) {
+    var temp;
+    this.groupService.declineInvite(invite)
+      .subscribe(error => temp = error);
   }
 }

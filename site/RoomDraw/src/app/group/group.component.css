@@ -1,9 +1,21 @@
-#footer {
-	position: absolute;
-	bottom: 0px;
+.close {
+	font-weight: bold;
+	font-size: 15px;
+	border: none;
+	background-color: #eee;
+	float: right;
+	color: #555;
 }
 
-#LeaveGroupButton {
+.close:hover {
+	cursor: pointer;
+}
+
+.close:after {
+	float: none;
+}
+
+.leaveGroupButton {
 	background-color: red; /*Red Background*/
 	border: 1px solid #8b0000; /*Dark Red border*/
 	color: white; /* White text */
@@ -14,8 +26,22 @@
 }
 
 /* Add a background color on hover */
-#LeaveGroupButton:hover {
-	background-color: #2196F3; /* Blue */
+.leaveGroupButton:hover {
+	background-color: rgb(4, 88, 156); /* Blue */
+}
+
+.addGroupButton {
+	background-color: green; /*Red Background*/
+	border: 1px solid rgb(0, 63, 0); /*Dark Red border*/
+	color: white; /* White text */
+	padding: 10px 24px; /* Some padding */
+	cursor: pointer; /* Pointer/hand icon */
+	border-radius: 4px;
+}
+
+/* Add a background color on hover */
+.addGroupButton:hover {
+	background-color: rgb(4, 88, 156); /* Blue */
 }
 
 table, th, td {
@@ -23,4 +49,47 @@ table, th, td {
 	border-collapse: collapse;
 	padding: 15px;
 	background-color: #eee;
+}
+
+th, td {
+	text-align: center;
+}
+
+.groupTitle {
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+
+.searchButton {
+	border-radius: 4px;
+}
+
+.searchButton:hover {
+	cursor: pointer;
+}
+
+.addStudentButton {
+	border-radius: 100%;
+	background-color: rgb(0, 90, 0);
+	color: #fff;
+	border: 1px solid rgb(0, 24, 0);
+}
+
+.addStudentButton:hover {
+	cursor: pointer;
+}
+
+.removeStudentButton {
+	border-radius: 100%;
+	background-color: rgb(175, 0, 0);
+	color: #fff;
+	border: 1px solid rgb(102, 0, 0);
+}
+
+.removeStudentButton:hover {
+	cursor: pointer;
+}
+
+.group-members-p {
+	font-weight: bold;
 }
