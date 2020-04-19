@@ -94,6 +94,7 @@ export class HousingComponent implements OnInit {
 
 	getGroup() {
 		this.groupService.getGroup()
+			.subscribe(group => this.group = group);
 	}
 
 	getMyInfo(): void {
