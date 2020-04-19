@@ -104,3 +104,11 @@ class GroupInvite(object):
 
 		with sql(commit=True) as session:
 			session.query(models.Invitation).filter_by(student_id=self.student_id, group_id=gid).delete()
+
+class GroupLeader(object):
+	def on_get(self, request, response):
+		with sql() as session:
+			stud = get_student_by_id(self.student_id, session)
+			members = get_group_members(stud.group_id, session)
+			leader = min(members, key=lambda x : x.random_number)
+			response.media = leader.dict(exclude=["student_id"])
