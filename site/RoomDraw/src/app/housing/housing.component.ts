@@ -43,6 +43,7 @@ export class HousingComponent implements OnInit {
 	deleteCardRank = 0;
 	deleteCardDorm = null;
 	deleteCardRoom = 0;
+	failedToAdd: boolean = false;
 
 	roomListPopupVisable: boolean = false;
 	roomListPreference = 0;
@@ -154,6 +155,7 @@ export class HousingComponent implements OnInit {
 		this.displayRoomDropdown = false;
 		this.okayToSubmit = false;
 		this.popUpVisable = false;
+		this.failedToAdd = false;
 	}
 
 	setPreference(rank) {
@@ -195,10 +197,16 @@ export class HousingComponent implements OnInit {
 	}
 
 	submitWishlist() {
-		this.hidePopUp();
-		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
-			.subscribe(error => error = error)
-		this.getWishlist();
+		var roomNum = this.dropdownRoom.toLocaleString();
+		var roomCapactity = this.rooms.find(roomIQ => (roomIQ.dorm_id == this.dropdownDorm) && (roomIQ.room_number == roomNum)).capacity;
+		if(roomCapactity <= this.groupMembers.length) {
+			this.hidePopUp();
+			this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
+				.subscribe(error => error = error)
+			this.getWishlist();
+		} else {
+			this.failedToAdd = true;
+		}
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
