@@ -225,10 +225,14 @@ export class HousingComponent implements OnInit {
 	}
 
 	showRoomListAddPopup(dorm_id, room) {
-		this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
-		this.roomListDormID = dorm_id
-		this.roomListRoom = room;
-		this.roomListPopupVisable = true;
+		//roomIQ means 'room in question'
+		var roomCapactity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
+		if(roomCapactity <= this.groupMembers.length) {
+			this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+			this.roomListDormID = dorm_id
+			this.roomListRoom = room;
+			this.roomListPopupVisable = true;
+		}
 	}
 
 	hideRoomListAddPopup() {
