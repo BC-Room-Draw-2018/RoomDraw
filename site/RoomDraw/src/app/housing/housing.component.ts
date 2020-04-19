@@ -2,10 +2,12 @@ import { Room } from '../Room';
 import { Dorm } from '../Dorm';
 import { Student } from '../Student';
 import { Wishlist } from '../Wishlist';
+import { Group } from '../Group';
 import { RoomService } from '../room.service';
 import { DormService } from '../dorm.service';
 import { StudentService } from '../student.service';
 import { WishlistService } from '../wishlist.service';
+import { GroupService } from '../group.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -21,6 +23,8 @@ export class HousingComponent implements OnInit {
 	wishlist: Wishlist[] =[];
 
 	myInfo: Student;
+
+	group: Group;
 
 	displayDormDropdown: boolean = false;
 	dropdownDorm = 0;
@@ -63,13 +67,16 @@ export class HousingComponent implements OnInit {
 		private roomService: RoomService,
 		private dormService: DormService,
 		private studentService: StudentService,
-		private wishlistService: WishlistService
+		private wishlistService: WishlistService,
+		private groupService: GroupService
 	) { }
 
 	ngOnInit() {
 		this.getAllDormsInfo();
 
 		this.getWishlist();
+
+		this.getGroup();
 
 		this.myInfo = new Student();
 		this.getMyInfo();
@@ -83,6 +90,10 @@ export class HousingComponent implements OnInit {
 	getWishlist() {
 		this.wishlistService.getStudentWishlist()
 			.subscribe(wishlist => this.wishlist = wishlist);
+	}
+
+	getGroup() {
+		this.groupService.getGroup()
 	}
 
 	getMyInfo(): void {
