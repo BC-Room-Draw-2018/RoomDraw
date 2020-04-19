@@ -1,3 +1,4 @@
+import { Group } from './Group';
 import { Student } from './Student';
 import { Invitations } from './Invitations';
 import { StudentService } from './student.service';
@@ -23,6 +24,11 @@ export class GroupService {
 		private http: HttpClient,
 		private studentService: StudentService
 	) { }
+
+	getGroup(): Observable<Group> {
+		var url = "http://localhost:8000/group?leader=1";
+		return this.http.get<Group>(url, this.httpOptions);
+	}
 
 	getGroupsAhead(): Observable<number> {
 		var url = "http://localhost:8000/group/rank";
@@ -57,10 +63,15 @@ export class GroupService {
 		return obs
 	}
 
-	inviteToGroup(student_id): Observable<Object> {
+	getGroupLeader(): Observable<Student> {
+		var url = "http://localhost:8000/group/leader";
+		return this.http.get<Student>(url, this.httpOptions);
+	}
+
+	inviteToGroup(random_number): Observable<Object> {
 		var url = "http://localhost:8000/group/invite";
 		const body = {
-			student_id: student_id
+			random_number: random_number
 		}
 
 		var str = JSON.stringify(body)

@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class StudentService {
 
 	myInfo: Student;
+	student: Student;
 
 	httpOptions = {
 		headers: new HttpHeaders({
@@ -34,6 +35,13 @@ export class StudentService {
 
 	getStudentInfo(student_id): Observable<Student> {
 		var url = 'http://localhost:8000/student?id=' + student_id;
-		return this.http.get<Student>(url, this.httpOptions);
+		var obs = this.http.get<Student>(url, this.httpOptions).pipe(share());
+		obs.subscribe(student => this.student = student);
+		return obs;
+	}
+
+	searchStudents(name): Observable<Student[]> {
+		var url = 'http://localhost:8000/student?search=' + name;
+		return this.http.get<Student[]>(url, this.httpOptions);
 	}
 }
