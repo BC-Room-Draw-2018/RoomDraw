@@ -10,19 +10,20 @@ import { LoginComponent } from './login/login.component';
 import { LogOutComponent } from './log-out/log-out.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AuthenticationGuard } from './authentication/authentication.guard';
 
 const routes: Routes = [
-	{ path: 'housing', component: HousingComponent },
-	{ path: 'group', component: GroupComponent },
-	{ path: 'home', component: HomeComponent },
-	{ path: 'live-draw', component: LiveDrawComponent },
-	{ path: 'documents', component: DocumentComponent },
-	{ path: 'faqs', component: FaqComponent },
+	{ path: 'housing', component: HousingComponent, canActivate: [AuthenticationGuard] },
+	{ path: 'group', component: GroupComponent, canActivate: [AuthenticationGuard] },
+	{ path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
+	{ path: 'live-draw', component: LiveDrawComponent, canActivate: [AuthenticationGuard] },
+	{ path: 'documents', component: DocumentComponent, canActivate: [AuthenticationGuard] },
+	{ path: 'faqs', component: FaqComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'reset-password', component: ResetPasswordComponent },
 	{ path: 'log-out', component: LogOutComponent },
-	{ path: 'change-password', component: ChangePasswordComponent },
-	{ path: '', redirectTo: '/home', pathMatch: 'full' }
+	{ path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthenticationGuard] },
+	{ path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
