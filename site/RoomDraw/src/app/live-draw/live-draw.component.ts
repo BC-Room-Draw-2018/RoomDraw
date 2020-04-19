@@ -25,6 +25,7 @@ export class LiveDrawComponent implements OnInit {
 	myInfo: Student;
 
 	group: Group;
+	groupMembers: Student[];
 
 	displayDormDropdown: boolean = false;
 	dropdownDorm = 0;
@@ -78,6 +79,8 @@ export class LiveDrawComponent implements OnInit {
 
 		this.getGroup();
 
+		this.getGroupMembers();
+
 		this.myInfo = new Student();
 		this.getMyInfo();
 	}
@@ -95,6 +98,11 @@ export class LiveDrawComponent implements OnInit {
 	getGroup() {
 		this.groupService.getGroup()
 			.subscribe(group => this.group = group);
+	}
+
+	getGroupMembers() {
+		this.groupService.getGroupMembers()
+			.subscribe(groupMembers => this.groupMembers =  groupMembers);
 	}
 
 	getMyInfo(): void {
