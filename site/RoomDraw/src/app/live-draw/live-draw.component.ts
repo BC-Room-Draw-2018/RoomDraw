@@ -260,4 +260,21 @@ export class LiveDrawComponent implements OnInit {
 			.subscribe(error => error = error);
 		this.getWishlist();
 	}
+
+	//ngStyle ----------------------------------------
+	howManyLeft(capacity, spots_available): object {
+		if(spots_available < capacity && spots_available != 0) {
+			return {
+				'color': `black`,
+				'background-color': `yellow`
+			};
+		} else if(spots_available <= 0) {
+			return {
+				'color': `black`,
+				'background-color': `red`
+			};
+		} else {
+			console.log("ERROR: Something has gone very wrong!")
+		}
+	}
 }

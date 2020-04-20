@@ -84,7 +84,7 @@ Live Draw -->
 						<th>Spots Open</th>
 						<th>Type</th>
 					</tr>
-					<tr *ngFor="let room of rooms" (click)="showRoomListAddPopup(room.dorm_id, room.room_number)">
+					<tr [ngStyle]="howManyLeft(room.capacity, room.available_spots)" *ngFor="let room of rooms" (click)="showRoomListAddPopup(room.dorm_id, room.room_number)">
 						<ng-container *ngIf="groupMembers.length <= room.capacity; else roomNotAvailableToGroup">
 							<td>{{ room.room_number }}</td>
 							<td>{{ room.capacity }}</td>
