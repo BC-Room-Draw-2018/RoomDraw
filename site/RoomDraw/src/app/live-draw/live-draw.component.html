@@ -63,9 +63,28 @@ Live Draw -->
 	</ng-template>
 
 	<br/>
+
+	<div id="groupOrder">
+		<ng-container *ngIf="groupsAheadOfUser > 1; else oneOrLessGroups" >
+			There are {{ groupsAheadOfUser }}  groups ahead of you.
+		</ng-container>
+		<ng-template #oneOrLessGroups>
+			<ng-container *ngIf="groupsAheadOfUser == 1; else yourTurn">
+				There is {{ groupsAheadOfUser }} group ahead of you. It's almost you turn! Please be ready.
+			</ng-container>
+			<ng-template #yourTurn>
+				It is your turn!
+				<p>Please select a dorm from you wishlist. If none are available, please choose a different option.</p>
+				<h4>Your group's wishlist:</h4>
+			</ng-template>
+		</ng-template>
+	</div>
+
+
 	<div class="btn-group">
 		<button (click)="loadDorm(dorm.dorm_id)" *ngFor="let dorm of dorms">{{ dorm.dorm_name }}</button>
 	</div>
+
 	<!-- Room Availability Menu -->
 	<h2>Room Availability</h2>
 	<div class="row">

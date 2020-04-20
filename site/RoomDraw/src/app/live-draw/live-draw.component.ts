@@ -54,6 +54,8 @@ export class LiveDrawComponent implements OnInit {
 	roomListRoom = 0;
 	roomListRankSelected: boolean = false;
 
+	groupsAheadOfUser = 0;
+
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
 	current_floors = null;

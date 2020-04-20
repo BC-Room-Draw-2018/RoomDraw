@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 .content{
 	max-width: 1000px;
 	margin: auto;
@@ -26,9 +30,31 @@
 .btn-group button:hover {
 	background-color: rgb(21, 113, 189); /* Blue */
 }
-* {
-	box-sizing: border-box;
+
+#groupOrder {
+	position: -webkit-sticky; /* for use in safari */
+	position: sticky;
+	top: 0;
+	float: right;
+	background-color: #2DA8D8FF;
+	padding: 20px;
+	border: 2px solid #000;
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 20px;
+	z-index: 1;
 }
+
+#groupOrder p {
+	font-weight: normal;
+}
+
+#groupOrder:after {
+	content: "";
+	clear: both;
+}
+
 /* Create two equal columns that floats next to each other */
 .column-left {
 	float: left;
