@@ -50,6 +50,17 @@ class Group(object):
 			reinit_group(old_group, session)
 			reinit_group(student.group_id, session)
 
+def get_rank(student_id):
+	model = models.Group
+	with sql() as session:
+		gid = get_student_by_id(student_id, session).group_id
+		random_number = session.query(model).filter_by(group_id=gid).first().random_number
+		return session.query(model.random_number).distinct().filter(model.random_number < random_number).count()
+
+class GroupRank(object):
+	def on_get(self, request, response):
+		response.media = get_rank(self.student_id)
+
 class GroupMembers(object):
 	def on_get(self, request, response):
 		with sql() as session:

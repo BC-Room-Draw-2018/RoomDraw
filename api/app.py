@@ -30,6 +30,7 @@ class API(object):
 
 	def _setup_endpoints(self):
 		self.api.add_route("/group", endpoints.Group())
+		self.api.add_route("/group/rank", endpoints.GroupRank())
 		self.api.add_route("/group/members", endpoints.GroupMembers())
 		self.api.add_route("/group/invite", endpoints.GroupInvite())
 		self.api.add_route("/group/leader", endpoints.GroupLeader())
