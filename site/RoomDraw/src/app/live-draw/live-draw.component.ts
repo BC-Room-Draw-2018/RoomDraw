@@ -2,6 +2,7 @@ import { Room } from '../Room';
 import { Dorm } from '../Dorm';
 import { Student } from '../Student';
 import { Wishlist } from '../Wishlist';
+import { GroupWishlist } from '../GroupWishlist';
 import { Group } from '../Group';
 import { RoomService } from '../room.service';
 import { DormService } from '../dorm.service';
@@ -20,7 +21,7 @@ export class LiveDrawComponent implements OnInit {
 
 	dorms: Dorm[] = [];
 
-	wishlist: Wishlist[] =[];
+	wishlist: GroupWishlist[] =[];
 
 	myInfo: Student;
 
@@ -35,6 +36,7 @@ export class LiveDrawComponent implements OnInit {
 	displayRoomDropdown: boolean = false;
 	dropdownRooms: Room[] = []
 	dropdownRoom = 0;
+	dropdownRoomCapacity = 0;
 	okayToSubmit: boolean = false;
 	popUpVisable: boolean = false;
 	preference = 0;
@@ -92,7 +94,7 @@ export class LiveDrawComponent implements OnInit {
 	}
 
 	getWishlist() {
-		this.wishlistService.getStudentWishlist()
+		this.wishlistService.getGroupWishlist()
 			.subscribe(wishlist => this.wishlist = wishlist);
 	}
 
@@ -191,17 +193,16 @@ export class LiveDrawComponent implements OnInit {
 			.subscribe(rooms => this.dropdownRooms = rooms);
 	}
 
-	roomDropdown(roomNum) {
+	roomDropdown(roomNum, capacity) {
+		this.dropdownRoomCapacity = capacity;
+		this.dropdownRoom = roomNum;
 		this.okayToSubmit = true;
-		this.dropdownRoom = roomNum
 	}
 
 	submitWishlist() {
-		var roomNum = this.dropdownRoom.toLocaleString();
-		var roomCapactity = this.rooms.find(roomIQ => (roomIQ.dorm_id == this.dropdownDorm) && (roomIQ.room_number == roomNum)).capacity;
-		if(roomCapactity >= this.groupMembers.length) {
+		if(this.dropdownRoomCapacity >= this.groupMembers.length) {
 			this.hidePopUp();
-			this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
+			this.wishlistService.addGroupWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
 				.subscribe(error => error = error)
 			this.getWishlist();
 		} else {
@@ -227,7 +228,7 @@ export class LiveDrawComponent implements OnInit {
 
 	deleteCard() {
 		this.deleteCardPopup = false;
-		this.wishlistService.removeWishlist(this.deleteCardRank)
+		this.wishlistService.removeGroupWishlist(this.deleteCardRank)
 			.subscribe(error => error = error);
 		this.getWishlist();
 	}
@@ -255,7 +256,7 @@ export class LiveDrawComponent implements OnInit {
 	addRoomList() {
 		this.roomListPopupVisable = false;
 		this.roomListRankSelected = false;
-		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
+		this.wishlistService.addGroupWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
 			.subscribe(error => error = error);
 		this.getWishlist();
 	}
