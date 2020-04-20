@@ -29,6 +29,7 @@ export class LiveDrawComponent implements OnInit {
 
 	group: Group;
 	groupMembers: Student[];
+	groupLeader: Student;
 
 	displayDormDropdown: boolean = false;
 	dropdownDorm = 0;
@@ -85,8 +86,8 @@ export class LiveDrawComponent implements OnInit {
 		this.getWishlist();
 
 		this.getGroup();
-
 		this.getGroupMembers();
+		this.getGroupLeader();
 
 		this.myInfo = new Student();
 		this.getMyInfo();
@@ -112,7 +113,12 @@ export class LiveDrawComponent implements OnInit {
 			.subscribe(groupMembers => this.groupMembers = groupMembers);
 	}
 
-	getMyInfo(): void {
+	getGroupLeader() {
+		this.groupService.getGroupLeader()
+			.subscribe(groupLeader => this.groupLeader = groupLeader);
+	}
+
+	getMyInfo() {
 		this.studentService.getInfo()
 			.subscribe(myInfo => this.myInfo = myInfo);
 	}
@@ -275,6 +281,10 @@ export class LiveDrawComponent implements OnInit {
 		this.wishlistService.addGroupWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
 			.subscribe(error => error = error);
 		this.getWishlist();
+	}
+
+	ifLeader(): boolean {
+		return this.groupLeader.random_number == this.myInfo.random_number;
 	}
 
 	chooseRoomFromList(list: Wishlist) {
