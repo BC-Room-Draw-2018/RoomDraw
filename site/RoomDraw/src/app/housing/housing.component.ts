@@ -2,10 +2,13 @@ import { Room } from '../Room';
 import { Dorm } from '../Dorm';
 import { Student } from '../Student';
 import { Wishlist } from '../Wishlist';
+import { GroupWishlist } from '../GroupWishlist';
+import { Group } from '../Group';
 import { RoomService } from '../room.service';
 import { DormService } from '../dorm.service';
 import { StudentService } from '../student.service';
 import { WishlistService } from '../wishlist.service';
+import { GroupService } from '../group.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -18,9 +21,12 @@ export class HousingComponent implements OnInit {
 
 	dorms: Dorm[] = [];
 
-	wishlist: Wishlist[] =[];
+	wishlist: GroupWishlist[] =[];
 
 	myInfo: Student;
+
+	group: Group;
+	groupMembers: Student[];
 
 	displayDormDropdown: boolean = false;
 	dropdownDorm = 0;
@@ -30,9 +36,11 @@ export class HousingComponent implements OnInit {
 	displayRoomDropdown: boolean = false;
 	dropdownRooms: Room[] = []
 	dropdownRoom = 0;
+	dropdownRoomCapacity = 0;
 	okayToSubmit: boolean = false;
 	popUpVisable: boolean = false;
 	preference = 0;
+	failedToAdd: boolean = false;
 
 	deleteCardPopup: boolean = false;
 	deleteCardRank = 0;
@@ -63,13 +71,18 @@ export class HousingComponent implements OnInit {
 		private roomService: RoomService,
 		private dormService: DormService,
 		private studentService: StudentService,
-		private wishlistService: WishlistService
+		private wishlistService: WishlistService,
+		private groupService: GroupService
 	) { }
 
 	ngOnInit() {
 		this.getAllDormsInfo();
 
 		this.getWishlist();
+
+		this.getGroup();
+
+		this.getGroupMembers();
 
 		this.myInfo = new Student();
 		this.getMyInfo();
@@ -81,8 +94,18 @@ export class HousingComponent implements OnInit {
 	}
 
 	getWishlist() {
-		this.wishlistService.getStudentWishlist()
+		this.wishlistService.getGroupWishlist()
 			.subscribe(wishlist => this.wishlist = wishlist);
+	}
+
+	getGroup() {
+		this.groupService.getGroup()
+			.subscribe(group => this.group = group);
+	}
+
+	getGroupMembers() {
+		this.groupService.getGroupMembers()
+			.subscribe(groupMembers => this.groupMembers = groupMembers);
 	}
 
 	getMyInfo(): void {
@@ -134,6 +157,7 @@ export class HousingComponent implements OnInit {
 		this.displayRoomDropdown = false;
 		this.okayToSubmit = false;
 		this.popUpVisable = false;
+		this.failedToAdd = false;
 	}
 
 	setPreference(rank) {
@@ -169,16 +193,21 @@ export class HousingComponent implements OnInit {
 			.subscribe(rooms => this.dropdownRooms = rooms);
 	}
 
-	roomDropdown(roomNum) {
+	roomDropdown(roomNum, capacity) {
+		this.dropdownRoomCapacity = capacity;
+		this.dropdownRoom = roomNum;
 		this.okayToSubmit = true;
-		this.dropdownRoom = roomNum
 	}
 
 	submitWishlist() {
-		this.hidePopUp();
-		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
-			.subscribe(error => error = error)
-		this.getWishlist();
+		if(this.dropdownRoomCapacity >= this.groupMembers.length) {
+			this.hidePopUp();
+			this.wishlistService.addGroupWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
+				.subscribe(error => error = error)
+			this.getWishlist();
+		} else {
+			this.failedToAdd = true;
+		}
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
@@ -199,16 +228,20 @@ export class HousingComponent implements OnInit {
 
 	deleteCard() {
 		this.deleteCardPopup = false;
-		this.wishlistService.removeWishlist(this.deleteCardRank)
+		this.wishlistService.removeGroupWishlist(this.deleteCardRank)
 			.subscribe(error => error = error);
 		this.getWishlist();
 	}
 
 	showRoomListAddPopup(dorm_id, room) {
-		this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
-		this.roomListDormID = dorm_id
-		this.roomListRoom = room;
-		this.roomListPopupVisable = true;
+		//roomIQ means 'room in question'
+		var roomCapacity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
+		if(roomCapacity >= this.groupMembers.length) {
+			this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+			this.roomListDormID = dorm_id
+			this.roomListRoom = room;
+			this.roomListPopupVisable = true;
+		}
 	}
 
 	hideRoomListAddPopup() {
@@ -223,7 +256,7 @@ export class HousingComponent implements OnInit {
 	addRoomList() {
 		this.roomListPopupVisable = false;
 		this.roomListRankSelected = false;
-		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
+		this.wishlistService.addGroupWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
 			.subscribe(error => error = error);
 		this.getWishlist();
 	}
