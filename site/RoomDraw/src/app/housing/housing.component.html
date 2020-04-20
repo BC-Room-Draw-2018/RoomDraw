@@ -184,12 +184,12 @@ User may create and edit housing wish lists-->
 				<label for="rooms">Room #: </label>
 				<select id="rooms" *ngIf="displayRoomDropdown">
                     <option disabled selected value> -- select room -- </option>
-					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number)">{{ room.room_number }}</option>
+					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number, room.capacity)">{{ room.room_number }}</option>
 				</select>
 				<br/>
 				<button type="button" (click)="hidePopUp()">Cancel</button>
 				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to list</button>
-				<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist.<br/> Your group exceeds the allowed size for this room.</p>
+				<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist. Your group exceeds the allowed size for this room.</p>
 			</form>
 		</div>
 	</div>

@@ -6,7 +6,7 @@
 	background-color: #b30838; /* Red background */
 	border: 1px solid #000; /* Black border */
 	color: #fff; /* White text */
-	padding: 10px 24px; /* Some padding */
+	padding: 10px 20px; /* Some padding */
 	cursor: pointer; /* Pointer/hand icon */
 	float: left; /* Float the buttons side by side */
 }
@@ -221,6 +221,16 @@ img {
 	color: #fff;
 	border-radius: 7px;
 	padding: 8px;
+}
+
+.failedToAdd {
+	color: black;
+	text-align: center;
+	font-weight: bold;
+}
+
+#error {
+	color: rgb(255, 0, 0);
 }
 
 table {

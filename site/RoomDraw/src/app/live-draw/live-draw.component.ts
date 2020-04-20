@@ -38,6 +38,7 @@ export class LiveDrawComponent implements OnInit {
 	okayToSubmit: boolean = false;
 	popUpVisable: boolean = false;
 	preference = 0;
+	failedToAdd: boolean = false;
 
 	deleteCardPopup: boolean = false;
 	deleteCardRank = 0;
@@ -102,7 +103,7 @@ export class LiveDrawComponent implements OnInit {
 
 	getGroupMembers() {
 		this.groupService.getGroupMembers()
-			.subscribe(groupMembers => this.groupMembers =  groupMembers);
+			.subscribe(groupMembers => this.groupMembers = groupMembers);
 	}
 
 	getMyInfo(): void {
@@ -154,6 +155,7 @@ export class LiveDrawComponent implements OnInit {
 		this.displayRoomDropdown = false;
 		this.okayToSubmit = false;
 		this.popUpVisable = false;
+		this.failedToAdd = false;
 	}
 
 	setPreference(rank) {
@@ -195,10 +197,16 @@ export class LiveDrawComponent implements OnInit {
 	}
 
 	submitWishlist() {
-		this.hidePopUp();
-		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
-			.subscribe(error => error = error)
-		this.getWishlist();
+		var roomNum = this.dropdownRoom.toLocaleString();
+		var roomCapactity = this.rooms.find(roomIQ => (roomIQ.dorm_id == this.dropdownDorm) && (roomIQ.room_number == roomNum)).capacity;
+		if(roomCapactity >= this.groupMembers.length) {
+			this.hidePopUp();
+			this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
+				.subscribe(error => error = error)
+			this.getWishlist();
+		} else {
+			this.failedToAdd = true;
+		}
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
@@ -226,8 +234,8 @@ export class LiveDrawComponent implements OnInit {
 
 	showRoomListAddPopup(dorm_id, room) {
 		//roomIQ means 'room in question'
-		var roomCapactity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
-		if(roomCapactity <= this.groupMembers.length) {
+		var roomCapacity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
+		if(roomCapacity >= this.groupMembers.length) {
 			this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
 			this.roomListDormID = dorm_id
 			this.roomListRoom = room;
