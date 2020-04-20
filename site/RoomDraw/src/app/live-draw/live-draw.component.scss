@@ -72,10 +72,6 @@
 	background-color: rgb(0, 183, 255);
 }
 
-.groupOrder tr:not(:first-child):hover {
-	background-color: rgb(0, 116, 161);
-}
-
 /* Create two equal columns that floats next to each other */
 .column-left {
 	float: left;
@@ -194,6 +190,26 @@
    	outline: none;
 }
 
+.yourTurn button {
+	background-color: #b30838; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.yourTurn button:active {
+	background-color: #9b042f;
+    box-shadow: inset 0px 0px 5px #000000;
+   	outline: none;
+}
+
 .deleteCardPopup button {
 	background-color: #b30838; /* Green */
 	border: none;
@@ -295,6 +311,35 @@ tr:nth-child(even) {
 	background-color: rgb(114, 114, 114);
 }
 
-tr:not(:first-child):hover {
+.roomList tr:not(:first-child):hover {
 	background-color: rgb(146, 146, 146);
+}
+
+.accept-button {
+	border-radius: 3px;
+	color: #fff;
+	background-color: rgb(0, 102, 0);
+	border: none;
+	font-size: 17px;
+	margin-left: 12px;
+	margin-top: 10px;
+}
+
+.accept-button:hover {
+	background-color: rgb(0, 61, 0);
+	cursor: pointer;
+}
+
+.decline-button {
+	border-radius: 3px;
+	color: #fff;
+	background-color: rgb(175, 0, 0);
+	border: none;
+	font-size: 17px;
+	margin-top: 10px;
+}
+
+.decline-button:hover {
+	background-color: rgb(97, 0, 0);
+	cursor: pointer;
 }

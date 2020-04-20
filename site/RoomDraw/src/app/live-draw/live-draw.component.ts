@@ -235,6 +235,12 @@ export class LiveDrawComponent implements OnInit {
 		this.getWishlist();
 	}
 
+	deleteWishlist(rank) {
+		this.wishlistService.removeGroupWishlist(rank)
+			.subscribe(error => error = error);
+		this.getWishlist();
+	}
+
 	showRoomListAddPopup(dorm_id, room) {
 		//roomIQ means 'room in question'
 		var roomCapacity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
@@ -261,6 +267,15 @@ export class LiveDrawComponent implements OnInit {
 		this.wishlistService.addGroupWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
 			.subscribe(error => error = error);
 		this.getWishlist();
+	}
+
+	chooseRoomFromList(list: Wishlist) {
+		console.log("here's the room choosen " + list)
+		//do choose room here
+	}
+
+	chooseRoomFromSelection() {
+		console.log("Room chosen from selection: Dorm = " + this.dropdownDorm + " room = " + this.dropdownRoom + "floor = " + this.dropdownFloorRooms)
 	}
 
 	//ngStyle ----------------------------------------

@@ -87,9 +87,38 @@ Live Draw -->
 						<td>{{ list.rank }}</td>
 						<td>{{ wishlistHall(list.dorm_id) }}</td>
 						<td>{{ list.room_id }}</td>
-						<td></td>
+						<td>
+							<button class="decline-button" title="Remove From List" (click)="deleteWishlist(list.rank)">✗</button>
+							<button class="accept-button" title="Confirm This Room" (click)="chooseRoomFromList(list)">✓</button>
+						</td>
 					</tr>
 				</table>
+
+				<!--SELECT A ROOM WHEN NONE OF THE USER'S OPTIONS ARE LEFT AVAILABLE-->
+				<form>
+					<h4>Don't see what you want on your wish list? Select a different room.</h4>
+					<label for="dorms">Dorm: </label>
+					<select id="dorms">
+						<option disabled selected value> -- select dorm -- </option>
+						<option *ngFor="let dorm of dorms" (click)="showFloorDropdown(dorm.dorm_id)">{{ dorm.dorm_name }}</option>
+					</select>
+					<br/>
+					<label for="floor">Level: </label>
+					<select id="floor" *ngIf="displayFloorDropdown">
+						<option disabled selected value> -- select floor -- </option>
+						<option *ngFor="let floor of dropdownFloors" (click)="floorDropdown(floor)">{{ floor }}</option>
+					</select>
+					<br/>
+					<label for="rooms">Room #: </label>
+					<select id="rooms" *ngIf="displayRoomDropdown">
+						<option disabled selected value> -- select room -- </option>
+						<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number, room.capacity)">{{ room.room_number }}</option>
+					</select>
+					<br/>
+					<button class="yourTurnButton" *ngIf="okayToSubmit" type="button" (click)="chooseRoomFromSelection()">Select Room</button>
+					<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist.<br/> Your group exceeds the allowed size for this room or this room is full.</p>
+				</form>
+
 			</ng-template>
 		</ng-template>
 	</div>
@@ -110,7 +139,7 @@ Live Draw -->
 			<!--This get all rooms-->
 			<div class="room">
 				<!--Room #, Room Capacity, Spots left, Type-->
-				<table>
+				<table class="roomList">
 					<tr>
 						<th>Room #</th>
 						<th>Capacity</th>
