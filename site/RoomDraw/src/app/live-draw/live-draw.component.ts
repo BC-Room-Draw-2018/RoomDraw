@@ -18,6 +18,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveDrawComponent implements OnInit {
 	rooms: Room[] = [];
+	
+	roomsForFinalChoice: Room[] = [];
 
 	dorms: Dorm[] = [];
 
@@ -116,9 +118,15 @@ export class LiveDrawComponent implements OnInit {
 	}
 
 	getRoomInfo() {
-		this.rooms = []
+		this.rooms = [];
 		this.roomService.getAllRooms(this.current_id, this.floor_viewing)
 			.subscribe(rooms => this.rooms = rooms);
+	}
+
+	getFinalRooms(dorm_id, floor) {
+		this.roomsForFinalChoice = [];
+		this.roomService.getAllRooms(dorm_id, floor)
+			.subscribe(rooms => this.roomsForFinalChoice = rooms);
 	}
 
 	loadDorm(id) {
@@ -272,10 +280,20 @@ export class LiveDrawComponent implements OnInit {
 	chooseRoomFromList(list: Wishlist) {
 		console.log("here's the room choosen " + list)
 		//do choose room here
+		//failedToAdd = false;
+		//pass turn
 	}
 
 	chooseRoomFromSelection() {
-		console.log("Room chosen from selection: Dorm = " + this.dropdownDorm + " room = " + this.dropdownRoom + "floor = " + this.dropdownFloorRooms)
+		//check if okay
+			//failedToAdd = false;
+			console.log("Room chosen from selection: Dorm = " + this.dropdownDorm + " room = " + this.dropdownRoom + "floor = " + this.dropdownFloorRooms)
+			//pass turn
+		//if not failedToAdd = true;
+	}
+
+	available(): boolean {
+		return true;
 	}
 
 	//ngStyle ----------------------------------------
@@ -292,6 +310,15 @@ export class LiveDrawComponent implements OnInit {
 			};
 		} else {
 			console.log("ERROR: Something has gone very wrong!")
+		}
+	}
+
+	stillAvailable(dorm_id, room_id, floor): object {
+		//if unavailable
+		if(1 > 2) {
+			return {
+				'background-color': `gray`
+			}
 		}
 	}
 }

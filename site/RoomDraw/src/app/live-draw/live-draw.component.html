@@ -83,13 +83,18 @@ Live Draw -->
 						<th>Room</th>
 						<th>Actions</th>
 					</tr>
-					<tr *ngFor="let list of wishlist">
+					<tr [ngStyle]="stillAvailable(list.dorm_id, list.room_id, list.floor)" *ngFor="let list of wishlist">
 						<td>{{ list.rank }}</td>
 						<td>{{ wishlistHall(list.dorm_id) }}</td>
 						<td>{{ list.room_id }}</td>
 						<td>
 							<button class="decline-button" title="Remove From List" (click)="deleteWishlist(list.rank)">✗</button>
-							<button class="accept-button" title="Confirm This Room" (click)="chooseRoomFromList(list)">✓</button>
+							<ng-container *ngIf="available(); else disableButton">
+								<button class="accept-button" title="Confirm This Room" (click)="chooseRoomFromList(list)">✓</button>
+							</ng-container>
+							<ng-template #disableButton>
+								<button class="accept-button" title="You cannot add this room, it has been taken." disabled>✓</button>
+							</ng-template>
 						</td>
 					</tr>
 				</table>
