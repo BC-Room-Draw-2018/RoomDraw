@@ -31,11 +31,10 @@
 	background-color: rgb(21, 113, 189); /* Blue */
 }
 
-#groupOrder {
+.groupOrder {
 	position: -webkit-sticky; /* for use in safari */
 	position: sticky;
 	top: 0;
-	float: right;
 	background-color: #2DA8D8FF;
 	padding: 20px;
 	border: 2px solid #000;
@@ -46,13 +45,35 @@
 	z-index: 1;
 }
 
-#groupOrder p {
+.groupOrder p {
 	font-weight: normal;
 }
 
-#groupOrder:after {
-	content: "";
-	clear: both;
+.groupOrder table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.groupOrder th {
+	border: none;
+	text-align: center;
+}
+
+.groupOrder td {
+	border: none;
+	text-align: center;
+}
+
+.groupOrder tr {
+	background-color: rgb(0, 150, 209);
+}
+  
+.groupOrder tr:nth-child(even) {
+	background-color: rgb(0, 183, 255);
+}
+
+.groupOrder tr:not(:first-child):hover {
+	background-color: rgb(0, 116, 161);
 }
 
 /* Create two equal columns that floats next to each other */

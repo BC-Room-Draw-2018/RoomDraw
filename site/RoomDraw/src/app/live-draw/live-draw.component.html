@@ -64,7 +64,7 @@ Live Draw -->
 
 	<br/>
 
-	<div id="groupOrder">
+	<div class="groupOrder">
 		<ng-container *ngIf="groupsAheadOfUser > 1; else oneOrLessGroups" >
 			There are {{ groupsAheadOfUser }}  groups ahead of you.
 		</ng-container>
@@ -76,6 +76,20 @@ Live Draw -->
 				It is your turn!
 				<p>Please select a dorm from you wishlist. If none are available, please choose a different option.</p>
 				<h4>Your group's wishlist:</h4>
+				<table id="youTurnTable">
+					<tr>
+						<th>Rank</th>
+						<th>Dorm</th>
+						<th>Room</th>
+						<th>Actions</th>
+					</tr>
+					<tr *ngFor="let list of wishlist">
+						<td>{{ list.rank }}</td>
+						<td>{{ wishlistHall(list.dorm_id) }}</td>
+						<td>{{ list.room_id }}</td>
+						<td></td>
+					</tr>
+				</table>
 			</ng-template>
 		</ng-template>
 	</div>
