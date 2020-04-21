@@ -2,9 +2,10 @@
     <div class="form-container">
         <ul class="login-menu-list">
             <li><strong>Student Login</strong></li>
-            <li><input type="email" name="Email" placeholder="Benedictine Email Address"></li>
-            <li><input type="password" name="Password" placeholder="Password"></li>
+            <li><input type="email" name="Email" placeholder="Benedictine Email Address" #username (input)="get_username(username.value)"></li>
+            <li><input type="password" name="Password" placeholder="Password" #password (input)="get_password(password.value)"></li>
             <li><input type="button" name="Submit" value="Submit" action="authService.login()"></li>
+            <li><h3 *ngIf="incorrect">Your username/password combination is incorrect.</h3></li>
             <li class="button-text"><a routerLink="/reset-password">Forgot Your Password?</a></li>
         </ul>
     </div>
