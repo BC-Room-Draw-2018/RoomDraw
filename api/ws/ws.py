@@ -28,10 +28,7 @@ async def handler(websocket, path):
 			if "command" in data and data["command"] in commands:
 				cmd = data["command"]
 				callback = commands[cmd]
-				payload = None
-
-				if "payload" in data:
-					payload = data["payload"]
+				payload = data["payload"] if "payload" in data else None
 
 				await callback(websocket, payload)
 			else:
@@ -40,8 +37,8 @@ async def handler(websocket, path):
 	finally:
 		await rooms.unsubscribe(websocket)
 
-start_server = websockets.serve(handler, 'localhost', 8080)
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(start_server)
-loop.run_forever()
+if __name__ == '__main__':
+	start_server = websockets.serve(handler, '0.0.0.0', 8080)
+	loop = asyncio.get_event_loop()
+	loop.run_until_complete(start_server)
+	loop.run_forever()
