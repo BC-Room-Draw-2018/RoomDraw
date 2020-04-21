@@ -11,11 +11,12 @@ import { LoginResponse } from '../Student'
 
 export class AuthenticationService {
   succeeded = 0;
+  header = "";
   isLoggedIn = false;
 
   httpOptions = {
     headers: new HttpHeaders({
-      'SESSION-ID': 'alex'
+      'SESSION-ID': window.localStorage['SESSION-ID']
     })
   }
   constructor(
@@ -31,8 +32,9 @@ export class AuthenticationService {
     var str = JSON.stringify(body)
     
     var obs = this.http.post<LoginResponse>(url, body).pipe(share());
-    obs.subscribe(result => this.succeeded = result.success);
+    obs.subscribe(result => {this.succeeded = result.success; this.header = result.token});
     if(this.succeeded != 0 || this.succeeded != undefined) {
+      window.localStorage['SESSION-ID'] = this.header;
       this.isLoggedIn = true;
     }
     return obs;
@@ -42,18 +44,9 @@ export class AuthenticationService {
   logout(): Observable<Object> {
     if(this.isLoggedIn) {
       this.isLoggedIn = false;
+      window.localStorage['SESSION-ID'] = "";
     }
     var url = "http://localhost:8000/logout"
     return this.http.post<Object>(url, this.httpOptions)
   }
-
-  // signIn(username, password): Observable<Object> {
-  //   var url = "http://localhost:8000/login"
-  //   const body = {
-  //   username: username,
-  //   password: password
-  //   }
-  //   var str = JSON.stringify(body)
-  //   return this.http.post<Object>(url, str, this.httpOptions)
-  //   }
 }

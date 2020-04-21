@@ -46,9 +46,11 @@ export class LoginComponent implements OnInit {
       if(this.responseMessage == undefined || this.responseMessage.success == 0) {
         this.incorrect = true;
         console.log("response " + this.responseMessage.success)
+      } else if(this.responseMessage.success == 1) {
+        //login successful
+        window.location.href = 'localhost:4200/home'
       } else {
-        console.log("In else")
-        
+        console.log("Something went very wrong.");
       }
     }, 1000);
   }
