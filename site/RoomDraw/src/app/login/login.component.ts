@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { LoginResponse } from '../Student';
+
 
 @Component({
   selector: 'app-login',
@@ -15,23 +17,40 @@ export class LoginComponent implements OnInit {
 
   username = null;
   password = null;
-  incorrect:boolean = false;
+  incorrect: boolean = false;
+  responseMessage: LoginResponse = null;
+  working = false;
 
   ngOnInit() {
   }
 
   get_username(val) { 
     this.username = val;
+    console.log("user = " + this.username)
   }
 
   get_password(val) {
     this.password = val;
+    console.log("user = " + this.username)
   }
 
   login() {
-    var result = null; 
+    this.incorrect = false;
+    this.working = true;
 
     this.authenticationService.login(this.username, this.password)
-      .subscribe(result => result = result);
+      .subscribe(response => this.responseMessage = response);
+
+    setTimeout(() => {  
+      this.working = false;
+      if(this.responseMessage == undefined || this.responseMessage.success == 0) {
+        this.incorrect = true;
+        console.log("response " + this.responseMessage.success)
+      } else {
+        console.log("In else")
+        
+      }
+    }, 1000);
   }
+
 }

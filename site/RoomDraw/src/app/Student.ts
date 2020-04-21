@@ -8,3 +8,8 @@ export class Student {
 	group_id: number;
 	roommate_id: number;
 }
+
+export class LoginResponse {
+	token: string;
+	success: number;
+}
