@@ -47,6 +47,7 @@ class API(object):
 		sqlalchemy_init()
 
 api = API()
+application = api.api
 
 session.create_session(2009578, "alex")
 session.create_session(1, "denton")
