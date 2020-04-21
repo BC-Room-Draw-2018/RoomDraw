@@ -1,17 +1,21 @@
 USE RoomDrawTesting
 
-REPLACE INTO Dorms (dorm_id, dorm_code, dorm_name, sex, photo) VALUES
-(0,  "LEM",  "Lemke Hall",          'M',  NULL),
-(1,  "NEW",  "Newman Hall",         'M',  NULL),
-(2,  "JOE",  "St. Joseph Hall",     'M',  NULL),
-(3,  "STM",  "St. Michael Hall",    'M',  NULL),
-(4,  "WOL",  "Wolf Hall",           'M',  NULL),
-(5,  "KRE",  "Kremmeter Hall",      'F',  NULL),
-(6,  "LIZ",  "Elizabeth Hall",      'F',  NULL),
-(7,  "LEG",  "Legacy Hall",         'F',  NULL),
-(8,  "MCD",  "McDonald Hall",       'F',  NULL),
-(9,  "GUA",  "Guadalupe Hall",      'F',  NULL),
-(10, "CRA",  "Cray Seaberg Hall",   'F',  NULL);
+REPLACE INTO Dorms (dorm_id, dorm_code, dorm_name, sex, photo, floors) VALUES
+(0,  "LEM",  "Lemke Hall",          'M',  NULL, 4),
+(1,  "NEW",  "Newman Hall",         'M',  NULL, 5),
+(2,  "JOE",  "St. Joseph Hall",     'M',  NULL, 3),
+(3,  "STM",  "St. Michael Hall",    'M',  NULL, 4),
+(4,  "WOL",  "Wolf Hall",           'M',  NULL, 3),
+(5,  "KRE",  "Kremmeter Hall",      'F',  NULL, 3),
+(6,  "LIZ",  "Elizabeth Hall",      'F',  NULL, 5),
+(7,  "LEG",  "Legacy Hall",         'F',  NULL, 1),
+(8,  "MCD",  "McDonald Hall",       'F',  NULL, 3),
+(9,  "GUA",  "Guadalupe Hall",      'F',  NULL, 3),
+(10, "CRA",  "Cray Seaberg Hall",   'F',  NULL, 1),
+(11, "HRT",  "Hartman House",   'M',      NULL, 1),
+(12, "SCH",  "Schirmer House",   'F',     NULL, 1),
+(13, "OFM",  "Off Campus Houses",   'M',  NULL, 1),
+(14, "OFF",  "Off Campus Houses",   'F',  NULL, 1);
 
 REPLACE INTO Rooms (room_number, dorm_id, capacity, available_spots, description, floor) VALUES
 ("49", 0, 4, 4, "4-bedroom apartment", 1), 
