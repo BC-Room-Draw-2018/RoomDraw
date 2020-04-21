@@ -8,4 +8,4 @@ if [ -z "$USER" ]; then
 fi
 
 rm generated.sql
-cat *.sql procs/*.sql | tee generated.sql | mysql -u $USER -p
+cat *.sql | tee generated.sql | mysql -u $USER -p
