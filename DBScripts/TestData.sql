@@ -1,17 +1,5 @@
 USE RoomDrawTesting
 
-REPLACE INTO Students (student_id, first_name, last_name, random_number, grade_level, sex, group_id, roommate_id) VALUES
-(0,  "alex",     "maese",    928,    3,  'M',  0,  NULL),
-(1,  "denton",   "luns",     94819,  3,  'M',  1,  NULL),
-(2,  "eli",      "pruneda",  1,      3,  'M',  2,  NULL),
-(3,  "michael",  "grimmig",  491,    3,  'M',  3,  NULL);
-
-REPLACE INTO Groups (group_id, random_number, grade_level, sex) VALUES
-(0,  928,    3,  'M'),
-(1,  94819,  3,  'M'),
-(2,  1,      3,  'M'),
-(3,  491,    3,  'M');
-
 REPLACE INTO Dorms (dorm_id, dorm_code, dorm_name, sex, photo) VALUES
 (0,  "LEM",  "Lemke Hall",          'M',  NULL),
 (1,  "NEW",  "Newman Hall",         'M',  NULL),

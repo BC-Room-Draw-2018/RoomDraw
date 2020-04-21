@@ -12,6 +12,9 @@ CREATE TABLE IF NOT EXISTS Students(
 	sex ENUM('M', 'F') NOT NULL,
 	group_id INT NOT NULL,
 	roommate_id INT,
+	room VARCHAR(4),
+	dorm_id INT,
+	floor INT,
 
 	PRIMARY KEY(student_id)
 );
@@ -81,5 +84,3 @@ CREATE TABLE IF NOT EXISTS StudentWishlists(
 
 	PRIMARY KEY(student_id, rank)
 );
-
-CREATE DATABASE IF NOT EXISTS RoomDraw2018;
