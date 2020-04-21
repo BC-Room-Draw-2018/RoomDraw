@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS Dorms(
 	dorm_name VARCHAR(64) NOT NULL,
 	sex ENUM('M', 'F') NOT NULL,
 	photo BLOB,
+	floors INT,
 
 	PRIMARY KEY(dorm_id)
 );
