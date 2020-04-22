@@ -37,13 +37,14 @@ class GroupWishlist(object):
 
 		with sql(commit=True) as session:
 			student = get_student_by_id(self.student_id, session)
+			gid = student.group_id
 
-			group_id = student.group_id
-			wishlist = session.query(models.GroupWishlist).filter_by(group_id=group_id).all()
+			model = models.GroupWishlist
+			wishlist = session.query(model).filter(model.rank >= rank).filter_by(group_id=gid).order_by(model.rank).all()
+			# manually commit.  We have to do this to avoid duplicate primary keys
+			for item in wishlist[::-1]:
+				item.rank += 1
+				session.commit()
 
-			for value in wishlist:
-				if value.rank >= rank:
-					value.rank += 1
-
-			item = models.GroupWishlist(group_id=group_id, rank=rank, dorm_id=dorm_id, room_id=room_id, floor=floor)
+			item = models.GroupWishlist(group_id=gid, rank=rank, dorm_id=dorm_id, room_id=room_id, floor=floor)
 			session.add(item)
