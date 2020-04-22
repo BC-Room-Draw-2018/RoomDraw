@@ -1,11 +1,12 @@
 <div class="body">
     <div class="form-container">
         <ul class="login-menu-list">
-            <li><strong>Student Login</strong></li>
-            <li><input type="email" name="Email" placeholder="Benedictine Email Address"></li>
-            <li><input type="password" name="Password" placeholder="Password"></li>
-            <li><input type="button" name="Submit" value="Submit"></li>
-            <li class="button-text"><a routerLink="/reset-password">Forgot Your Password?</a></li>
+            <li><h3>Student Login</h3></li>
+            <li><input type="email" name="Email" placeholder="BC Email Address" #username (input)="get_username(username.value)"></li>
+            <li><input type="password" name="Password" placeholder="Password" #password (input)="get_password(password.value)"></li>
+            <li class="button-text" (click)="login()">Login<div class="loader" *ngIf="working"></div></li>
+            <li *ngIf="incorrect"><h3>Your username/password combination is incorrect.</h3></li>
+            <li class="button-text" routerLink="/reset-password">Forgot Your Password?</li>
         </ul>
     </div>
 </div>

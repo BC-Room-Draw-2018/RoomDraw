@@ -13,7 +13,7 @@ export class RoomService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'SESSION-ID': 'alex'
+      'SESSION-ID': window.localStorage['SESSION-ID']
     })
   }
 

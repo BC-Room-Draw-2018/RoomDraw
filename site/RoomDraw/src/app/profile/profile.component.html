@@ -28,7 +28,7 @@
 			<p>Hey {{myInfo.first_name}}</p>
 			<p>
 				<a routerLink="/change-password"><button class="footer-button">✎ Change Password</button></a>
-				<a routerLink="/log-out"><button class="footer-button">❌ Logout</button></a>	
+				<a routerLink="/log-out"><button class="footer-button" (click)="logout()">❌ Logout</button></a>	
 			</p>
 		</li>
 	</ul>

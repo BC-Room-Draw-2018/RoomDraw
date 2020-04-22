@@ -14,7 +14,7 @@ export class StudentService {
 
 	httpOptions = {
 		headers: new HttpHeaders({
-			'SESSION-ID': 'alex'
+			'SESSION-ID': window.localStorage['SESSION-ID']
 		})
 	}
 
