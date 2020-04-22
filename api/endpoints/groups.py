@@ -68,7 +68,13 @@ class GroupInvite(object):
 			invitations = session.query(models.Invitation).filter_by(student_id=self.student_id).all()
 			response.media = []
 			for inv in invitations:
-				response.media.append(inv.dict(exclude='student_id'))
+				leader = get_student_by_id(inv.group_id)
+				leader_name = leader.first_name + " " + leader.last_name
+				invite = {
+					'group_id':inv.group_id,
+					'leader':leader_name
+				}
+				response.media.append(invite)
 
 	# Invite a student
 	def on_post(self, request, response):
