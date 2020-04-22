@@ -18,6 +18,9 @@ export class ProfileComponent implements OnInit {
 
   leader: Student;
 
+  declined = false;
+  accepted = false;
+
   constructor(
     private studentService: StudentService,
     private groupService: GroupService,
@@ -45,19 +48,27 @@ export class ProfileComponent implements OnInit {
   }
 
   acceptInvite(invite) {
+    this.accepted = true;
     var temp;
     this.groupService.acceptInvite(invite)
       .subscribe(error => temp = error);
+    
+    setTimeout(() => {  
+      window.location.reload()
+    }, 1500);
   }
 
   declineInvite(invite) {
-    var temp;
+    this.declined = true;
     this.groupService.declineInvite(invite)
-      .subscribe(error => temp = error);
+      .subscribe(error => console.log("Error: " + error));
+
+    setTimeout(() => {  
+      window.location.reload()
+    }, 1500);
   }
 
   logout() {
-    console.log("doing logout()")
     this.authenticationService.logout()
       .subscribe(error => console.log("Error: " + error));
   }
