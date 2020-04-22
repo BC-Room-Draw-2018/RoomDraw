@@ -79,7 +79,7 @@ class GroupInvite(object):
 			invitations = session.query(models.Invitation).filter_by(student_id=self.student_id).all()
 			response.media = []
 			for inv in invitations:
-				leader = get_student_by_id(inv.group_id)
+				leader = get_group_leader(inv.group_id)
 				leader_name = leader.first_name + " " + leader.last_name
 				invite = {
 					'group_id':inv.group_id,
@@ -123,10 +123,15 @@ class GroupInvite(object):
 		with sql(commit=True) as session:
 			session.query(models.Invitation).filter_by(student_id=self.student_id, group_id=gid).delete()
 
+def get_group_leader(group_id, session=None):
+	with sql(session) as session:
+		members = get_group_members(group_id, session)
+		leader = min(members, key=lambda x : x.random_number)
+		return leader
+
 class GroupLeader(object):
 	def on_get(self, request, response):
 		with sql() as session:
 			stud = get_student_by_id(self.student_id, session)
-			members = get_group_members(stud.group_id, session)
-			leader = min(members, key=lambda x : x.random_number)
+			leader = get_group_leader(stud.group_id, session)
 			response.media = leader.dict(exclude=["student_id"])
