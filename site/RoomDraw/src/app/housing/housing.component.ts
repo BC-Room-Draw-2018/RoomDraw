@@ -178,7 +178,10 @@ export class HousingComponent implements OnInit {
 		this.hidePopUp();
 		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
 			.subscribe(error => error = error)
-		this.getWishlist();
+		
+		setTimeout(() => {  
+			window.location.reload()
+		}, 1000);
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
@@ -201,7 +204,10 @@ export class HousingComponent implements OnInit {
 		this.deleteCardPopup = false;
 		this.wishlistService.removeWishlist(this.deleteCardRank)
 			.subscribe(error => error = error);
-		this.getWishlist();
+		
+		setTimeout(() => {  
+			window.location.reload()
+		}, 1000);
 	}
 
 	showRoomListAddPopup(dorm_id, room) {
@@ -225,6 +231,9 @@ export class HousingComponent implements OnInit {
 		this.roomListRankSelected = false;
 		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
 			.subscribe(error => error = error);
-		this.getWishlist();
+			
+		setTimeout(() => {  
+			window.location.reload()
+		}, 1000);
 	}
 }
