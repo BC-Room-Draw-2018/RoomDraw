@@ -56,7 +56,8 @@ export class AuthenticationService {
     this.succeeded = 0;
     this.header = "";
     localStorage.removeItem('SESSION-ID');
-    var url = "http://localhost:8000/logout"
+    window.location.href = "http://localhost:4200/log-out"
+    var url = "http://localhost:8000/log-out"
     return this.http.post<Object>(url, this.httpOptions)
   }
 }
