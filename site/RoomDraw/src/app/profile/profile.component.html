@@ -9,14 +9,20 @@
 		</li>
 
 		<!--Notifications in dropdown-->
-		<ul class="dropdown-item">		
-			<li *ngFor="let invitation of invitations">
-				Group invite from:
-				<br/>
-				{{ invitation.leader }}
-				<br/>
-				<button class="decline-button" title="Decline" (click)="declineInvite(invitation.group_id)">✗</button>
-				<button class="accept-button" title="Accept" (click)="acceptInvite(invitation.group_id)">✓</button>
+		<ul class="dropdown-item">
+			<ng-container *ngIf="accepted != true && declined != true">
+				<li *ngFor="let invitation of invitations">
+					Group invite from:
+					<br/>
+					{{ invitation.leader }}
+					<br/>
+					<button class="decline-button" title="Decline" (click)="declineInvite(invitation.group_id)">✗</button>
+					<button class="accept-button" title="Accept" (click)="acceptInvite(invitation.group_id)">✓</button>
+				</li>
+			</ng-container>
+			<li *ngIf="accepted == true || declined == true">
+				<span *ngIf="accepted == true">✓ You accepted an invite!</span>
+				<span *ngIf="accepted == false">✗ You declined an invite!</span>
 			</li>
 			<li *ngIf="invitations.length == 0" class="no-notifications">
 				No notifications
@@ -28,7 +34,7 @@
 			<p>Hey {{myInfo.first_name}}</p>
 			<p>
 				<a routerLink="/change-password"><button class="footer-button">✎ Change Password</button></a>
-				<a routerLink="/log-out"><button class="footer-button" (click)="logout()">❌ Logout</button></a>	
+				<button class="footer-button" (click)="logout()">❌ Logout</button>
 			</p>
 		</li>
 	</ul>
