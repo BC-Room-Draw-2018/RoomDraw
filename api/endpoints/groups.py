@@ -50,6 +50,17 @@ class Group(object):
 			reinit_group(old_group, session)
 			reinit_group(student.group_id, session)
 
+def get_rank(student_id):
+	model = models.Group
+	with sql() as session:
+		gid = get_student_by_id(student_id, session).group_id
+		random_number = session.query(model).filter_by(group_id=gid).first().random_number
+		return session.query(model.random_number).distinct().filter(model.random_number < random_number).count()
+
+class GroupRank(object):
+	def on_get(self, request, response):
+		response.media = get_rank(self.student_id)
+
 class GroupMembers(object):
 	def on_get(self, request, response):
 		with sql() as session:
@@ -79,17 +90,18 @@ class GroupInvite(object):
 	# Invite a student
 	def on_post(self, request, response):
 		params = json.loads(request.stream.read())
-		recepient = INT(params.get("student_id"))
+		random_number = INT(params.get("random_number"))
 
 		with sql(commit=True) as session:
 			stud = get_student_by_id(self.student_id, session)
+			recepient = session.query(models.Student).filter_by(random_number=random_number).first()
 
 			gid = stud.group_id
 
-			invitation = session.query(models.Invitation).filter_by(student_id=recepient, group_id=gid).first()
+			invitation = session.query(models.Invitation).filter_by(student_id=recepient.student_id, group_id=gid).first()
 			if invitation is not None:
 				return
-			invitation = models.Invitation(student_id=recepient, group_id=gid)
+			invitation = models.Invitation(student_id=recepient.student_id, group_id=gid)
 			session.add(invitation)
 
 	# Accept an invite

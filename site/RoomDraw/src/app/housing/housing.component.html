@@ -9,6 +9,64 @@ User may create and edit housing wish lists-->
 <app-nav-bar></app-nav-bar>
 <div class="content">
 	<h1>Housing Wish List Management</h1>
+
+	<ng-container *ngIf="myInfo.sex == 'M'; else female">
+		<table>
+			<tr>
+				<th colspan="6">Housing Possibilities for Men</th>
+			</tr>
+			<tr>
+				<th>Hall</th>
+				<td>Newman Hall</td>
+				<td>St. Joseph Hall</td>
+				<td>St. Michael Hall</td>
+				<td>Legacy Apartments</td>
+				<td>Row Houses</td>
+			</tr>
+			<tr>
+				<th>Group Sizes</th>
+				<td>2 or 4</td>
+				<td>2, 6, or singles</td>
+				<td>2, 4, or singles</td>
+				<td>4</td>
+				<td>4 or 5</td>
+			</tr>
+			<tr>
+				<td colspan="6">*Students who are on disiplinary probation are not eligble to live in the Row Houses</td>
+			</tr>
+		</table>
+	</ng-container>
+	<ng-template #female>
+		<table>
+			<tr>
+				<th colspan="7">Housing Possibilities for Women</th>
+			</tr>
+			<tr>
+				<th>Hall</th>
+				<td>St. Elizabeth Hall</td>
+				<td>Our Lady of Guadalupe Hall</td>
+				<td>Cray-Seaberg Hall</td>
+				<td>McDonald Hall</td>
+				<td>Legacy Apartments</td>
+				<td>Row Houses</td>
+			</tr>
+			<tr>
+				<th>Group Sizes</th>
+				<td>2, 3, 4, or 6</td>
+				<td>2, 4, or 6</td>
+				<td>2 or 4</td>
+				<td>8</td>
+				<td>4</td>
+				<td>4 or 5</td>
+			</tr>
+			<tr>
+				<td colspan="7">*Students who are on disiplinary probation are not eligble to live in the Row Houses</td>
+			</tr>
+		</table>
+	</ng-template>
+
+	<br/>
+
 	<div class="btn-group">
 		<button (click)="loadDorm(dorm.dorm_id)" *ngFor="let dorm of dorms">{{ dorm.dorm_name }}</button>
 	</div>
@@ -31,10 +89,16 @@ User may create and edit housing wish lists-->
 						<th>Type</th>
 					</tr>
 					<tr *ngFor="let room of rooms" (click)="showRoomListAddPopup(room.dorm_id, room.room_number)">
-						<td>{{ room.room_number }}</td>
-						<td>{{ room.capacity }}</td>
-						<td>{{ room.available_spots }}</td>
-						<td>{{ room.description }}</td>
+						<ng-container *ngIf="groupMembers.length <= room.capacity; else roomNotAvailableToGroup">
+							<td>{{ room.room_number }}</td>
+							<td>{{ room.capacity }}</td>
+							<td>{{ room.available_spots }}</td>
+							<td>{{ room.description }}</td>
+						</ng-container>
+						<ng-template #roomNotAvailableToGroup>
+							<td>{{ room.room_number }}</td>
+							<td colspan="3">Unavailable. Your group is to large.</td>
+						</ng-template>
 					</tr>
 				</table>
 			</div>
@@ -120,11 +184,12 @@ User may create and edit housing wish lists-->
 				<label for="rooms">Room #: </label>
 				<select id="rooms" *ngIf="displayRoomDropdown">
                     <option disabled selected value> -- select room -- </option>
-					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number)">{{ room.room_number }}</option>
+					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number, room.capacity)">{{ room.room_number }}</option>
 				</select>
 				<br/>
 				<button type="button" (click)="hidePopUp()">Cancel</button>
-				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to List</button>
+				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to list</button>
+				<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist. Your group exceeds the allowed size for this room.</p>
 			</form>
 		</div>
 	</div>

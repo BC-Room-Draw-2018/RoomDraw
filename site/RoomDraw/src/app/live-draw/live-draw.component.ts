@@ -2,10 +2,13 @@ import { Room } from '../Room';
 import { Dorm } from '../Dorm';
 import { Student } from '../Student';
 import { Wishlist } from '../Wishlist';
+import { GroupWishlist } from '../GroupWishlist';
+import { Group } from '../Group';
 import { RoomService } from '../room.service';
 import { DormService } from '../dorm.service';
 import { StudentService } from '../student.service';
 import { WishlistService } from '../wishlist.service';
+import { GroupService } from '../group.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,12 +18,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveDrawComponent implements OnInit {
 	rooms: Room[] = [];
+	
+	roomsForFinalChoice: Room[] = [];
 
 	dorms: Dorm[] = [];
 
-	wishlist: Wishlist[] =[];
+	wishlist: GroupWishlist[] =[];
 
 	myInfo: Student;
+
+	group: Group;
+	groupMembers: Student[];
 
 	displayDormDropdown: boolean = false;
 	dropdownDorm = 0;
@@ -30,9 +38,11 @@ export class LiveDrawComponent implements OnInit {
 	displayRoomDropdown: boolean = false;
 	dropdownRooms: Room[] = []
 	dropdownRoom = 0;
+	dropdownRoomCapacity = 0;
 	okayToSubmit: boolean = false;
 	popUpVisable: boolean = false;
 	preference = 0;
+	failedToAdd: boolean = false;
 
 	deleteCardPopup: boolean = false;
 	deleteCardRank = 0;
@@ -45,6 +55,8 @@ export class LiveDrawComponent implements OnInit {
 	roomListDormName = null;
 	roomListRoom = 0;
 	roomListRankSelected: boolean = false;
+
+	groupsAheadOfUser = 0;
 
 	/* Keep track of properties of the floor the user is currently using */
 	current_id = null;
@@ -63,13 +75,18 @@ export class LiveDrawComponent implements OnInit {
 		private roomService: RoomService,
 		private dormService: DormService,
 		private studentService: StudentService,
-		private wishlistService: WishlistService
+		private wishlistService: WishlistService,
+		private groupService: GroupService
 	) { }
 
 	ngOnInit() {
 		this.getAllDormsInfo();
 
 		this.getWishlist();
+
+		this.getGroup();
+
+		this.getGroupMembers();
 
 		this.myInfo = new Student();
 		this.getMyInfo();
@@ -81,8 +98,18 @@ export class LiveDrawComponent implements OnInit {
 	}
 
 	getWishlist() {
-		this.wishlistService.getStudentWishlist()
+		this.wishlistService.getGroupWishlist()
 			.subscribe(wishlist => this.wishlist = wishlist);
+	}
+
+	getGroup() {
+		this.groupService.getGroup()
+			.subscribe(group => this.group = group);
+	}
+
+	getGroupMembers() {
+		this.groupService.getGroupMembers()
+			.subscribe(groupMembers => this.groupMembers = groupMembers);
 	}
 
 	getMyInfo(): void {
@@ -91,9 +118,15 @@ export class LiveDrawComponent implements OnInit {
 	}
 
 	getRoomInfo() {
-		this.rooms = []
+		this.rooms = [];
 		this.roomService.getAllRooms(this.current_id, this.floor_viewing)
 			.subscribe(rooms => this.rooms = rooms);
+	}
+
+	getFinalRooms(dorm_id, floor) {
+		this.roomsForFinalChoice = [];
+		this.roomService.getAllRooms(dorm_id, floor)
+			.subscribe(rooms => this.roomsForFinalChoice = rooms);
 	}
 
 	loadDorm(id) {
@@ -134,6 +167,7 @@ export class LiveDrawComponent implements OnInit {
 		this.displayRoomDropdown = false;
 		this.okayToSubmit = false;
 		this.popUpVisable = false;
+		this.failedToAdd = false;
 	}
 
 	setPreference(rank) {
@@ -169,19 +203,21 @@ export class LiveDrawComponent implements OnInit {
 			.subscribe(rooms => this.dropdownRooms = rooms);
 	}
 
-	roomDropdown(roomNum) {
+	roomDropdown(roomNum, capacity) {
+		this.dropdownRoomCapacity = capacity;
+		this.dropdownRoom = roomNum;
 		this.okayToSubmit = true;
-		this.dropdownRoom = roomNum
 	}
 
 	submitWishlist() {
-		this.hidePopUp();
-		this.wishlistService.addWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
-			.subscribe(error => error = error)
-		
-		setTimeout(() => {  
-			window.location.reload()
-		}, 1000);
+		if(this.dropdownRoomCapacity >= this.groupMembers.length) {
+			this.hidePopUp();
+			this.wishlistService.addGroupWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
+				.subscribe(error => error = error)
+			this.getWishlist();
+		} else {
+			this.failedToAdd = true;
+		}
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
@@ -202,7 +238,13 @@ export class LiveDrawComponent implements OnInit {
 
 	deleteCard() {
 		this.deleteCardPopup = false;
-		this.wishlistService.removeWishlist(this.deleteCardRank)
+		this.wishlistService.removeGroupWishlist(this.deleteCardRank)
+			.subscribe(error => error = error);
+		this.getWishlist();
+	}
+
+	deleteWishlist(rank) {
+		this.wishlistService.removeGroupWishlist(rank)
 			.subscribe(error => error = error);
 		
 		setTimeout(() => {
@@ -211,10 +253,14 @@ export class LiveDrawComponent implements OnInit {
 	}
 
 	showRoomListAddPopup(dorm_id, room) {
-		this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
-		this.roomListDormID = dorm_id
-		this.roomListRoom = room;
-		this.roomListPopupVisable = true;
+		//roomIQ means 'room in question'
+		var roomCapacity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
+		if(roomCapacity >= this.groupMembers.length) {
+			this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+			this.roomListDormID = dorm_id
+			this.roomListRoom = room;
+			this.roomListPopupVisable = true;
+		}
 	}
 
 	hideRoomListAddPopup() {
@@ -229,11 +275,56 @@ export class LiveDrawComponent implements OnInit {
 	addRoomList() {
 		this.roomListPopupVisable = false;
 		this.roomListRankSelected = false;
-		this.wishlistService.addWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
+		this.wishlistService.addGroupWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
 			.subscribe(error => error = error);
 		
 		setTimeout(() => {  
 			window.location.reload()
 		}, 1000);
+	}
+
+	chooseRoomFromList(list: Wishlist) {
+		console.log("here's the room choosen " + list)
+		//do choose room here
+		//failedToAdd = false;
+		//pass turn
+	}
+
+	chooseRoomFromSelection() {
+		//check if okay
+			//failedToAdd = false;
+			console.log("Room chosen from selection: Dorm = " + this.dropdownDorm + " room = " + this.dropdownRoom + "floor = " + this.dropdownFloorRooms)
+			//pass turn
+		//if not failedToAdd = true;
+	}
+
+	available(): boolean {
+		return true;
+	}
+
+	//ngStyle ----------------------------------------
+	howManyLeft(capacity, spots_available): object {
+		if(spots_available < capacity && spots_available != 0) {
+			return {
+				'color': `black`,
+				'background-color': `yellow`
+			};
+		} else if(spots_available <= 0) {
+			return {
+				'color': `black`,
+				'background-color': `red`
+			};
+		} else {
+			console.log("ERROR: Something has gone very wrong!")
+		}
+	}
+
+	stillAvailable(dorm_id, room_id, floor): object {
+		//if unavailable
+		if(1 > 2) {
+			return {
+				'background-color': `gray`
+			}
+		}
 	}
 }

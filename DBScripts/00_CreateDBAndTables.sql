@@ -12,6 +12,9 @@ CREATE TABLE IF NOT EXISTS Students(
 	sex ENUM('M', 'F') NOT NULL,
 	group_id INT NOT NULL,
 	roommate_id INT,
+	room VARCHAR(4),
+	dorm_id INT,
+	floor INT,
 
 	PRIMARY KEY(student_id)
 );
@@ -19,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Students(
 CREATE TABLE IF NOT EXISTS Users(
 	student_id INT NOT NULL,
 	email VARCHAR(256) NOT NULL,
-	password VARCHAR(50) NOT NULL,
+	password VARCHAR(80) NOT NULL,
 	salt VARCHAR(64) NULL, /*Guid used to salt passwords*/
 
 	PRIMARY KEY(student_id)
@@ -47,6 +50,7 @@ CREATE TABLE IF NOT EXISTS Dorms(
 	dorm_name VARCHAR(64) NOT NULL,
 	sex ENUM('M', 'F') NOT NULL,
 	photo BLOB,
+	floors INT,
 
 	PRIMARY KEY(dorm_id)
 );
@@ -81,5 +85,3 @@ CREATE TABLE IF NOT EXISTS StudentWishlists(
 
 	PRIMARY KEY(student_id, rank)
 );
-
-CREATE DATABASE IF NOT EXISTS RoomDraw2018;

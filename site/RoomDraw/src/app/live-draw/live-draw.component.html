@@ -6,9 +6,133 @@ Live Draw -->
 <app-nav-bar></app-nav-bar>
 <div class="content">
 	<h1>Live Room Draw</h1>
+
+	<ng-container *ngIf="myInfo.sex == 'M'; else female">
+		<table>
+			<tr>
+				<th colspan="6">Housing Possibilities for Men</th>
+			</tr>
+			<tr>
+				<th>Hall</th>
+				<td>Newman Hall</td>
+				<td>St. Joseph Hall</td>
+				<td>St. Michael Hall</td>
+				<td>Legacy Apartments</td>
+				<td>Row Houses</td>
+			</tr>
+			<tr>
+				<th>Group Sizes</th>
+				<td>2 or 4</td>
+				<td>2, 6, or singles</td>
+				<td>2, 4, or singles</td>
+				<td>4</td>
+				<td>4 or 5</td>
+			</tr>
+			<tr>
+				<td colspan="6">*Students who are on disiplinary probation are not eligble to live in the Row Houses</td>
+			</tr>
+		</table>
+	</ng-container>
+	<ng-template #female>
+		<table>
+			<tr>
+				<th colspan="7">Housing Possibilities for Women</th>
+			</tr>
+			<tr>
+				<th>Hall</th>
+				<td>St. Elizabeth Hall</td>
+				<td>Our Lady of Guadalupe Hall</td>
+				<td>Cray-Seaberg Hall</td>
+				<td>McDonald Hall</td>
+				<td>Legacy Apartments</td>
+				<td>Row Houses</td>
+			</tr>
+			<tr>
+				<th>Group Sizes</th>
+				<td>2, 3, 4, or 6</td>
+				<td>2, 4, or 6</td>
+				<td>2 or 4</td>
+				<td>8</td>
+				<td>4</td>
+				<td>4 or 5</td>
+			</tr>
+			<tr>
+				<td colspan="7">*Students who are on disiplinary probation are not eligble to live in the Row Houses</td>
+			</tr>
+		</table>
+	</ng-template>
+
+	<br/>
+
+	<div class="groupOrder">
+		<ng-container *ngIf="groupsAheadOfUser > 1; else oneOrLessGroups" >
+			There are {{ groupsAheadOfUser }}  groups ahead of you.
+		</ng-container>
+		<ng-template #oneOrLessGroups>
+			<ng-container *ngIf="groupsAheadOfUser == 1; else yourTurn">
+				There is {{ groupsAheadOfUser }} group ahead of you. It's almost you turn! Please be ready.
+			</ng-container>
+			<ng-template #yourTurn>
+				It is your turn!
+				<p>Please select a dorm from you wishlist. If none are available, please choose a different option.</p>
+				<h4>Your group's wishlist:</h4>
+				<table id="youTurnTable">
+					<tr>
+						<th>Rank</th>
+						<th>Dorm</th>
+						<th>Room</th>
+						<th>Actions</th>
+					</tr>
+					<tr [ngStyle]="stillAvailable(list.dorm_id, list.room_id, list.floor)" *ngFor="let list of wishlist">
+						<td>{{ list.rank }}</td>
+						<td>{{ wishlistHall(list.dorm_id) }}</td>
+						<td>{{ list.room_id }}</td>
+						<td>
+							<button class="decline-button" title="Remove From List" (click)="deleteWishlist(list.rank)">✗</button>
+							<ng-container *ngIf="available(); else disableButton">
+								<button class="accept-button" title="Confirm This Room" (click)="chooseRoomFromList(list)">✓</button>
+							</ng-container>
+							<ng-template #disableButton>
+								<button class="accept-button" title="You cannot add this room, it has been taken." disabled>✓</button>
+							</ng-template>
+						</td>
+					</tr>
+				</table>
+
+				<!--SELECT A ROOM WHEN NONE OF THE USER'S OPTIONS ARE LEFT AVAILABLE-->
+				<form>
+					<h4>Don't see what you want on your wish list? Select a different room.</h4>
+					<label for="dorms">Dorm: </label>
+					<select id="dorms">
+						<option disabled selected value> -- select dorm -- </option>
+						<option *ngFor="let dorm of dorms" (click)="showFloorDropdown(dorm.dorm_id)">{{ dorm.dorm_name }}</option>
+					</select>
+					<br/>
+					<label for="floor">Level: </label>
+					<select id="floor" *ngIf="displayFloorDropdown">
+						<option disabled selected value> -- select floor -- </option>
+						<option *ngFor="let floor of dropdownFloors" (click)="floorDropdown(floor)">{{ floor }}</option>
+					</select>
+					<br/>
+					<label for="rooms">Room #: </label>
+					<select id="rooms" *ngIf="displayRoomDropdown">
+						<option disabled selected value> -- select room -- </option>
+						<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number, room.capacity)">{{ room.room_number }}</option>
+					</select>
+					<br/>
+					<button class="yourTurnButton" *ngIf="okayToSubmit" type="button" (click)="chooseRoomFromSelection()">Select Room</button>
+					<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist.<br/> Your group exceeds the allowed size for this room or this room is full.</p>
+				</form>
+
+			</ng-template>
+		</ng-template>
+	</div>
+
+
 	<div class="btn-group">
 		<button (click)="loadDorm(dorm.dorm_id)" *ngFor="let dorm of dorms">{{ dorm.dorm_name }}</button>
 	</div>
+
 	<!-- Room Availability Menu -->
 	<h2>Room Availability</h2>
 	<div class="row">
@@ -20,18 +144,24 @@ Live Draw -->
 			<!--This get all rooms-->
 			<div class="room">
 				<!--Room #, Room Capacity, Spots left, Type-->
-				<table>
+				<table class="roomList">
 					<tr>
 						<th>Room #</th>
 						<th>Capacity</th>
 						<th>Spots Open</th>
 						<th>Type</th>
 					</tr>
-					<tr *ngFor="let room of rooms" (click)="showRoomListAddPopup(room.dorm_id, room.room_number)">
-						<td>{{ room.room_number }}</td>
-						<td>{{ room.capacity }}</td>
-						<td>{{ room.available_spots }}</td>
-						<td>{{ room.description }}</td>
+					<tr [ngStyle]="howManyLeft(room.capacity, room.available_spots)" *ngFor="let room of rooms" (click)="showRoomListAddPopup(room.dorm_id, room.room_number)">
+						<ng-container *ngIf="groupMembers.length <= room.capacity; else roomNotAvailableToGroup">
+							<td>{{ room.room_number }}</td>
+							<td>{{ room.capacity }}</td>
+							<td>{{ room.available_spots }}</td>
+							<td>{{ room.description }}</td>
+						</ng-container>
+						<ng-template #roomNotAvailableToGroup>
+							<td>{{ room.room_number }}</td>
+							<td colspan="3">Unavailable. Your group is to large.</td>
+						</ng-template>
 					</tr>
 				</table>
 			</div>
@@ -117,11 +247,12 @@ Live Draw -->
 				<label for="rooms">Room #: </label>
 				<select id="rooms" *ngIf="displayRoomDropdown">
                     <option disabled selected value> -- select room -- </option>
-					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number)">{{ room.room_number }}</option>
+					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number, room.capacity)">{{ room.room_number }}</option>
 				</select>
 				<br/>
 				<button type="button" (click)="hidePopUp()">Cancel</button>
 				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to list</button>
+				<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist.<br/> Your group exceeds the allowed size for this room.</p>
 			</form>
 		</div>
 	</div>

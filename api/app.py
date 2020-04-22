@@ -30,6 +30,7 @@ class API(object):
 
 	def _setup_endpoints(self):
 		self.api.add_route("/group", endpoints.Group())
+		self.api.add_route("/group/rank", endpoints.GroupRank())
 		self.api.add_route("/group/members", endpoints.GroupMembers())
 		self.api.add_route("/group/invite", endpoints.GroupInvite())
 		self.api.add_route("/group/leader", endpoints.GroupLeader())
@@ -46,6 +47,7 @@ class API(object):
 		sqlalchemy_init()
 
 api = API()
+application = api.api
 
 session.create_session(2009578, "alex")
 session.create_session(1, "denton")
