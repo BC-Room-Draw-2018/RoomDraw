@@ -1,10 +1,10 @@
-import { GroupService } from '../group.service';
-import { Component, OnInit } from '@angular/core';
 import { Invitations } from '../Invitations';
-import { tap } from 'rxjs/operators';
 import { Student } from '../Student';
+import { GroupService } from '../group.service';
 import { StudentService } from '../student.service';
-
+import { AuthenticationService } from '../authentication/authentication.service';
+import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private studentService: StudentService,
-		private groupService: GroupService
+    private groupService: GroupService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -53,5 +54,11 @@ export class ProfileComponent implements OnInit {
     var temp;
     this.groupService.declineInvite(invite)
       .subscribe(error => temp = error);
+  }
+
+  logout() {
+    console.log("doing logout()")
+    this.authenticationService.logout()
+      .subscribe(error => console.log("Error: " + error));
   }
 }

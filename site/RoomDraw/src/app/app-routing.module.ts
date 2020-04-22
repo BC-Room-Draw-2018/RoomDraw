@@ -14,7 +14,7 @@ import { AuthenticationGuard } from './authentication/authentication.guard';
 
 const routes: Routes = [
 	{ path: 'housing', component: HousingComponent, canActivate: [AuthenticationGuard] },
-	{ path: 'group', component: GroupComponent, canActivate: [AuthenticationGuard] },
+	// { path: 'group', component: GroupComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'live-draw', component: LiveDrawComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'documents', component: DocumentComponent, canActivate: [AuthenticationGuard] },

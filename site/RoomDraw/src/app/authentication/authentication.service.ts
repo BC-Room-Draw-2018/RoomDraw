@@ -12,7 +12,6 @@ import { LoginResponse } from '../Student'
 export class AuthenticationService {
   succeeded = 0;
   header = "";
-  isLoggedIn = false;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -33,19 +32,30 @@ export class AuthenticationService {
     
     var obs = this.http.post<LoginResponse>(url, body).pipe(share());
     obs.subscribe(result => {this.succeeded = result.success; this.header = result.token});
-    if(this.succeeded != 0 || this.succeeded != undefined) {
-      window.localStorage['SESSION-ID'] = this.header;
-      this.isLoggedIn = true;
-    }
+
+    setTimeout(() => {  
+      if(this.succeeded !== 0 && this.succeeded !== undefined) {
+        window.localStorage['SESSION-ID'] = this.header;
+      }
+    }, 2000);
+
     return obs;
     // this.isLoggedIn = true;
   }
 
-  logout(): Observable<Object> {
-    if(this.isLoggedIn) {
-      this.isLoggedIn = false;
-      window.localStorage['SESSION-ID'] = "";
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('SESSION-ID');
+    if(token == null || token == "" || token == undefined) {
+      return false;
+    } else {
+      return true;
     }
+  }
+
+  logout(): Observable<Object> {
+    this.succeeded = 0;
+    this.header = "";
+    localStorage.removeItem('SESSION-ID');
     var url = "http://localhost:8000/logout"
     return this.http.post<Object>(url, this.httpOptions)
   }

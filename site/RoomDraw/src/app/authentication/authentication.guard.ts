@@ -12,13 +12,15 @@ import { AuthenticationService } from './authentication.service';
   providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private authService: AuthenticationService, private router: Router) {}
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+    ) { }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (!this.authService.isLoggedIn) {
-      return this.router.createUrlTree(
-        ['/login', { message: 'notLoggedIn' }]
-      );
+  canActivate(): boolean {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login', { message: 'NotLoggedIn' }]);
+      return false;
     } else {
       return true;
     }
