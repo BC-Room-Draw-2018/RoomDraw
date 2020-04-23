@@ -12,8 +12,10 @@ def reinit_group(group_id, session=None):
 	"""Reinitialize the group data based on the "highest-weighted" student"""
 	with sql(session, commit=True) as session:
 		members = get_group_members(group_id, session)
+		if len(members) == 0:
+			return
 		group = session.query(models.Group).filter_by(group_id=group_id).first()
-		# update the group
+		# update the group table
 		group.random_number = min(members, key=lambda student : student.random_number).random_number
 		group.grade_level = max(members, key=lambda student : student.grade_level).grade_level
 
@@ -42,6 +44,9 @@ class Group(object):
 				# if not in a group
 				if len(members) == 1:
 					return
+
+				members = list(filter(lambda stud : stud.student_id != old_group, members))
+
 				leader = min(members, key=lambda x : x.random_number)
 				old_group = leader.student_id
 				for m in members:
@@ -111,7 +116,9 @@ class GroupInvite(object):
 
 		with sql(commit=True) as session:
 			student = get_student_by_id(self.student_id, session)
+			old_gid = student.group_id
 			student.group_id = gid
+			reinit_group(old_gid, session)
 			reinit_group(gid, session)
 
 			session.query(models.Invitation).filter_by(student_id=self.student_id).delete()
