@@ -27,21 +27,21 @@ export class StudentService {
 			return of(this.myInfo)
 		}
 
-		var url = "http://localhost:8000/myinfo";
+		var url = "http://www.localhost:8000/myinfo";
 		var obs = this.http.get<Student>(url, this.httpOptions).pipe(share());
 		obs.subscribe(myInfo => this.myInfo = myInfo);
 		return obs;
 	}
 
 	getStudentInfo(student_id): Observable<Student> {
-		var url = 'http://localhost:8000/student?id=' + student_id;
+		var url = 'http://www.localhost:8000/student?id=' + student_id;
 		var obs = this.http.get<Student>(url, this.httpOptions).pipe(share());
 		obs.subscribe(student => this.student = student);
 		return obs;
 	}
 
 	searchStudents(name): Observable<Student[]> {
-		var url = 'http://localhost:8000/student?search=' + name;
+		var url = 'http://www.localhost:8000/student?search=' + name;
 		return this.http.get<Student[]>(url, this.httpOptions);
 	}
 }

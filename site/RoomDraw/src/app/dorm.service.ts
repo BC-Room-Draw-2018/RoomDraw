@@ -22,12 +22,12 @@ export class DormService {
 
 
 	getDormInfo(dorm_id): Observable<Dorm> {
-		var url = `http://localhost:8000/dorms?dorm=${dorm_id}`
+		var url = `http://www.localhost:8000/dorms?dorm=${dorm_id}`
 		return this.http.get<Dorm>(url, this.httpOptions);
 	}
 
 	getAllDorms(): Observable<Dorm[]> {
-		var url = 'http://localhost:8000/dorms';
+		var url = 'http://www.localhost:8000/dorms';
 		return this.http.get<Dorm[]>(url, this.httpOptions);
 	}
 }

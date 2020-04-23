@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         this.incorrect = true;
       } else if(this.responseMessage.success == 1) {
         //login successful
-        window.location.href = 'http://localhost:4200/home'
+        window.location.href = 'http://www.localhost:4200/home'
       } else {
         console.log("Something went very wrong.");
       }
