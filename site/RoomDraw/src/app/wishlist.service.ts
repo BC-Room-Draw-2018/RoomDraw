@@ -23,12 +23,12 @@ export class WishlistService {
 	) { }
 
 	getStudentWishlist(): Observable<Wishlist[]> {
-		var url = 'http://www.localhost:8000/wishlist';
+		var url = 'http://localhost:8000/wishlist';
 		return this.http.get<Wishlist[]>(url, this.httpOptions);
 	}
 
 	addWishlist(rank, dorm_id, room_id, floor): Observable<Object> {
-		var url = 'http://www.localhost:8000/wishlist?rank=' + rank + '&dorm_id=' + dorm_id + '&room_id=' + room_id + '&floor=' + floor;
+		var url = 'http://localhost:8000/wishlist?rank=' + rank + '&dorm_id=' + dorm_id + '&room_id=' + room_id + '&floor=' + floor;
 		const body = {
 			rank: rank,
 			dorm_id: dorm_id,
@@ -40,18 +40,18 @@ export class WishlistService {
 	}
 
 	removeWishlist(rank): Observable<Object> {
-		var url = 'http://www.localhost:8000/wishlist?rank=' + rank;
+		var url = 'http://localhost:8000/wishlist?rank=' + rank;
 		return this.http.delete<Object>(url, this.httpOptions);
 	}
 
 	//GROUP WISHLIST MANAGEMENT
 	getGroupWishlist(): Observable<GroupWishlist[]> {
-		var url = 'http://www.localhost:8000/group_wishlist';
+		var url = 'http://localhost:8000/group_wishlist';
 		return this.http.get<GroupWishlist[]>(url, this.httpOptions);
 	}
 
 	addGroupWishlist(rank, dorm_id, room_id, floor) {
-		var url = 'http://www.localhost:8000/group_wishlist?rank=' + rank + '&dorm_id=' + dorm_id + "&room_id=" + room_id + "&floor=" + floor;
+		var url = 'http://localhost:8000/group_wishlist?rank=' + rank + '&dorm_id=' + dorm_id + "&room_id=" + room_id + "&floor=" + floor;
 		const body = {
 			rank: rank,
 			dorm_id: dorm_id,
@@ -64,7 +64,7 @@ export class WishlistService {
 	}
 
 	removeGroupWishlist(rank) {
-		var url = 'http://www.localhost:8000/group_wishlist?rank=' + rank;
+		var url = 'http://localhost:8000/group_wishlist?rank=' + rank;
 		return this.http.delete<GroupWishlist[]>(url, this.httpOptions);
 	}
 }

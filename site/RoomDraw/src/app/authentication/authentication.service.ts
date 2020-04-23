@@ -23,7 +23,7 @@ export class AuthenticationService {
   ) { }
 
   login(username, password): Observable<LoginResponse> {
-    var url = "http://www.localhost:8000/login"
+    var url = "http://localhost:8000/login"
     const body = {
       username: username,
       password: password
@@ -56,8 +56,8 @@ export class AuthenticationService {
     this.succeeded = 0;
     this.header = "";
     localStorage.removeItem('SESSION-ID');
-    window.location.href = "http://www.localhost:4200/log-out"
-    var url = "http://www.localhost:8000/log-out"
+    window.location.href = "http://localhost:4200/log-out"
+    var url = "http://localhost:8000/log-out"
     return this.http.post<Object>(url, this.httpOptions)
   }
 }

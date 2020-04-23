@@ -26,12 +26,12 @@ export class GroupService {
 	) { }
 
 	getGroup(): Observable<Group> {
-		var url = "http://www.localhost:8000/group";
+		var url = "http://localhost:8000/group";
 		return this.http.get<Group>(url, this.httpOptions);
 	}
 
 	getGroupsAhead(): Observable<number> {
-		var url = "http://www.localhost:8000/group/rank";
+		var url = "http://localhost:8000/group/rank";
 		return this.http.get<number>(url, this.httpOptions);
 	}
 
@@ -40,7 +40,7 @@ export class GroupService {
 			return of(this.members);
 		}
 
-		var url = "http://www.localhost:8000/group/members";
+		var url = "http://localhost:8000/group/members";
 
 		var obs = this.http.get<Student[]>(url, this.httpOptions).pipe(share());
 		obs.subscribe(members => this.members = members);
@@ -48,7 +48,7 @@ export class GroupService {
 	}
 
 	leaveGroup(): Observable<Object> {
-		var url = "http://www.localhost:8000/group"
+		var url = "http://localhost:8000/group"
 		return this.http.delete<Object>(url, this.httpOptions);
 	}
 
@@ -57,19 +57,19 @@ export class GroupService {
 			return of(this.invites);
 		}
 
-		var url = "http://www.localhost:8000/group/invite";
+		var url = "http://localhost:8000/group/invite";
 		var obs = this.http.get<Invitations[]>(url, this.httpOptions).pipe(share());
 		obs.subscribe(invites => this.invites = invites);
 		return obs
 	}
 
 	getGroupLeader(): Observable<Student> {
-		var url = "http://www.localhost:8000/group/leader";
+		var url = "http://localhost:8000/group/leader";
 		return this.http.get<Student>(url, this.httpOptions);
 	}
 
 	inviteToGroup(random_number): Observable<Object> {
-		var url = "http://www.localhost:8000/group/invite";
+		var url = "http://localhost:8000/group/invite";
 		const body = {
 			random_number: random_number
 		}
@@ -79,7 +79,7 @@ export class GroupService {
 	}
 
 	acceptInvite(group_id): Observable<Object> {
-		var url = "http://www.localhost:8000/group/invite";
+		var url = "http://localhost:8000/group/invite";
 		const body = {
 			group_id: group_id
 		}
@@ -89,7 +89,7 @@ export class GroupService {
 	}
 
 	declineInvite(group_id): Observable<Object> {
-		var url = "http://www.localhost:8000/group/invite?group_id=" + group_id;
+		var url = "http://localhost:8000/group/invite?group_id=" + group_id;
 
 		return this.http.delete<Object>(url, this.httpOptions);
 	}
