@@ -85,6 +85,7 @@ class GroupInvite(object):
 			response.media = []
 			for inv in invitations:
 				leader = get_group_leader(inv.group_id)
+				if leader is None: continue
 				leader_name = leader.first_name + " " + leader.last_name
 				invite = {
 					'group_id':inv.group_id,
@@ -133,12 +134,17 @@ class GroupInvite(object):
 def get_group_leader(group_id, session=None):
 	with sql(session) as session:
 		members = get_group_members(group_id, session)
+		if len(members) == 0:
+			return None
 		leader = min(members, key=lambda x : x.random_number)
 		return leader
 
 class GroupLeader(object):
 	def on_get(self, request, response):
+		# default response
+		response.media = None
 		with sql() as session:
 			stud = get_student_by_id(self.student_id, session)
 			leader = get_group_leader(stud.group_id, session)
-			response.media = leader.dict(exclude=["student_id"])
+			if leader is not None:
+				response.media = leader.dict(exclude=["student_id"])
