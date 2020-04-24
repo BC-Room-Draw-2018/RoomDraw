@@ -13,3 +13,7 @@ export class LoginResponse {
 	token: string;
 	success: number;
 }
+
+export class ChangePasswordResponse {
+	success: number
+}
