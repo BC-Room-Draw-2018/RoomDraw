@@ -32,7 +32,7 @@ class GroupWishlist(object):
 	def on_put(self, request, response):
 		rank = INT(request.params.get("rank"))
 		dorm_id = INT(request.params.get("dorm_id"))
-		room_id = INT(request.params.get("room_id"), nullable=True)
+		room = request.params.get("room_id")
 		floor = INT(request.params.get("floor"), nullable=True)
 
 		with sql(commit=True) as session:
@@ -46,5 +46,5 @@ class GroupWishlist(object):
 				item.rank += 1
 				session.commit()
 
-			item = models.GroupWishlist(group_id=gid, rank=rank, dorm_id=dorm_id, room_id=room_id, floor=floor)
+			item = models.GroupWishlist(group_id=gid, rank=rank, dorm_id=dorm_id, room_id=room, floor=floor)
 			session.add(item)
