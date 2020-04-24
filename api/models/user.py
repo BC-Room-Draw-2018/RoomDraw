@@ -6,5 +6,5 @@ class User(Model, OrmModel):
 
 	student_id = Column(Integer, primary_key=True)
 	email = Column(String(256))
-	password = Column(String(50))
+	password = Column(String(80))
 	salt = Column(String(64))

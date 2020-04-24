@@ -6,6 +6,7 @@ from endpoints.student import Student, MyInfo
 from endpoints.student_wishlist import StudentWishlist
 
 from endpoints.auth import Login, Logout
+from endpoints.password import Password
 
 
 __all__ = [
@@ -24,5 +25,7 @@ __all__ = [
 
 	# Authentication
 	"Login",
-	"Logout"
+	"Logout",
+
+	"Password"
 ]
