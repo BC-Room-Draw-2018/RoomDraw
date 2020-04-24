@@ -46,12 +46,12 @@ export class AuthenticationService {
   changePassword(currentPassword, newPassword): Observable<ChangePasswordResponse> {
     var url = "http://localhost:8000/change-password"
     const body = {
-      currentPassword: currentPassword,
-      newPassword: newPassword
+      password: currentPassword,
+      new_password: newPassword
     }
     var str = JSON.stringify(body)
     
-    var obs = this.http.post<ChangePasswordResponse>(url, body).pipe(share());
+    var obs = this.http.post<ChangePasswordResponse>(url, body, this.httpOptions).pipe(share());
     obs.subscribe(result => {this.succeeded = result.success});
 
     setTimeout(() => {  
