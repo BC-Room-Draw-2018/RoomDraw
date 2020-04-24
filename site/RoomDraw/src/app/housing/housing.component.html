@@ -89,16 +89,16 @@ User may create and edit housing wish lists-->
 						<th>Type</th>
 					</tr>
 					<tr *ngFor="let room of rooms" (click)="showRoomListAddPopup(room.dorm_id, room.room_number)">
-						<ng-container *ngIf="groupMembers.length <= room.capacity; else roomNotAvailableToGroup">
+						<!-- <ng-container *ngIf="groupMembers.length <= room.capacity; else roomNotAvailableToGroup"> -->
 							<td>{{ room.room_number }}</td>
 							<td>{{ room.capacity }}</td>
 							<td>{{ room.available_spots }}</td>
 							<td>{{ room.description }}</td>
-						</ng-container>
-						<ng-template #roomNotAvailableToGroup>
+						<!-- </ng-container> -->
+						<!-- <ng-template #roomNotAvailableToGroup>
 							<td>{{ room.room_number }}</td>
 							<td colspan="3">Unavailable. Your group is to large.</td>
-						</ng-template>
+						</ng-template> -->
 					</tr>
 				</table>
 			</div>
@@ -189,7 +189,7 @@ User may create and edit housing wish lists-->
 				<br/>
 				<button type="button" (click)="hidePopUp()">Cancel</button>
 				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to list</button>
-				<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist. Your group exceeds the allowed size for this room.</p>
+				<!-- <p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist. Your group exceeds the allowed size for this room.</p> -->
 			</form>
 		</div>
 	</div>

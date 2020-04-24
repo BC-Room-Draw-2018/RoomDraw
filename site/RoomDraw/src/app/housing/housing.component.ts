@@ -41,6 +41,7 @@ export class HousingComponent implements OnInit {
 	popUpVisable: boolean = false;
 	preference = 0;
 	failedToAdd: boolean = false;
+	tooBig: boolean = false;
 
 	deleteCardPopup: boolean = false;
 	deleteCardRank = 0;
@@ -200,14 +201,16 @@ export class HousingComponent implements OnInit {
 	}
 
 	submitWishlist() {
-		if(this.dropdownRoomCapacity >= this.groupMembers.length) {
+		// if(this.dropdownRoomCapacity >= this.groupMembers.length) {
 			this.hidePopUp();
 			this.wishlistService.addGroupWishlist(this.preference, this.dropdownDorm, this.dropdownRoom, this.dropdownFloorRooms)
 				.subscribe(error => error = error)
-			this.getWishlist();
-		} else {
-			this.failedToAdd = true;
-		}
+			setTimeout(() => {  
+				window.location.reload()
+			}, 1000);
+		// } else {
+		// 	this.failedToAdd = true;
+		// }
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
@@ -239,12 +242,12 @@ export class HousingComponent implements OnInit {
 	showRoomListAddPopup(dorm_id, room) {
 		//roomIQ means 'room in question'
 		var roomCapacity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
-		if(roomCapacity >= this.groupMembers.length) {
+		// if(roomCapacity >= this.groupMembers.length) {
 			this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
 			this.roomListDormID = dorm_id
 			this.roomListRoom = room;
 			this.roomListPopupVisable = true;
-		}
+		// }
 	}
 
 	hideRoomListAddPopup() {
@@ -260,7 +263,7 @@ export class HousingComponent implements OnInit {
 		this.roomListPopupVisable = false;
 		this.roomListRankSelected = false;
 		this.wishlistService.addGroupWishlist(this.roomListPreference, this.roomListDormID, this.roomListRoom, this.floor_viewing)
-			.subscribe(error => error = error);
+			.subscribe(error => console.log("Error: " + error));
 			
 		setTimeout(() => {  
 			window.location.reload()
