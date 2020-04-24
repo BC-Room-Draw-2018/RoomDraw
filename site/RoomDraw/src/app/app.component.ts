@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       if (this.authService.isAuthenticated) {
         this.userInactive.next(undefined);
       }
-    }, 600000);
+    }, 1800000);
   }
 
   @HostListener('window:mousemove') refreshUserState() {
