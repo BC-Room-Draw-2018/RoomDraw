@@ -186,7 +186,7 @@ REPLACE INTO Rooms(room_number,   dorm_id,   capacity,   available_spots,   desc
 ('101', 6, 2, 2, '2-person suite, large, w/lounge', 2), 
 ('103', 6, 4, 4, '4-person apartment, small, no lounge', 2), 
 ('104', 6, 4, 4, '4-person apartment, large, no lounge', 2), 
-('105', 6, 2, 2, '4-person apartment, small, no lounge', 2), 
+('105', 6, 4, 4, '4-person apartment, small, no lounge', 2), 
 ('106', 6, 2, 2, '2-person suite, small, w/lounge', 2), 
 ('107', 6, 4, 4, '4-person apartment, large, no lounge', 2), 
 ('108', 6, 2, 2, '2-person suite, small, w/lounge', 2), 
