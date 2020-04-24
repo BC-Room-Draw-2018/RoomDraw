@@ -31,3 +31,6 @@ def INT(value, nullable=False):
 			raise falcon.HTTPBadRequest
 		return None
 	return ret
+
+def error(error_message):
+	return {"success": False, "error": error_message}
