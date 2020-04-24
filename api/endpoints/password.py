@@ -10,6 +10,12 @@ from endpoints.auth import _check_password
 def hash_password(password):
 	return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
+def ensure_password_strength(password):
+	"""Returns message about password strength"""
+	if len(password) < 10:
+		return "Password too short"
+	return None
+
 class Password(object):
 	def on_post(self, request, response):
 		current_password = new_password = None
@@ -25,6 +31,11 @@ class Password(object):
 			model = models.User
 			user = session.query(model).filter_by(student_id=self.student_id).first()
 			if _check_password(user, current_password):
+				message = ensure_password_strength(new_password)
+				if message:
+					response.media = {"success": False, "error": message}
+					return
+
 				user.password = hash_password(new_password)
 				response.media["success"] = True
 			else:
