@@ -16,7 +16,7 @@ const routes: Routes = [
 	{ path: 'housing', component: HousingComponent, canActivate: [AuthenticationGuard] },
 	// { path: 'group', component: GroupComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
-	{ path: 'live-draw', component: LiveDrawComponent, canActivate: [AuthenticationGuard] },
+	// { path: 'live-draw', component: LiveDrawComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'documents', component: DocumentComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'faqs', component: FaqComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'login', component: LoginComponent },
