@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators'
-import { LoginResponse } from '../Student'
+import { LoginResponse, ChangePasswordResponse } from '../Student'
 
 
 @Injectable({
@@ -41,6 +41,24 @@ export class AuthenticationService {
 
     return obs;
     // this.isLoggedIn = true;
+  }
+
+  changePassword(currentPassword, newPassword): Observable<ChangePasswordResponse> {
+    var url = "http://localhost:8000/change-password"
+    const body = {
+      password: currentPassword,
+      new_password: newPassword
+    }
+    var str = JSON.stringify(body)
+    
+    var obs = this.http.post<ChangePasswordResponse>(url, body, this.httpOptions).pipe(share());
+    obs.subscribe(result => {this.succeeded = result.success});
+
+    setTimeout(() => {  
+      // We can put code here if needed
+    }, 2000);
+
+    return obs;
   }
 
   isAuthenticated(): boolean {
