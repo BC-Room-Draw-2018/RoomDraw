@@ -78,6 +78,17 @@ class GroupMembers(object):
 			for person in members:
 				response.media.append(person.dict(exclude="student_id"))
 
+class GroupPendingInvite(object):
+	def on_get(self, request, response):
+		response.media = []
+
+		with sql() as session:
+			student = get_student_by_id(self.student_id, session)
+			invitations = session.query(models.Invitation).filter_by(group_id=student.group_id).all()
+			for i in invitations:
+				recepient = get_student_by_id(i.student_id, session)
+				response.media.append(recepient.dict(exclude="student_id"))
+
 class GroupInvite(object):
 	def on_get(self, request, response):
 		with sql() as session:

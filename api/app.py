@@ -33,6 +33,7 @@ class API(object):
 		self.api.add_route("/group/rank", endpoints.GroupRank())
 		self.api.add_route("/group/members", endpoints.GroupMembers())
 		self.api.add_route("/group/invite", endpoints.GroupInvite())
+		self.api.add_route("/group/invite/pending", endpoints.GroupPendingInvite())
 		self.api.add_route("/group/leader", endpoints.GroupLeader())
 		self.api.add_route("/group_wishlist", endpoints.GroupWishlist())
 		self.api.add_route("/wishlist", endpoints.StudentWishlist())

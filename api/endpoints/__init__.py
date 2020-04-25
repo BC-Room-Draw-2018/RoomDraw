@@ -1,5 +1,5 @@
 from endpoints.dorms import Dorm
-from endpoints.groups import Group, GroupMembers, GroupInvite, GroupLeader, GroupRank
+from endpoints.groups import Group, GroupMembers, GroupInvite, GroupLeader, GroupRank, GroupPendingInvite
 from endpoints.group_wishlist import GroupWishlist
 from endpoints.rooms import Room
 from endpoints.student import Student, MyInfo
@@ -18,6 +18,7 @@ __all__ = [
 	"GroupWishlist",
 	"GroupLeader",
 	"GroupRank",
+	"GroupPendingInvite",
 	"Room",
 	"Student",
 	"MyInfo",
