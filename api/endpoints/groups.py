@@ -100,15 +100,23 @@ class GroupInvite(object):
 
 		with sql(commit=True) as session:
 			stud = get_student_by_id(self.student_id, session)
-			recepient = session.query(models.Student).filter_by(random_number=random_number).first()
-
 			gid = stud.group_id
+			group_size = len(get_group_members(gid, session))
+
+			if group_size > 8:
+				response.media = error("Your group is too large")
+				return
+
+			recepient = session.query(models.Student).filter_by(random_number=random_number).filter_by(sex=stud.sex).first()
+			if recepient is None:
+				response.media = error("Student not found")
+				return
 
 			invitation = session.query(models.Invitation).filter_by(student_id=recepient.student_id, group_id=gid).first()
-			if invitation is not None:
-				return
+			if invitation is not None: return
 			invitation = models.Invitation(student_id=recepient.student_id, group_id=gid)
 			session.add(invitation)
+		response.media = {"success": True}
 
 	# Accept an invite
 	def on_put(self, request, response):
@@ -116,6 +124,15 @@ class GroupInvite(object):
 		gid = INT(params.get("group_id"))
 
 		with sql(commit=True) as session:
+			invitation = session.query(models.Invitation).filter_by(student_id=self.student_id, group_id=gid).first()
+			if invitation is None:
+				response.media = error("You were not invited to this group")
+				return
+
+			if len(get_group_members(gid, session)) >= 8:
+				response.media = error("Group size is too large")
+				return
+
 			student = get_student_by_id(self.student_id, session)
 			old_gid = student.group_id
 			student.group_id = gid
@@ -123,6 +140,7 @@ class GroupInvite(object):
 			reinit_group(gid, session)
 
 			session.query(models.Invitation).filter_by(student_id=self.student_id).delete()
+		response.media = {"success": True}
 
 	# Decline an invite
 	def on_delete(self, request, response):
