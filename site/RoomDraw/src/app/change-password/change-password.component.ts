@@ -16,7 +16,7 @@ export class ChangePasswordComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	message: string = "Error occurred, this error is something that occcurred when connecting to the server.";
+	message: string;
 	successfulPasswordChange: boolean = false;
 	nonUserError: boolean = false;
 
