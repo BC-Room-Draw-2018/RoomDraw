@@ -132,6 +132,7 @@ User may create and edit housing wish lists-->
 		<div class="row">
 			<div class = "wishColumn" *ngFor="let list of wishlist">
 				<div class = "card" (click)="showDeleteCardPopup(list.rank, list.dorm_id, list.room_id)">
+					<!-- <ng-container class="groupTooLarge" *ngIf="groupTooLarge()">format me</ng-container> -->
 					<h3>Preference {{ list.rank }}</h3>
 					<p>{{ wishlistHall(list.dorm_id) }}</p>
 					<p>Room #{{ list.room_id }}</p>

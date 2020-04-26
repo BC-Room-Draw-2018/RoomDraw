@@ -21,7 +21,7 @@ export class HousingComponent implements OnInit {
 
 	dorms: Dorm[] = [];
 
-	wishlist: GroupWishlist[] =[];
+	wishlist: GroupWishlist[] = [];
 
 	myInfo: Student;
 
@@ -269,4 +269,8 @@ export class HousingComponent implements OnInit {
 			window.location.reload()
 		}, 1000);
 	}
+
+	// groupTooLarge(dorm_id, room_id): boolean {
+	// 	//haven't found a good way to implement this yet
+	// }
 }
