@@ -23,7 +23,7 @@ const routes: Routes = [
 	{ path: 'reset-password', component: ResetPasswordComponent },
 	{ path: 'log-out', component: LogOutComponent },
 	{ path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthenticationGuard] },
-	{ path: '', redirectTo: '/login', pathMatch: 'full' }
+	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
