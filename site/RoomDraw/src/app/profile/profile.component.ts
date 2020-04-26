@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   myInfo: Student;
 
   invitations: Invitations[];
+  pendingInvites: Student[];
 
   leader: Student;
 
@@ -31,6 +32,9 @@ export class ProfileComponent implements OnInit {
     this.groupService.getInvites().pipe(tap(t => console.log(t)))
       .subscribe(invitations => this.invitations = invitations);
     
+    this.groupService.getPendingInvites().pipe(tap(t => console.log(t)))
+      .subscribe(pending => this.pendingInvites = pending);
+
     this.myInfo = new Student();
 		this.getMyInfo();
 

@@ -63,6 +63,11 @@ export class GroupService {
 		return obs
 	}
 
+	getPendingInvites(): Observable<Student[]> {
+		var url = "http://localhost:8000/group/invite/pending";
+		return this.http.get<Student[]>(url, this.httpOptions);
+	}
+
 	getGroupLeader(): Observable<Student> {
 		var url = "http://localhost:8000/group/leader";
 		return this.http.get<Student>(url, this.httpOptions);
