@@ -18,7 +18,7 @@ export class ChangePasswordComponent implements OnInit {
 
 	message: string = "Error occurred, this error is something that occcurred when connecting to the server.";
 	successfulPasswordChange: boolean = false;
-	nonUserError: boolean = true;
+	nonUserError: boolean = false;
 
 	responseHandler(response) {
 		if (response.success === true) {
