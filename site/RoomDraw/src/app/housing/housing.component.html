@@ -10,6 +10,17 @@ User may create and edit housing wish lists-->
 <div class="content">
 	<h1>Housing Wish List Management</h1>
 
+	<div class="leaderBanner">
+
+	<ng-container *ngIf="group.random_number == myInfo.random_number; else notLeader">
+		You are the group leader.
+	</ng-container>
+	<ng-template #notLeader class="leaderBanner">
+		Only the group leader can edit your group wishlist. Contact your group leader to make changes.
+	</ng-template>
+
+	</div>
+
 	<ng-container *ngIf="myInfo.sex == 'M'; else female">
 		<table>
 			<tr>
@@ -138,7 +149,7 @@ User may create and edit housing wish lists-->
 					<p>Room #{{ list.room_id }}</p>
 				</div>
 			</div>
-			<div class = "wishColumn">
+			<div class = "wishColumn" *ngIf="group.random_number == myInfo.random_number">
 				<div class="card" (click)="showPopUp()">
 					<div class = "createNewWishlist">
 						<h1>+</h1>

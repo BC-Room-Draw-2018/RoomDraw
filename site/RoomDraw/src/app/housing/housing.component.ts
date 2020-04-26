@@ -214,11 +214,13 @@ export class HousingComponent implements OnInit {
 	}
 
 	showDeleteCardPopup(rank, dorm_id, room_id) {
-		this.deleteCardPopup = true;
-		this.deleteCardRank = rank;
-		var dormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
-		this.deleteCardDorm = dormName;
-		this.deleteCardRoom = room_id;
+		if(this.group.random_number == this.myInfo.random_number) {
+			this.deleteCardPopup = true;
+			this.deleteCardRank = rank;
+			var dormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
+			this.deleteCardDorm = dormName;
+			this.deleteCardRoom = room_id;
+		}
 		// console.log("card to delete:");
 		// console.log("Rank: " + rank);
 		// console.log("dorm_id: " + dorm_id);
@@ -243,10 +245,12 @@ export class HousingComponent implements OnInit {
 		//roomIQ means 'room in question'
 		var roomCapacity = this.rooms.find(roomIQ => (roomIQ.dorm_id == dorm_id) && (roomIQ.room_number == room)).capacity;
 		// if(roomCapacity >= this.groupMembers.length) {
+		if(this.group.random_number == this.myInfo.random_number) {
 			this.roomListDormName = this.dorms.find(dorm => dorm.dorm_id == dorm_id).dorm_name;
 			this.roomListDormID = dorm_id
 			this.roomListRoom = room;
 			this.roomListPopupVisable = true;
+		}
 		// }
 	}
 
