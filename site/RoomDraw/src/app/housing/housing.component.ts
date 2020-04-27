@@ -47,6 +47,7 @@ export class HousingComponent implements OnInit {
 	deleteCardRank = 0;
 	deleteCardDorm = null;
 	deleteCardRoom = 0;
+	editRoom: boolean = false;
 
 	roomListPopupVisable: boolean = false;
 	roomListPreference = 0;
@@ -242,6 +243,11 @@ export class HousingComponent implements OnInit {
 		setTimeout(() => {  
 			window.location.reload()
 		}, 1000);
+	}
+
+	editWishlist() {
+		//change rank
+		this.editRoom = true;
 	}
 
 	showRoomListAddPopup(dorm_id, room) {

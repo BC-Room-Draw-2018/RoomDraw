@@ -160,14 +160,17 @@ User may create and edit housing wish lists-->
 		</div>
 
 		<div class="deleteCardPopup" *ngIf="deleteCardPopup">
-			<h2>Delete from Wishlist</h2>
-			<label for="preference">Preference #: {{ deleteCardRank }}</label>
+			<h2>Re-rank or Delete</h2>
+			<label for="preference" *ngIf="!editRoom">Preference #: {{ deleteCardRank }}</label>
+			<label for="preference" *ngIf="editRoom">Preference #: </label>
 			<br/>
 			<label for="dorms">Dorm: {{ deleteCardDorm }}</label>
 			<br/>
 			<label for="rooms">Room #: {{ deleteCardRoom }}</label>
 			<br/>
 			<button type="button" (click)="hideDeleteCardPopup()">Cancel</button>
+			<button type="button" *ngIf="!editRoom" (click)="editWishlist()">Edit Rank</button>
+			<button type="button" *ngIf="editRoom" (click)="changeRoom()">Change Rank</button>
 			<button type="button" (click)="deleteCard()">Remove from list</button>
 		</div>
 
