@@ -17,30 +17,34 @@ import { LogOutComponent } from './log-out/log-out.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LiveDrawComponent } from './live-draw/live-draw.component';
 import { ImageMapComponent } from './image-map/image-map.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		HomeComponent,
-		GroupComponent,
-		NavBarComponent,
-		HousingComponent,
-		ProfileComponent,
-		DocumentComponent,
-		FaqComponent,
-		LoginComponent,
-		ResetPasswordComponent,
-		LogOutComponent,
-		LiveDrawComponent,
-		ChangePasswordComponent,
-		ImageMapComponent
-	],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		HttpClientModule
-	],
-	providers: [],
-	bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      HomeComponent,
+      GroupComponent,
+      NavBarComponent,
+      HousingComponent,
+      ProfileComponent,
+      DocumentComponent,
+      FaqComponent,
+      LoginComponent,
+      ResetPasswordComponent,
+      LogOutComponent,
+      LiveDrawComponent,
+      ChangePasswordComponent,
+      ImageMapComponent,
+      HelpComponent
+   ],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      HttpClientModule
+   ],
+   providers: [],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }

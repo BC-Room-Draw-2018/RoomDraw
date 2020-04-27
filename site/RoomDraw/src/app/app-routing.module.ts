@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { GroupComponent } from './group/group.component';
 import { HousingComponent } from './housing/housing.component';
-import { LiveDrawComponent } from './live-draw/live-draw.component';
+// import { LiveDrawComponent } from './live-draw/live-draw.component';
+import { HelpComponent } from './help/help.component';
 import { DocumentComponent } from './document/document.component';
 import { FaqComponent } from './faq/faq.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
 	// { path: 'live-draw', component: LiveDrawComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'documents', component: DocumentComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'faqs', component: FaqComponent, canActivate: [AuthenticationGuard] },
+	{ path: 'help', component: HelpComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'reset-password', component: ResetPasswordComponent },
 	{ path: 'log-out', component: LogOutComponent },
