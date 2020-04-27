@@ -48,6 +48,7 @@ export class HousingComponent implements OnInit {
 	deleteCardDorm = null;
 	deleteCardRoom = 0;
 	editRoom: boolean = false;
+	newRank = 0;
 
 	roomListPopupVisable: boolean = false;
 	roomListPreference = 0;
@@ -164,7 +165,6 @@ export class HousingComponent implements OnInit {
 
 	setPreference(rank: any) {
 		this.preference = rank.target.value;
-		console.log("rank - " + this.preference)
 		this.displayDormDropdown = true;
 	}
 
@@ -231,6 +231,7 @@ export class HousingComponent implements OnInit {
 
 	hideDeleteCardPopup() {
 		this.deleteCardPopup = false;
+		this.editRoom = false;
 	}
 
 	deleteCard() {
@@ -244,8 +245,27 @@ export class HousingComponent implements OnInit {
 	}
 
 	editWishlist() {
-		//change rank
 		this.editRoom = true;
+	}
+
+	setNewRank(newRank: any) {
+		this.newRank = newRank.target.value;
+	}
+
+	changeRank() {
+		this.hideDeleteCardPopup();
+		var dorm_id = this.dorms.find(dorm => dorm.dorm_name == this.deleteCardDorm).dorm_id;
+		//delete old card
+
+		this.wishlistService.removeGroupWishlist(this.deleteCardRank)
+			.subscribe(error => console.log("Error: " + error));
+		//add new card with new rank
+		this.wishlistService.addGroupWishlistWithoutFloor(this.newRank, dorm_id, this.deleteCardRoom)
+			.subscribe(error => console.log("Error: " + error));
+		//refresh
+		setTimeout(() => {  
+			window.location.reload()
+		}, 1000);
 	}
 
 	showRoomListAddPopup(dorm_id, room) {

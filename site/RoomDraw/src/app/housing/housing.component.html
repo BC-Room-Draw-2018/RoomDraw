@@ -163,6 +163,10 @@ User may create and edit housing wish lists-->
 			<h2>Re-rank or Delete</h2>
 			<label for="preference" *ngIf="!editRoom">Preference #: {{ deleteCardRank }}</label>
 			<label for="preference" *ngIf="editRoom">Preference #: </label>
+			<select *ngIf="editRoom" id="preference" (change)="setNewRank($event)">
+				<option disabled selected value> -- select rank -- </option>
+				<option *ngFor="let pref of wishlist" [value]="pref.rank">{{ pref.rank }}</option>
+			</select>
 			<br/>
 			<label for="dorms">Dorm: {{ deleteCardDorm }}</label>
 			<br/>
@@ -170,7 +174,7 @@ User may create and edit housing wish lists-->
 			<br/>
 			<button type="button" (click)="hideDeleteCardPopup()">Cancel</button>
 			<button type="button" *ngIf="!editRoom" (click)="editWishlist()">Edit Rank</button>
-			<button type="button" *ngIf="editRoom" (click)="changeRoom()">Change Rank</button>
+			<button type="button" *ngIf="editRoom" (click)="changeRank()">Change Rank</button>
 			<button type="button" (click)="deleteCard()">Remove from list</button>
 		</div>
 
