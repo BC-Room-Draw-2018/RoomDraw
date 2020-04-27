@@ -44,7 +44,7 @@ export class AuthenticationService {
   }
 
   changePassword(currentPassword, newPassword): Observable<ChangePasswordResponse> {
-    var url = "https://api.bcroomdraw.com/change-password"
+    var url = "http://localhost:8000/change-password"
     const body = {
       password: currentPassword,
       new_password: newPassword
