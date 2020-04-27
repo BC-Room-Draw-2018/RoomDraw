@@ -117,10 +117,10 @@ User may create and edit housing wish lists-->
 			<div class="roomListPopup" *ngIf="roomListPopupVisable">
 				<h2>Add to Wishlist</h2>
 				<label for="preference">Preference #: </label>
-				<select id="preference">
+				<select id="preference" (change)="setRoomListPreference($event)">
                     <option disabled selected value> -- select rank -- </option>
-					<option *ngFor="let pref of wishlist" (click)="setRoomListPreference(pref.rank)">{{ pref.rank }}</option>
-					<option (click)="setRoomListPreference(wishlist.length+1)">{{ wishlist.length+1 }}</option>
+					<option *ngFor="let pref of wishlist" [value]="pref.rank">{{ pref.rank }}</option>
+					<option [value]="wishlist.length+1">{{ wishlist.length+1 }}</option>
 				</select>
 				<br/>
 				<label for="dorms">Dorm: {{ roomListDormName }}</label>
@@ -175,28 +175,28 @@ User may create and edit housing wish lists-->
 			<form>
 				<h2>Add to Wishlist</h2>
 				<label for="preference">Preference #: </label>
-				<select id="preference">
+				<select id="preference" (change)="setPreference($event)">
                     <option disabled selected value> -- select rank -- </option>
-					<option *ngFor="let pref of wishlist" (click)="setPreference(pref.rank)">{{ pref.rank }}</option>
-					<option (click)="setPreference(wishlist.length+1)" value="wishlist.length+1">{{ wishlist.length+1 }}</option>
+					<option *ngFor="let pref of wishlist" [value]="pref.rank">{{ pref.rank }}</option>
+					<option [value]="wishlist.length+1">{{ wishlist.length+1 }}</option>
 				</select>
 				<br/>
 				<label for="dorms">Dorm: </label>
-				<select id="dorms" *ngIf="displayDormDropdown">
+				<select id="dorms" *ngIf="displayDormDropdown" (change)="showFloorDropdown($event)">
                     <option disabled selected value> -- select dorm -- </option>
-					<option *ngFor="let dorm of dorms" (click)="showFloorDropdown(dorm.dorm_id)">{{ dorm.dorm_name }}</option>
+					<option *ngFor="let dorm of dorms" [value]="dorm.dorm_id">{{ dorm.dorm_name }}</option>
 				</select>
 				<br/>
 				<label for="floor">Level: </label>
-				<select id="floor" *ngIf="displayFloorDropdown">
+				<select id="floor" *ngIf="displayFloorDropdown" (change)="floorDropdown($event)">
                     <option disabled selected value> -- select floor -- </option>
-					<option *ngFor="let floor of dropdownFloors" (click)="floorDropdown(floor)">{{ floor }}</option>
+					<option *ngFor="let floor of dropdownFloors" [value]="floor">{{ floor }}</option>
 				</select>
 				<br/>
 				<label for="rooms">Room #: </label>
-				<select id="rooms" *ngIf="displayRoomDropdown">
+				<select id="rooms" *ngIf="displayRoomDropdown" (change)="roomDropdown($event)">
                     <option disabled selected value> -- select room -- </option>
-					<option *ngFor="let room of dropdownRooms" (click)="roomDropdown(room.room_number, room.capacity)">{{ room.room_number }}</option>
+					<option *ngFor="let room of dropdownRooms" [value]="room.room_number">{{ room.room_number }}</option>
 				</select>
 				<br/>
 				<button type="button" (click)="hidePopUp()">Cancel</button>
