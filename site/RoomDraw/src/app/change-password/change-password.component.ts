@@ -21,22 +21,26 @@ export class ChangePasswordComponent implements OnInit {
 	nonUserError: boolean = false;
 
 	responseHandler(response) {
-		if (response.success === true) {
+		if (response.success == true) {
 			//Message saying successful
 			this.successfulPasswordChange = true;
+			this.nonUserError = false;
 		}
 		else {
 			this.nonUserError = true;
+			this.successfulPasswordChange = false;
 
 			//Prints error message on page for user to read
-			this.message = response.message;
+			this.message = response.error;
+			console.log(this.message);
 		}
 	}
 
 	changePassword(current, newPassword, confirmation) {
+		console.log("In changePassword");
 		if(newPassword === confirmation) {
 			this.authenticationService.changePassword(current, newPassword)
-				.subscribe(response => console.log(response));
+				.subscribe(response => this.responseHandler(response));
 		}
 	}
 
