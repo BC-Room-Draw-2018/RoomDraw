@@ -23,7 +23,7 @@ export class AuthenticationService {
   ) { }
 
   login(username, password): Observable<LoginResponse> {
-    var url = "https://api.bcroomdraw.com/login"
+    var url = "http://localhost:8000/login"
     const body = {
       username: username,
       password: password
@@ -75,7 +75,7 @@ export class AuthenticationService {
     this.header = "";
     localStorage.removeItem('SESSION-ID');
     window.location.href = "http://localhost:4200/log-out"
-    var url = "https://api.bcroomdraw.com/log-out"
+    var url = "http://localhost:8000/log-out"
     return this.http.post<Object>(url, this.httpOptions)
   }
 }
