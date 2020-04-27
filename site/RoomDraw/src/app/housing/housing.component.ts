@@ -47,6 +47,8 @@ export class HousingComponent implements OnInit {
 	deleteCardRank = 0;
 	deleteCardDorm = null;
 	deleteCardRoom = 0;
+	editRoom: boolean = false;
+	newRank = 0;
 
 	roomListPopupVisable: boolean = false;
 	roomListPreference = 0;
@@ -163,7 +165,6 @@ export class HousingComponent implements OnInit {
 
 	setPreference(rank: any) {
 		this.preference = rank.target.value;
-		console.log("rank - " + this.preference)
 		this.displayDormDropdown = true;
 	}
 
@@ -174,11 +175,9 @@ export class HousingComponent implements OnInit {
 
 	showFloorDropdown(dorm_id) {
 		var dorm = dorm_id.target.value;
-		console.log("dorm id - " + dorm)
 		this.displayFloorDropdown = true;
 		this.dropdownDorm = dorm;
 		const numFlrs = this.dorms.find(dormList => dormList.dorm_id == dorm).floors;
-		console.log("there are this many floors = " + numFlrs)
 		this.dropdownFloors = Array(numFlrs);
 		for(var _i = 0; _i < this.dropdownFloors.length; _i++) {
 			this.dropdownFloors[_i] = _i + 1;
@@ -232,6 +231,7 @@ export class HousingComponent implements OnInit {
 
 	hideDeleteCardPopup() {
 		this.deleteCardPopup = false;
+		this.editRoom = false;
 	}
 
 	deleteCard() {
@@ -239,6 +239,30 @@ export class HousingComponent implements OnInit {
 		this.wishlistService.removeGroupWishlist(this.deleteCardRank)
 			.subscribe(error => error = error);
 		
+		setTimeout(() => {  
+			window.location.reload()
+		}, 1000);
+	}
+
+	editWishlist() {
+		this.editRoom = true;
+	}
+
+	setNewRank(newRank: any) {
+		this.newRank = newRank.target.value;
+	}
+
+	changeRank() {
+		this.hideDeleteCardPopup();
+		var dorm_id = this.dorms.find(dorm => dorm.dorm_name == this.deleteCardDorm).dorm_id;
+		//delete old card
+
+		this.wishlistService.removeGroupWishlist(this.deleteCardRank)
+			.subscribe(error => console.log("Error: " + error));
+		//add new card with new rank
+		this.wishlistService.addGroupWishlistWithoutFloor(this.newRank, dorm_id, this.deleteCardRoom)
+			.subscribe(error => console.log("Error: " + error));
+		//refresh
 		setTimeout(() => {  
 			window.location.reload()
 		}, 1000);

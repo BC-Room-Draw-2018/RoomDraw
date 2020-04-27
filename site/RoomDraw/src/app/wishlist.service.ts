@@ -63,6 +63,18 @@ export class WishlistService {
 		return this.http.put<GroupWishlist[]>(url, str, this.httpOptions);
 	}
 
+	addGroupWishlistWithoutFloor(rank, dorm_id, room_id) {
+		var url = 'http://localhost:8000/group_wishlist?rank=' + rank + '&dorm_id=' + dorm_id + "&room_id=" + room_id;
+		const body = {
+			rank: rank,
+			dorm_id: dorm_id,
+			room_id: room_id
+		}
+
+		var str = JSON.stringify(body)
+		return this.http.put<GroupWishlist[]>(url, str, this.httpOptions);
+	}
+
 	removeGroupWishlist(rank) {
 		var url = 'http://localhost:8000/group_wishlist?rank=' + rank;
 		return this.http.delete<GroupWishlist[]>(url, this.httpOptions);
