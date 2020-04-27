@@ -175,11 +175,9 @@ export class HousingComponent implements OnInit {
 
 	showFloorDropdown(dorm_id) {
 		var dorm = dorm_id.target.value;
-		console.log("dorm id - " + dorm)
 		this.displayFloorDropdown = true;
 		this.dropdownDorm = dorm;
 		const numFlrs = this.dorms.find(dormList => dormList.dorm_id == dorm).floors;
-		console.log("there are this many floors = " + numFlrs)
 		this.dropdownFloors = Array(numFlrs);
 		for(var _i = 0; _i < this.dropdownFloors.length; _i++) {
 			this.dropdownFloors[_i] = _i + 1;
