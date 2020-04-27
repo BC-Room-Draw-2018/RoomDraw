@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Dorms(
 );
 
 CREATE TABLE IF NOT EXISTS Rooms(
-	room_number VARCHAR(4) NOT NULL,
+	room_number VARCHAR(8) NOT NULL,
 	dorm_id INT NOT NULL,
 	capacity INT NOT NULL,
 	available_spots INT NOT NULL,
