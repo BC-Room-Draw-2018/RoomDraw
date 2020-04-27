@@ -161,8 +161,9 @@ export class HousingComponent implements OnInit {
 		this.failedToAdd = false;
 	}
 
-	setPreference(rank) {
-		this.preference = rank;
+	setPreference(rank: any) {
+		this.preference = rank.target.value;
+		console.log("rank - " + this.preference)
 		this.displayDormDropdown = true;
 	}
 
@@ -172,18 +173,20 @@ export class HousingComponent implements OnInit {
 	}
 
 	showFloorDropdown(dorm_id) {
+		var dorm = dorm_id.target.value;
+		console.log("dorm id - " + dorm)
 		this.displayFloorDropdown = true;
-		this.dropdownDorm = dorm_id
-		const numFlrs = this.dorms.find(dorm => dorm.dorm_id == dorm_id).floors;
-
+		this.dropdownDorm = dorm;
+		const numFlrs = this.dorms.find(dormList => dormList.dorm_id == dorm).floors;
+		console.log("there are this many floors = " + numFlrs)
 		this.dropdownFloors = Array(numFlrs);
 		for(var _i = 0; _i < this.dropdownFloors.length; _i++) {
 			this.dropdownFloors[_i] = _i + 1;
 		}
 	}
 
-	floorDropdown(floorNum) {
-		this.dropdownFloorRooms = floorNum;
+	floorDropdown(floorNum: any) {
+		this.dropdownFloorRooms = floorNum.target.value;
 		this.displayRoomDropdown = true;
 		this.getDropdownRooms();
 	}
@@ -194,9 +197,9 @@ export class HousingComponent implements OnInit {
 			.subscribe(rooms => this.dropdownRooms = rooms);
 	}
 
-	roomDropdown(roomNum, capacity) {
-		this.dropdownRoomCapacity = capacity;
-		this.dropdownRoom = roomNum;
+	roomDropdown(roomNum: any) {
+		// this.dropdownRoomCapacity = capacity;
+		this.dropdownRoom = roomNum.target.value;
 		this.okayToSubmit = true;
 	}
 
@@ -258,8 +261,8 @@ export class HousingComponent implements OnInit {
 		this.roomListPopupVisable = false;
 	}
 
-	setRoomListPreference(rank) {
-		this.roomListPreference = rank;
+	setRoomListPreference(rank: any) {
+		this.roomListPreference = rank.target.value;
 		this.roomListRankSelected = true;
 	}
 
