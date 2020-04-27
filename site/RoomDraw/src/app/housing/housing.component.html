@@ -10,6 +10,17 @@ User may create and edit housing wish lists-->
 <div class="content">
 	<h1>Housing Wish List Management</h1>
 
+	<div class="leaderBanner">
+
+	<ng-container *ngIf="group.random_number == myInfo.random_number; else notLeader">
+		You are the group leader.
+	</ng-container>
+	<ng-template #notLeader class="leaderBanner">
+		Only the group leader can edit your group wishlist. Contact your group leader to make changes.
+	</ng-template>
+
+	</div>
+
 	<ng-container *ngIf="myInfo.sex == 'M'; else female">
 		<table>
 			<tr>
@@ -89,16 +100,16 @@ User may create and edit housing wish lists-->
 						<th>Type</th>
 					</tr>
 					<tr *ngFor="let room of rooms" (click)="showRoomListAddPopup(room.dorm_id, room.room_number)">
-						<ng-container *ngIf="groupMembers.length <= room.capacity; else roomNotAvailableToGroup">
+						<!-- <ng-container *ngIf="groupMembers.length <= room.capacity; else roomNotAvailableToGroup"> -->
 							<td>{{ room.room_number }}</td>
 							<td>{{ room.capacity }}</td>
 							<td>{{ room.available_spots }}</td>
 							<td>{{ room.description }}</td>
-						</ng-container>
-						<ng-template #roomNotAvailableToGroup>
+						<!-- </ng-container> -->
+						<!-- <ng-template #roomNotAvailableToGroup>
 							<td>{{ room.room_number }}</td>
 							<td colspan="3">Unavailable. Your group is to large.</td>
-						</ng-template>
+						</ng-template> -->
 					</tr>
 				</table>
 			</div>
@@ -132,12 +143,13 @@ User may create and edit housing wish lists-->
 		<div class="row">
 			<div class = "wishColumn" *ngFor="let list of wishlist">
 				<div class = "card" (click)="showDeleteCardPopup(list.rank, list.dorm_id, list.room_id)">
+					<!-- <ng-container class="groupTooLarge" *ngIf="groupTooLarge()">format me</ng-container> -->
 					<h3>Preference {{ list.rank }}</h3>
 					<p>{{ wishlistHall(list.dorm_id) }}</p>
 					<p>Room #{{ list.room_id }}</p>
 				</div>
 			</div>
-			<div class = "wishColumn">
+			<div class = "wishColumn" *ngIf="group.random_number == myInfo.random_number">
 				<div class="card" (click)="showPopUp()">
 					<div class = "createNewWishlist">
 						<h1>+</h1>
@@ -189,7 +201,7 @@ User may create and edit housing wish lists-->
 				<br/>
 				<button type="button" (click)="hidePopUp()">Cancel</button>
 				<button *ngIf="okayToSubmit" type="button" (click)="submitWishlist()">Add to list</button>
-				<p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist. Your group exceeds the allowed size for this room.</p>
+				<!-- <p class="failedToAdd" *ngIf="failedToAdd"><span id="error">***</span>Failed to add room to wishlist. Your group exceeds the allowed size for this room.</p> -->
 			</form>
 		</div>
 	</div>

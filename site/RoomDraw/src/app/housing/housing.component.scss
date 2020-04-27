@@ -251,3 +251,17 @@ tr:nth-child(even) {
 tr:not(:first-child):hover {
 	background-color: rgb(146, 146, 146);
 }
+
+// .groupTooLarge {
+// 	color: rgb(150, 0, 0);
+// }
+
+.leaderBanner {
+	background-color: #0088cb;
+	border: 1px solid #000;
+	margin-bottom: 20px;
+	text-align: center;
+	padding: 13px;
+	font-weight: bold;
+	font-size: 18px;
+}

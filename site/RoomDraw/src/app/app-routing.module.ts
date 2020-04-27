@@ -16,14 +16,14 @@ const routes: Routes = [
 	{ path: 'housing', component: HousingComponent, canActivate: [AuthenticationGuard] },
 	// { path: 'group', component: GroupComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
-	{ path: 'live-draw', component: LiveDrawComponent, canActivate: [AuthenticationGuard] },
+	// { path: 'live-draw', component: LiveDrawComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'documents', component: DocumentComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'faqs', component: FaqComponent, canActivate: [AuthenticationGuard] },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'reset-password', component: ResetPasswordComponent },
 	{ path: 'log-out', component: LogOutComponent },
 	{ path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthenticationGuard] },
-	{ path: '', redirectTo: '/login', pathMatch: 'full' }
+	{ path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
