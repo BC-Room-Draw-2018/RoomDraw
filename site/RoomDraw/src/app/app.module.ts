@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { LiveDrawComponent } from './live-draw/live-draw.component';
 import { ImageMapComponent } from './image-map/image-map.component';
 import { HelpComponent } from './help/help.component';
+import { JwtInterceptor } from './authentication/jwt.interceptor';
 
 @NgModule({
    declarations: [
@@ -42,7 +43,13 @@ import { HelpComponent } from './help/help.component';
       AppRoutingModule,
       HttpClientModule
    ],
-   providers: [],
+   providers: [
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: JwtInterceptor,
+         multi: true
+      }
+   ],
    bootstrap: [
       AppComponent
    ]

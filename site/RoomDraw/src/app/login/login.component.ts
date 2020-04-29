@@ -26,12 +26,10 @@ export class LoginComponent implements OnInit {
 
   get_username(val) { 
     this.username = val;
-    console.log("user = " + this.username)
   }
 
   get_password(val) {
     this.password = val;
-    console.log("user = " + this.username)
   }
 
   login() {
