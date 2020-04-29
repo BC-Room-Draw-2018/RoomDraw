@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Dorms(
 );
 
 CREATE TABLE IF NOT EXISTS Rooms(
-	room_number VARCHAR(4) NOT NULL,
+	room_number VARCHAR(8) NOT NULL,
 	dorm_id INT NOT NULL,
 	capacity INT NOT NULL,
 	available_spots INT NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS GroupWishlists(
 	group_id INT NOT NULL,
 	rank INT NOT NULL,
 	dorm_id INT NOT NULL,
-	room_id INT,
+	room_id VARCHAR(8) NOT NULL,
 	floor INT,
 
 	PRIMARY KEY(group_id, rank)
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS StudentWishlists(
 	student_id INT NOT NULL,
 	rank INT NOT NULL,
 	dorm_id INT NOT NULL,
-	room_id INT,
+	room_id VARCHAR(8) NOT NULL,
 	floor INT,
 
 	PRIMARY KEY(student_id, rank)
