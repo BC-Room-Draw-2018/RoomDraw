@@ -17,6 +17,11 @@
 			<ul>
 				<li><a href="https://benedictinecollege.formstack.com/forms/room_board_agreement" target="_blank">Room and Board Agreement</a></li>
 				<li><a href="../../assets/RoomDrawInformation.pdf" target="_blank">Room Draw 2020 Information Sheet</a></li>
+				<li>
+					<ng-container *ngIf="myInfo.sex == 'M'; else female"><a href="../../assets/RandomNumberOrder--Men.pdf" target="_blank">Random Number Master List -- Men</a></ng-container>
+					<ng-template #female><a href="../../assets/RandomNumberOrder--Women.pdf" target="_blank">Random Number Master List -- Women</a></ng-template>
+				</li>
+				
 			</ul>
 		</div>
 	</div>
