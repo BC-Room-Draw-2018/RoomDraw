@@ -18,7 +18,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { LiveDrawComponent } from './live-draw/live-draw.component';
 import { ImageMapComponent } from './image-map/image-map.component';
 import { HelpComponent } from './help/help.component';
-import { JwtInterceptor } from './authentication/jwt.interceptor';
+import { ErrorInterceptor } from './authentication/error.interceptor';
 
 @NgModule({
    declarations: [
@@ -46,7 +46,7 @@ import { JwtInterceptor } from './authentication/jwt.interceptor';
    providers: [
       {
          provide: HTTP_INTERCEPTORS,
-         useClass: JwtInterceptor,
+         useClass: ErrorInterceptor,
          multi: true
       }
    ],

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Injectable, Injector } from '@angular/core';
 
 @Injectable()
-export class JwtInterceptor implements HttpInterceptor {
+export class ErrorInterceptor implements HttpInterceptor {
     constructor(public auth: AuthenticationService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
