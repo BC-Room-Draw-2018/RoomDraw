@@ -16,8 +16,8 @@ export class JwtInterceptor implements HttpInterceptor {
         }, (err: any) => {
                 if(err instanceof HttpErrorResponse) {
                     if(err.status == 401 || err.status == 0) {
-                        this.auth.logout()
-                            .subscribe(error => console.log("Error: " + error))
+			window.location.href = "http://localhost:4200/log-out";
+			localStorage.removeItem('SESSION-ID');
                     }
                 }
             }));
