@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Users(
 	PRIMARY KEY(student_id)
 );	
 
-CREATE TABLE IF NOT EXISTS Groups(
+CREATE TABLE IF NOT EXISTS StudentGroups(
 	group_id INT NOT NULL,
 	random_number INT NOT NULL,
 	grade_level INT NOT NULL,
@@ -68,20 +68,20 @@ CREATE TABLE IF NOT EXISTS Rooms(
 
 CREATE TABLE IF NOT EXISTS GroupWishlists(
 	group_id INT NOT NULL,
-	rank INT NOT NULL,
+	current_rank INT NOT NULL,
 	dorm_id INT NOT NULL,
 	room_id VARCHAR(8) NOT NULL,
 	floor INT,
 
-	PRIMARY KEY(group_id, rank)
+	PRIMARY KEY(group_id, current_rank)
 );
 
 CREATE TABLE IF NOT EXISTS StudentWishlists(
 	student_id INT NOT NULL,
-	rank INT NOT NULL,
+	current_rank INT NOT NULL,
 	dorm_id INT NOT NULL,
 	room_id VARCHAR(8) NOT NULL,
 	floor INT,
 
-	PRIMARY KEY(student_id, rank)
+	PRIMARY KEY(student_id, current_rank)
 );

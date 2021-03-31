@@ -13,7 +13,7 @@ REPLACE INTO Dorms(dorm_id,   dorm_code,   dorm_name,   sex,   photo,   floors) 
 (9,    'GUA',   'Guadalupe Hall',      'F',   NULL,   3),  
 (10,   'CRA',   'Cray Seaberg Hall',   'F',   NULL,   1),  
 (11,   'HRT',   'Hartman Row House',   'M',   NULL,   1),  
-(12,   'SCH',   'Schirmer Row House'   'F',   NULL,   1),  
+(12,   'SCH',   'Schirmer Row House',  'F',   NULL,   1),  
 (13,   'OFM',   'Off Campus Houses',   'M',   NULL,   1),  
 (14,   'OFF',   'Off Campus Houses',   'F',   NULL,   1);
 
@@ -241,7 +241,7 @@ REPLACE INTO Rooms(room_number,   dorm_id,   capacity,   available_spots,   desc
 ('Suite R', 8, 8, 8, '8-person suite', 3), 
 ('Suite T', 8, 8, 8, '8-person suite', 3), 
 ('203/205', 9, 4, 4, '4-person suite', 1),
-('204', 9, 2, 2, '3-person suite (w/RA)', 1)
+('204', 9, 2, 2, '3-person suite (w/RA)', 1),
 ('206/208', 9, 4, 4, '4-person suite', 1), 
 ('207/209', 9, 4, 4, '4-person suite', 1), 
 ('210/212', 9, 4, 4, '4-person suite', 1), 
@@ -257,7 +257,7 @@ REPLACE INTO Rooms(room_number,   dorm_id,   capacity,   available_spots,   desc
 ('310/312', 9, 4, 4, '4-person suite', 2), 
 ('311/313', 9, 4, 4, '4-person suite', 2), 
 ('314/316', 9, 4, 4, '4-person suite', 2),
-('315', 9, 2, 2, '2-person suite (w/RA)', 2)
+('315', 9, 2, 2, '2-person suite (w/RA)', 2),
 ('319/321', 9, 4, 4, '4-person suite', 2), 
 ('323/325', 9, 4, 4, '4-person suite', 2), 
 ('401/403', 9, 4, 4, '4-person suite', 3), 
@@ -283,7 +283,7 @@ REPLACE INTO Rooms(room_number,   dorm_id,   capacity,   available_spots,   desc
 ('318', 10, 2, 2, '2-person room', 1), 
 ('319', 10, 2, 2, '2-person room', 1), 
 ('320', 10, 2, 2, '2-person room', 1), 
-('321', 10, 2, 2, '2-person suite, w/bathroom', 1)
+('321', 10, 2, 2, '2-person suite, w/bathroom', 1),
 ('1105A', 11, 5, 5, '4 or 5-person house', 1), 
 ('1105B', 11, 5, 5, '4 or 5-person house', 1), 
 ('1105C', 11, 5, 5, '4 or 5-person house', 1), 
